@@ -1,11 +1,11 @@
 #include "BANK.h"
 
 Bank::~Bank() {
-    for (auto& pair : accounts) {
+    for (auto& pair : bank_accounts) {
         delete pair.second;
     }
 }
-Account* Bank::createAccount(string user_name, int initial_funds, string password, const string& card_number, const string& account_number) {
+Account* Bank::createAccount(string user_name, int initial_funds, string password, int card_number, const string& account_number) {
     Account* newAccount = new Account(this, user_name, initial_funds, password, card_number, account_number);
     bank_accounts[newAccount->getAccountId()] = newAccount; //account id로 account 저장
     //accounts[newAccount->getAccountId()] = newAccount; 
@@ -13,8 +13,8 @@ Account* Bank::createAccount(string user_name, int initial_funds, string passwor
 }
 
 Account* Bank::getAccount(int account_id) {
-    auto it = accounts.find(account_id); //account_id가 없을 경우 accounts.end()가 반환됨
-    return (it != accounts.end()) ? it->second : nullptr; //find 성공 시 second=Account* 반환
+    auto it = std::find(accounts.begin(), accounts.end(), account_id); //account_id가 없을 경우 accounts.end()가 반환됨
+    return (it != accounts.end()) ? it : nullptr; //find 성공 시 second=Account* 반환
 }
 Bank* Bank::getOrCreateBank(const string& bank_name, vector<Bank>& banks) {
     auto it = find_if(banks.begin(), banks.end(), [&bank_name](const Bank& bank) {

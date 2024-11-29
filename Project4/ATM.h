@@ -9,6 +9,7 @@
 #include <sstream>
 #include "STATE.h"
 #include <algorithm>
+#include "LANGUAGE.h"
 
 using namespace std;
 
@@ -19,17 +20,10 @@ private:
     string serial_number; // Serial number of the ATM
     string type; // Type of ATM
     string language; // Language setting
-    //unordered_map<int, int> cash_available; // Cash available in the ATM
     Cash* cash;
-    unordered_map<int, int> cash_dispensed;
-    int withdrawal_fee;
-    int remaining_amount;
-    unordered_map<int, int> available_cash;
-    vector<int> denominations;
-    int amount;
     vector<Bank>& banks;
-    State* currentState;
-    Account* current_account;
+    State* currentState; //?
+    Account* current_account; //?
     vector<string> transaction_history; 
 
 public:
@@ -38,30 +32,30 @@ public:
     ~ATM() { delete currentState; }
 
     void addCash(int denomination, int count);
-    void printAvailableCash() const;
+    string printAvailableCash() const;
     int getTotalAvailableCash() const;
     //int getAvailableCash();
 
     Bank* getBank();
-    const vector<Bank>& getBanks() const { return banks; }
+    const vector<Bank>& getBanks() const { return banks; } //?
 
     int deposit(Account* account, unordered_map<int, int>& cash_deposited); //다른데서도 primary확인해야 함
-    string withdraw(int amount);
+    string withdraw(int amount, int fee);
     bool withdrawAvailable(int amount);
     string cashTransfer(Account* destination, int amount, int fee);
     string accountTransfer(Account* source, Account* destination, int amount);
 
-    string checkBalance(int account_id);
+    string checkBalance(int account_id); // 수정
     string getSerialNumber() const { return serial_number; };
-    void printTransactionHistory(int account_id);  // Print the transaction history of an account
+    void printTransactionHistory(int account_id);  // Print the transaction history of an account // 수정
     void printATMInfo() const;
-    bool isCorrectPassword(const string& card_number, const string& password);
+    bool isCorrectPassword(const string& card_number, const string& password); //?
 
-    void setCurrentAccount(Account* account) { current_account = account; } // 카드 설정
-    void resetCurrentAccount() { current_account = nullptr; }
-    Account* getCurrentAccount() const { return current_account; }
+    void setCurrentAccount(Account* account) { current_account = account; } // 카드 설정 //?
+    void resetCurrentAccount() { current_account = nullptr; } //?
+    Account* getCurrentAccount() const { return current_account; } //?
 
-    void setState(State* state);
+    void setState(State* state); //?
 
     vector<string> getTransactionHistory();
     void recordTransactionHistory(string rec);
@@ -71,6 +65,12 @@ public:
     unordered_map<int, int> makeCashDeposited();        
     unordered_map<int, int> makeFeeDeposited(int fee);
 
+    void admin_menu();
+    void displayTransactionHistory();
+    void outputTransactionHistoryToFile(const vector<string>& transactions);
+    string getLanguage() const { return language; };
+
+    Account* getAccountByCardNumber(const string& card_number); 
 };
 
 extern vector<ATM> atms;

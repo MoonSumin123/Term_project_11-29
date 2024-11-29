@@ -35,8 +35,10 @@ int main() {
         if (sel_or_exit == 1) {
             ATM* atm = selectATM();
 
+            // 언어 선택
             // card number 확인
             int inserted_card_number;
+            // atm->printINPUT("card number")
             cout << "Please insert your card (Enter card number): ";
             cin >> inserted_card_number;
             if (inserted_card_number == 9999) {
@@ -44,7 +46,7 @@ int main() {
                 continue;
             }
             // card -> account 찾기
-            Account* account = getAccountByCardNumber(inserted_card_number);
+            Account* account = getAccountByCardNumber(inserted_card_number); //ATM
             if (account == nullptr) {
                 cout << "Invalid Card Number." << endl;
                 continue;
@@ -57,7 +59,7 @@ int main() {
                 continue;
             }
             // password 확인
-            bool password_matching = account->passwordMatching();
+            bool password_matching = account->passwordMatching(); //ATM
 
             if (password_matching) {
                 int choice;

@@ -1,6 +1,6 @@
 #include "ACCOUNT.h"
 
-Account::Account(Bank* bank, string user_name, int initial_funds, string password, int card_number, const string& account_number)
+Account::Account(Bank* bank, string user_name, int initial_funds, string password, const string& card_number, const string& account_number)
 //»èÁ¦ : account_bank(bank), account_user_name(user_name), account_password(password), connected_card_number(card_number), account_funds(initial_funds), account_id(account_number) {
     : account_bank(bank), account_user_name(user_name), account_password(password), account_funds(initial_funds), account_number(account_number) {
     account_id = next_id++;
@@ -19,13 +19,11 @@ void Account::addFund(int fund) {
     recordTransaction("Deposited: " + to_string(fund)); //??
 }
 
-bool Account::subFund(int fund) {
+void Account::subFund(int fund) {
     if (fund > 0 && fund <= account_funds) {
         account_funds -= fund;
         recordTransaction("Withdrew: " + to_string(fund)); //??
-        return true;
     }
-    return false;
 }
 
 // ?? Record a transaction

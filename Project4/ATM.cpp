@@ -19,8 +19,8 @@ void ATM::addCash(int denomination, int count) {
     cash->addCash(denomination, count);// 필요한가?
 }
 
-void ATM::printAvailableCash() const {
-    cash->printAvailableCash();
+string ATM::printAvailableCash() const {
+    return cash->printAvailableCash();
 }
 int ATM::getTotalAvailableCash() const {
     return cash->getTotalAvailableCash();
@@ -64,10 +64,10 @@ bool ATM::withdrawAvailable(int remaining_amount) {
         return false;
 }
 
-string ATM::withdraw(int remaining_amount) {
+string ATM::withdraw(int remaining_amount, int withdrawal_fee) {
     int total_amount = remaining_amount;
     
-    //unordered_map<int, int> cash_dispensed; // Cash to be dispensed
+    unordered_map<int, int> cash_dispensed; // Cash to be dispensed
     unordered_map<int, int> available_cash = cash->getAvailableCash();// ATM의 가용 현금을 가져오기
 
     // 현재 가용 현금의 키를 벡터로 복사하여 역순으로 순회
@@ -180,20 +180,78 @@ void ATM::printTransactionHistory(int account_id) {
 
 
 bool ATM::isCorrectPassword(const string& card_number, const string& password) {
-    // 카드 번호로 계좌 찾기
-    for (const auto& bank : banks) {
-        for (const auto& account_pair : bank.getAccounts()) {
-            Account* account = account_pair.second;
-            // 카드 번호가 일치하는 계좌 찾기
-            if (account->getAssociatedCard()->getCardNumber() == card_number) {
-                if (account->getPassword() == password) {
-                    return true; // 인증 성공
-                }
-            }
-        }
+    Account* account = getAccountByCardNumber(card_number); // 카드 번호로 계좌 찾기
+    if (account && account->getPassword() == password) {
+        return true; // 인증 성공
     }
     return false; // 인증 실패
 }
+
+
+Account* ATM::getAccountByCardNumber(const string& card_number) {
+    for (const auto& bank : banks) {
+        for (const auto& account_pair : bank.getAccounts()) {
+            Account* account = account_pair.second;
+            if (account->getAssociatedCard()->getCardNumber() == card_number) {
+                return account; // 카드 번호로 계좌 찾기
+            }
+        }
+    }
+    return nullptr; // 카드 번호에 해당하는 계좌가 없을 경우
+}
+
+void ATM::admin_menu() {
+    cout << "Transaction History Menu\n";
+    displayTransactionHistory();
+}
+
+void ATM::displayTransactionHistory() {
+    
+        // 모든 거래 내역을 저장하는 벡터
+        vector<string> transactions = getTransactionHistory(); // 모든 거래를 가져오는 함수
+
+    // 거래 내역을 콘솔에 출력
+    cout << "Transaction History:\n";
+    cout << "-------------------------------------------\n";
+    cout << "ID\tCard Number\tType\tAmount\tDetails\n";
+    cout << "-------------------------------------------\n";
+
+    for (const auto& transaction : transactions) {
+        cout << transaction.id << "\t"
+            << transaction.cardNumber << "\t"
+            << transaction.type << "\t"
+            << transaction.amount << "\t"
+            << transaction.details << "\n";
+    }
+
+    // 거래 내역을 파일로 출력
+    outputTransactionHistoryToFile(transactions);
+}
+// 파일로 거래 내역을 출력하는 함수
+void ATM::outputTransactionHistoryToFile(const vector<Transaction>& transactions) {
+    ofstream outFile("transaction_history.txt");
+    if (!outFile) {
+        cout << "Error opening file for writing.\n";
+        return;
+    }
+
+    outFile << "Transaction History:\n";
+    outFile << "-------------------------------------------\n";
+    outFile << "ID\tCard Number\tType\tAmount\tDetails\n";
+    outFile << "-------------------------------------------\n";
+
+    for (const auto& transaction : transactions) {
+        outFile << transaction.id << "\t"
+            << transaction.cardNumber << "\t"
+            << transaction.type << "\t"
+            << transaction.amount << "\t"
+            << transaction.details << "\n";
+    }
+
+    outFile.close();
+    cout << "Transaction history has been saved to transaction_history.txt\n";
+}
+
 
 void ATM::printATMInfo() const {
     cout << "ATM Serial Number: " << serial_number << "\n"
@@ -204,7 +262,7 @@ void ATM::printATMInfo() const {
     cash->printAvailableCash();
 }
 
-void ATM::setState(State* state) {
+void ATM::setState(State* state) { //XXXXXX
     delete currentState;
     currentState = state;
 }

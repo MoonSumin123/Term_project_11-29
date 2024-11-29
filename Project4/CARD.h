@@ -14,7 +14,7 @@ private:
     Bank* card_bank;
 
 public:
-    Card(Account* account, Bank* bank, int card_num);
+    Card(Account* account, Bank* bank, const string& card_num);
     ~Card();
     int getCardNumber() const { return card_number; }
     string getBankname() { return card_bank->getName(); };

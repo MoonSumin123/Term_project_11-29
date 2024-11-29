@@ -27,6 +27,8 @@ void state_snapshot::stateAction() {
 	ostringstream oss;
 	for (ATM& vec : atms) {
 		oss << "ATM [SN: " << vec.getSerialNumber() << "] "
+			<< "Type: " << vec.type << "\n"
+			<< "Language: " << vec.language << "\n"
 			<< "remaining cash: {" << vec.getTotalAvailableCash() << "}\n";
 	}
 	for (Account& vec : accounts) {
@@ -122,7 +124,7 @@ void state_withdraw::stateAction() {
 
 	bool avail = atm->withdrawAvailable(remaining_amount);
 	if (avail) {
-		string result = atm->withdraw(remaining_amount);
+		string result = atm->withdraw(remaining_amount, withdrawal_fee);
 		account->subFund(remaining_amount);
 		oss << result;
 	}

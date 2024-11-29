@@ -45,7 +45,7 @@
     <ClCompile Include="selectATM.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="validCard.cpp">
+    <ClCompile Include="getAccountByCard.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,7 +95,7 @@
     <ClInclude Include="SELECTATM.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="VALIDCARD.h">
+    <ClInclude Include="GETACCOUNTBYCARD.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

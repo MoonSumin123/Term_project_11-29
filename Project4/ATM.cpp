@@ -179,36 +179,6 @@ void ATM::printTransactionHistory(int account_id) {
 }
 
 
-bool ATM::isValidCard(const string& card_number) {
-    if (type == "Single Bank ATM") {
-        for (const auto& bank : banks) {
-            for (const auto& account_pair : bank.getAccounts()) {
-                Account* account = account_pair.second;
-                // 카드 번호가 일치하는 계좌 찾기
-                if (account->getAssociatedCard()->getCardNumber() == card_number) {
-                    // 계좌의 은행이 주 은행인지 확인
-                    if (account->getBankName() == primary_bank->getName()) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-    else {
-        for (const auto& bank : banks) {
-            for (const auto& account_pair : bank.getAccounts()) {
-                Account* account = account_pair.second;
-                // 카드 번호가 일치하는 계좌 찾기
-                if (account->getAssociatedCard()->getCardNumber() == card_number) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-}
-
 bool ATM::isCorrectPassword(const string& card_number, const string& password) {
     // 카드 번호로 계좌 찾기
     for (const auto& bank : banks) {
@@ -233,29 +203,6 @@ void ATM::printATMInfo() const {
 
     cash->printAvailableCash();
 }
-/*
-void ATM::selectATM(vector<ATM>& atms) {
-    int action_choice;
-    do {
-        cout << "Choose an ATM (0 to exit):\n";
-        for (size_t i = 0; i < atms.size(); ++i) {
-            cout << i + 1 << ". ATM Serial Number: " << atms[i].getSerialNumber() << "\n";
-        }
-        cin >> action_choice;
-
-        if (action_choice > 0 && action_choice <= atms.size()) {
-            ATM& selected_atm = atms[action_choice - 1];
-
-            // 로그인 상태로 전환하여 인증 처리
-            State* login_state = new LoginState();
-            login_state->stateAction(selected_atm); // 로그인 상태에서 작업 수행
-            delete login_state; // 메모리 해제
-        }
-
-    } while (action_choice != 0);
-
-}
-*/
 
 void ATM::setState(State* state) {
     delete currentState;

@@ -133,11 +133,11 @@
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="Cash.cpp" />
     <ClCompile Include="CashKRW.cpp" />
+    <ClCompile Include="getAccountByCard.cpp" />
     <ClCompile Include="Initializing.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="selectATM.cpp" />
     <ClCompile Include="stateAction.cpp" />
-    <ClCompile Include="validCard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CARD.h" />
@@ -155,7 +155,7 @@
     <ClInclude Include="STATESNAPSHOT.h" />
     <ClInclude Include="STATETRANSFER.h" />
     <ClInclude Include="STATEWITHDRAW.h" />
-    <ClInclude Include="VALIDCARD.h" />
+    <ClInclude Include="GETACCOUNTBYCARD.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,7 +7,7 @@ void initializeSystem() {
         cin >> choice;
 
         if (choice == 1) {
-            string bank_name, user_name, password, card_number, account_number;
+            string bank_name, user_name, password, account_number;
             int initial_funds, card_number, password;
             cout << "Enter Bank Name: ";
             cin >> bank_name;

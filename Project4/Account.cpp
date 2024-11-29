@@ -1,6 +1,6 @@
 #include "ACCOUNT.h"
 
-Account::Account(Bank* bank, string user_name, int initial_funds, string password, const string& card_number, const string& account_number)
+Account::Account(Bank* bank, string user_name, int initial_funds, string password, int card_number, const string& account_number)
 //삭제 : account_bank(bank), account_user_name(user_name), account_password(password), connected_card_number(card_number), account_funds(initial_funds), account_id(account_number) {
     : account_bank(bank), account_user_name(user_name), account_password(password), account_funds(initial_funds), account_number(account_number) {
     account_id = next_id++;
@@ -38,17 +38,26 @@ const vector<string>& Account::getTransactionHistory() const {
     return transaction_history;
 }
 
-// Implementation of Bank methods
-Account* Bank::createAccount(string user_name, int initial_funds, string password, const string& card_number, const string& account_number) {
-    Account* newAccount = new Account(this, user_name, initial_funds, password, card_number, account_number);
-    bank_accounts[newAccount->getAccountId()] = newAccount; //account id로 account 저장
-    //accounts[newAccount->getAccountId()] = newAccount; 
-    return newAccount;
+bool Account::passwordMatching() {
+    string in_password;
+    cout << "Enter password: ";
+    cin >> in_password;
+
+    for (int i = 0; i < 3; i++) {
+        if (in_password == this->account_password) {
+            cout << "Authorization successful.\n";
+            return true;
+        }
+
+        if (i == 2) {
+            break;
+        }
+        cout << "Wrong password. Try again.\n";
+    }
+
+    cout << "Too many failed attempts. Session terminated.\n";
+    return false;
 }
 
-Account* Bank::getAccount(int account_id) {
-    auto it = accounts.find(account_id); //account_id가 없을 경우 accounts.end()가 반환됨
-    return (it != accounts.end()) ? it->second : nullptr; //find 성공 시 second=Account* 반환
-}
 
 vector<Account> accounts;

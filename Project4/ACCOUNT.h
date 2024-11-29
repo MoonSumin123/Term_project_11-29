@@ -24,7 +24,7 @@ private:
 
 public:
     //삭제 Account(Bank* bank, string user_name, int account_number, int initial_funds, string password, string card_number);
-    Account(Bank* bank, string user_name, int initial_funds, string password, const string& card_number, const string& account_number);
+    Account(Bank* bank, string user_name, int initial_funds, string password, int card_number, const string& account_number);
     ~Account();
 
     // Methods
@@ -39,7 +39,7 @@ public:
     int getFund() const { return account_funds; } // Get the account balance
     Card* getAssociatedCard() const { return associated_card; } //카드 접근자
     const vector<string>& getTransactionHistory() const; // Get transaction history //??
-
+    bool passwordMatching();
 
 private:
     void recordTransaction(const string& transaction); // Record a transaction

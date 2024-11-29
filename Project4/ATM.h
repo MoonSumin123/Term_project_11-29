@@ -55,9 +55,7 @@ public:
     string getSerialNumber() const { return serial_number; };
     void printTransactionHistory(int account_id);  // Print the transaction history of an account
     void printATMInfo() const;
-    bool isValidCard(const string& card_number);
     bool isCorrectPassword(const string& card_number, const string& password);
-    void selectATM(vector<ATM>& atms);
 
     void setCurrentAccount(Account* account) { current_account = account; } // 카드 설정
     void resetCurrentAccount() { current_account = nullptr; }
@@ -72,6 +70,7 @@ public:
 
     unordered_map<int, int> makeCashDeposited();        
     unordered_map<int, int> makeFeeDeposited(int fee);
+
 };
 
 extern vector<ATM> atms;

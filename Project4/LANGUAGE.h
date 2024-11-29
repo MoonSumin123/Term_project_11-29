@@ -15,23 +15,10 @@ private:
     static vector<string> korean;
     string selected_language;
 
-    // Private constructor to prevent instantiation
-    Language() { 
-        english.push_back("Please insert your card (Enter card number): ");
-        english.push_back();
-        
-        korean.push_back("카드를 삽입하세요 (카드 번호를 입력하세요): ");
-        korean.push_back();
-        
-    }
+    Language();
 
 public: 
-    static Language* getInstance() { 
-        if (!instance) { 
-            instance = new Language();
-        }
-        return instance;
-    } 
+    static Language* getInstance();
     void selectLanguage(ATM& atm);
     string chooseSentence(int index); 
 };

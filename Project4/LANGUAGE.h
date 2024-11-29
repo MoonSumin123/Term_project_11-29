@@ -17,10 +17,10 @@ private:
 
     Language();
 
-public:
+public: 
     static Language* getInstance();
     void selectLanguage(ATM& atm);
-    string chooseSentence(int index);
+    string chooseSentence(int index); 
 };
 
 #endif LANGUAGE_H

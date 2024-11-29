@@ -179,7 +179,7 @@ void ATM::printTransactionHistory(int account_id) {
 }
 
 
-bool ATM::isCorrectPassword(const string& card_number, const string& password) {
+bool ATM::isCorrectPassword(string card_number, const string& password) {
     Account* account = getAccountByCardNumber(card_number); // 카드 번호로 계좌 찾기
     if (account && account->getPassword() == password) {
         return true; // 인증 성공
@@ -188,7 +188,7 @@ bool ATM::isCorrectPassword(const string& card_number, const string& password) {
 }
 
 
-Account* ATM::getAccountByCardNumber(const string& card_number) {
+Account* ATM::getAccountByCardNumber(string card_number) {
     for (const auto& bank : banks) {
         for (const auto& account_pair : bank.getAccounts()) {
             Account* account = account_pair.second;
@@ -285,4 +285,60 @@ bool ATM::getTransactionAvailable(bool primary) {
         return true;
     else
         return false;
+}
+
+Account* ATM::validCard() {
+    string inserted_card_number;
+    string entered_password;
+
+    cout << "Please insert your card (Enter card number): ";
+    cin >> inserted_card_number;
+
+    if (inserted_card_number == "9999") {
+        admin_menu(); // 관리자 메뉴 호출
+        return nullptr; // 관리자 메뉴로 돌아가므로 계좌 반환하지 않음
+    }
+    else {
+        // 카드 유효성 검사
+        if (isValidCard(inserted_card_number)) { // 카드 입력 및 사용자 인증
+            int attempt = 0;
+            while (attempt < 3) {
+                cout << "Enter password: ";
+                cin >> entered_password;
+
+                if (isCorrectPassword(inserted_card_number, entered_password)) {
+                    Account* account = getAccountByCardNumber(inserted_card_number);
+                    cout << "Authorization successful.\n";
+                    return account; // 인증 성공 시 계좌 반환
+                }
+                else {
+                    cout << "Wrong password. Try again.\n";
+                    attempt++;
+                }
+            }
+
+            // 비밀번호 입력 시도 횟수 초과
+            if (attempt == 3) {
+                cout << "Too many failed attempts. Session terminated.\n";
+                return nullptr; // 인증 실패 시 NULL 반환
+            }
+        }
+        else {
+            cout << "The card is not valid.\n";
+            return nullptr; // 카드가 유효하지 않은 경우 NULL 반환
+        }
+    }
+    return nullptr; // 기본적으로 NULL 반환
+}
+
+bool ATM::isValidCard(string card_number) {
+    Account* account = getAccountByCardNumber(card_number); // 카드 번호로 계좌 찾기
+    if (account) {
+        // Single Bank ATM의 경우, 계좌의 은행이 주 은행인지 확인
+        if (type == "Single Bank ATM" && account->getBankName() != account->getAssociatedCard()->getBankname()) {
+            return false; // 주 은행이 아닌 경우
+        }
+        return true; // 카드 유효
+    }
+    return false; // 카드 유효하지 않음
 }

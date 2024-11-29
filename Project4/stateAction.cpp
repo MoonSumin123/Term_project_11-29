@@ -111,21 +111,19 @@ void state_withdraw::stateAction() {
 		return;
 	}
 
-	int remaining_amount = amount - withdrawal_fee;
-
-	if (remaining_amount > atm->getTotalAvailableCash()) {
+	if (amount > atm->getTotalAvailableCash()) {
 		cout << "Insufficient cash available to dispense the requested amount including fees." << endl;
 		return;
 	}
-	if (remaining_amount > account->getFund()) {
+	if (amount+withdrawal_fee > account->getFund()) {
 		cout << "Insufficient account balance." << endl;
 		return;
 	}
 
-	bool avail = atm->withdrawAvailable(remaining_amount);
+	bool avail = atm->withdrawAvailable(amount);
 	if (avail) {
-		string result = atm->withdraw(remaining_amount, withdrawal_fee);
-		account->subFund(remaining_amount);
+		string result = atm->withdraw(amount, withdrawal_fee);
+		account->subFund(amount+withdrawal_fee);
 		oss << result;
 	}
 	else 

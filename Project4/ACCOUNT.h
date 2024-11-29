@@ -22,7 +22,7 @@ private:
     vector<string> transaction_history; // Transaction history ??
 
 public:
-    Account(Bank* bank, string user_name, int initial_funds, string password, const string& card_number, const string& account_number);
+    Account(Bank* bank, string user_name, int initial_funds, string password, string card_number, const string& account_number);
     ~Account();
 
     // Methods

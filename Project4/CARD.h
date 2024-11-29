@@ -9,14 +9,14 @@ using namespace std;
 
 class Card {
 private:
-    int card_number;
+    string card_number;
     Account* card_account;
     Bank* card_bank;
 
 public:
-    Card(Account* account, Bank* bank, const string& card_num);
+    Card(Account* account, Bank* bank, string card_num);
     ~Card();
-    int getCardNumber() const { return card_number; }
+    string getCardNumber() const { return card_number; }
     string getBankname() { return card_bank->getName(); };
     Account* getAccount() { return card_account; };
 };

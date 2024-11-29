@@ -49,7 +49,7 @@ public:
     string getSerialNumber() const { return serial_number; };
     void printTransactionHistory(int account_id);  // Print the transaction history of an account // 수정
     void printATMInfo() const;
-    bool isCorrectPassword(const string& card_number, const string& password); //?
+    bool isCorrectPassword(string card_number, const string& password); //?
 
     void setCurrentAccount(Account* account) { current_account = account; } // 카드 설정 //?
     void resetCurrentAccount() { current_account = nullptr; } //?
@@ -70,7 +70,9 @@ public:
     void outputTransactionHistoryToFile(const vector<string>& transactions);
     string getLanguage() const { return language; };
 
-    Account* getAccountByCardNumber(const string& card_number); 
+    Account* getAccountByCardNumber(string card_number); 
+    Account* validCard();
+    bool isValidCard(string card_number);
 };
 
 extern vector<ATM> atms;

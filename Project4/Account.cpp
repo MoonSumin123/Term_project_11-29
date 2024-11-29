@@ -1,7 +1,6 @@
 #include "ACCOUNT.h"
 
-Account::Account(Bank* bank, string user_name, int initial_funds, string password, const string& card_number, const string& account_number)
-//ªË¡¶ : account_bank(bank), account_user_name(user_name), account_password(password), connected_card_number(card_number), account_funds(initial_funds), account_id(account_number) {
+Account::Account(Bank* bank, string user_name, int initial_funds, string password, string card_number, const string& account_number)
     : account_bank(bank), account_user_name(user_name), account_password(password), account_funds(initial_funds), account_number(account_number) {
     account_id = next_id++;
     associated_card = new Card(this, bank, card_number);

@@ -9,7 +9,6 @@ using namespace std;
 
 void state_ATM_receipt::stateAction() { //recent history 불러오기(session요약)
 	Language* lang = Language::getInstance();
-	lang->selectLanguage(atm);
 	vector<string> rec = atm.getAtmHistory();
 
 	lang->printIn(lang->chooseSentence(8)); //"Transaction History:"

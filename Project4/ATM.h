@@ -24,7 +24,8 @@ private:
     string type; // Type of ATM
     string language; // Language setting
     Cash* cash;
-    vector<Transaction> atm_history; 
+    vector<string> atm_recent_history; //ATM에서 현재 세션 동안 진행된 거래만 저장. 세션 종료 시 초기화
+    vector<string> atm_history; //ATM에서 진행된 거래 누적 저장.
     static int transaction_id;
 
 public:
@@ -44,7 +45,7 @@ public:
     string printAvailableCash() const;
     int getTotalAvailableCash() const;
 
-    int deposit(Account* account, unordered_map<int, int>& cash_deposited); //�ٸ������� primaryȮ���ؾ� ��
+    int deposit(Account* account, unordered_map<int, int>& cash_deposited); //다른데서도 primary확인해야 함
     string withdraw(int amount, int fee);
     bool withdrawAvailable(int amount);
     string cashTransfer(Account* destination, int amount, int fee);
@@ -56,14 +57,15 @@ public:
     bool is_primary(Account* account) const;
     bool getTransactionAvailable(bool primary) const;
 
-    //string checkBalance(Account* account); // ����
+    //string checkBalance(Account* account); // 수정
     void printAccountHistory(Account* account);
 
     void printATMInfo() const;
-    void recordAtmHistory(const Transaction& transaction);
-    vector<Transaction> getAtmHistory();
+    void recordRecentAtmHistory(const string transaction); 
+    void recordAtmHistory(const string transaction);
+    vector<string> getAtmHistory();
 
-    void printAtmHistory();  // Print the transaction history of an account // ����
+    void printAtmHistory();  // Print the transaction history of an account // 수정
     void outputTransactionHistoryToFile(const vector<Transaction>& transactions);
 };
 

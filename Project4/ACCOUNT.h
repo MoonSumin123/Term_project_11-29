@@ -32,7 +32,7 @@ public:
     string getUserName() const { return account_user_name; }
     string getPassword() const { return account_password; } // Get the account password
     int getFund() const { return account_funds; } // Get the account balance
-    Card* getAssociatedCard() const { return associated_card; } //Ä«µå Á¢±ÙÀÚ
+    //Card* getAssociatedCard() const { return associated_card; } //Ä«µå Á¢±ÙÀÚ
     const vector<string>& getAccountHistory() const; // Get transaction history //??
     void recordAccountHistory(const string& transaction); // Record a transaction
 };

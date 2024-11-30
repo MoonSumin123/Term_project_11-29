@@ -34,4 +34,5 @@ public:
     void printError(const string& str);
 };
 
+
 #endif LANGUAGE_H

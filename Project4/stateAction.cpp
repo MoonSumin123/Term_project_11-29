@@ -33,17 +33,19 @@ void state_account_receipt::stateAction() {
 
 void state_snapshot::stateAction() {
 	ostringstream oss;
-	for (ATM& vec : atms) {
-		oss << "ATM [SN: " << vec.getSerialNumber() << "] "
-			<< "Type: " << vec.getATMtype() << "\n"
-			<< "Language: " << vec.getLanguage() << "\n"
-			<< "remaining cash: {" << vec.getTotalAvailableCash() << "}\n";
+	for (ATM* vec : atms) {
+		oss << "ATM [SN: " << vec->getSerialNumber() << "] "
+			<< "Type: " << vec->getATMtype() << ", "
+			<< "Language: " << vec->getLanguage() << ", "
+			<< "remaining cash: {" << vec->getTotalAvailableCash() << "}\n";
 	}
-	for (Account& vec : accounts) {
-		oss << "Account [Bank: " << vec.getBankName() << ", "
-			<< "No: " << vec.getAccountNumber() << ", "
-			<< "Owner: " << vec.getUserName() << "] "
-			<< "Balance: " << vec.getFund() << "\n";
+	for (Bank* vec : banks) {
+		for (auto& pair : vec->getAccounts()) {
+			oss << "Account [Bank: " << pair.second->getBankName() << ", "
+				<< "No: " << pair.second->getAccountNumber() << ", "
+				<< "Owner: " << pair.second->getUserName() << "] "
+				<< "Balance: " << pair.second->getFund() << "\n";
+		}
 	}
 	cout << oss.str();
 }
@@ -55,7 +57,7 @@ void state_deposit::stateAction() {
 
 	int choice;
 	cout << "Please select your deposit method." << endl;
-	cout << "1. Card deposit\n 2. Check deposit"; //?낅젰???レ옄媛 ?꾨땲硫? exception handling
+	cout << "1. Cash deposit\n2. Check deposit"; //?낅젰???レ옄媛 ?꾨땲硫? exception handling
 	cin >> choice;
 	if (choice == 1) {
 		
@@ -198,9 +200,9 @@ void state_transfer::stateAction() {
 	cin >> destination_account_number;
 
 	Bank* destination_bank = nullptr;
-	for (Bank vec : banks) {
-		if (vec.getName() == destination_bank_name)
-			destination_bank = &vec;
+	for (Bank* vec : banks) {
+		if (vec->getName() == destination_bank_name)
+			destination_bank = vec;
 	}
 	// 李얘린 紐삵븳 寃쎌슦 exception handling
 	if (destination_bank == nullptr) {

@@ -3,7 +3,7 @@
 void initializeSystem() {
     int choice;
     do {
-        cout << "1. Create Account\n2. Create ATM\n3. Start Program\n4. Exit\nChoose an option: ";
+        cout << "1. Create Account\n2. Create ATM\n3. Start Program\nChoose an option: ";
         cin >> choice;
 
         if (choice == 1) {
@@ -23,7 +23,7 @@ void initializeSystem() {
             cin >> password;
 
             // Create bank if it doesn't exist
-            Bank* bank = Bank::getOrCreateBank(bank_name, banks);
+            Bank* bank = Bank::getOrCreateBank(bank_name);
             bank->createAccount(user_name, initial_funds, password, card_number, account_number);
             cout << "Account created successfully.\n";
         }
@@ -70,11 +70,11 @@ void initializeSystem() {
             }
             //initial_cash.printAvailableCash();
 
-            Bank* primary_bank = Bank::getOrCreateBank(bank_name, banks);
+            Bank* primary_bank = Bank::getOrCreateBank(bank_name);
 
-            ATM atm(primary_bank->getName(), serial_number, type, language, initial_cash);
-            atms.push_back(atm); // ATM 리스트에 추가
+            ATM* newatm = new ATM(primary_bank->getName(), serial_number, type, language, initial_cash);
+            atms.push_back(newatm); // ATM 리스트에 추가
             cout << "ATM created successfully and linked to bank: " << bank_name << endl;
         }
-    } while (choice != 4);
+    } while (choice != 3);
 }

@@ -33,6 +33,7 @@ int main() {
 
     int sel_or_exit;
 	do {
+        cout << "Select ATM or Exit.\n1. Select ATM\n2. Exit\nEnter the number : ";
         cin >> sel_or_exit;
 
         if (sel_or_exit == 1) {
@@ -42,8 +43,10 @@ int main() {
             // card number ?뺤씤
             // atm->printINPUT("card number")
             Account* account = atm->validCard();
+            if (account == nullptr)
+                continue;
 
-            int choice;
+            string choice;
             bool primary = atm->is_primary(account);
             int withdrawal_count = 0;
             do {
@@ -56,18 +59,24 @@ int main() {
                 cout << "5. Exit Session\n";
                 cin >> choice;
 
-                switch (choice) {
-                case 1: x = new state_deposit(*account, *atm, primary); break;
-                case 2: x = new state_withdraw(*account, *atm, primary, withdrawal_count); break;
-                case 3: x = new state_transfer(*account, *atm, primary); break;
-                case 4: x = new state_snapshot(*account, *atm, primary); break;
-                case 5: cout << "Exiting session.\n"; break;
-                default: cout << "Invalid choice. Please try again.\n";
-                }
+                if (choice == "1")
+                    x = new state_deposit(*account, *atm, primary);
+                else if (choice == "2")
+                    x = new state_withdraw(*account, *atm, primary, withdrawal_count);
+                else if (choice == "3")
+                    x = new state_transfer(*account, *atm, primary);
+                else if (choice == "/")
+                    x = new state_snapshot(*account, *atm, primary);
+                else if (choice == "4")
+                    cout << "Exiting session.\n";
+                else
+                    cout << "Invalid choice. Please try again.\n";
+                
                 if (x!=nullptr) 
                     x->stateAction();
-
-            } while (choice != 5); // ?몄뀡 醫낅즺
+                }while (choice != "4");
+            
+            // ?몄뀡 醫낅즺
             // ?붿빟蹂?異쒕젰
             withdrawal_count = 0;
         }

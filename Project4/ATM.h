@@ -76,6 +76,6 @@ public:
 
 };
 
-extern vector<ATM> atms;
+extern vector<ATM*> atms;
 
 #endif ATM_H

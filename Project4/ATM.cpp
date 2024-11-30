@@ -1,7 +1,7 @@
 ﻿#include "ATM.h"
 using namespace std;
 
-vector<ATM> atms;
+vector<ATM*> atms;
 int transaction_id = 1;
 
 // ATM class
@@ -192,7 +192,7 @@ bool ATM::isCorrectPassword(string card_number, const string& password) {
 
 Account* ATM::getAccountByCardNumber(string card_number) {
     for (const auto& bank : banks) {
-        for (const auto& account_pair : bank.getAccounts()) {
+        for (const auto& account_pair : bank->getAccounts()) {
             Account* account = account_pair.second;
             if (account->getCardNumber() == card_number) {
                 return account; // 移대뱶 踰덊샇濡?怨꾩쥖 李얘린

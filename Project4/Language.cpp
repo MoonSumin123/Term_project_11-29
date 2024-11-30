@@ -51,7 +51,7 @@ Language::Language() {
     kor.push_back("?낃툑"); //18
     kor.push_back("異쒓툑"); //19
     kor.push_back("?댁껜"); //20
-    kor.push_back("??); //21
+    kor.push_back("??"); //21
     kor.push_back("?낃툑 怨꾩쥖: "); //22
     kor.push_back("異쒓툑 怨꾩쥖: "); //23
 }
@@ -71,7 +71,7 @@ void Language::selectLanguage(ATM& atm) {
         int languagetype;
         cout << "Select the language: 1.english 2.?쒓뎅??" << endl;
         cin >> languagetype;
-        selected_language = (languagetype == 1) ? "english" : "?쒓뎅??;
+        selected_language = (languagetype == 1) ? "english" : "?쒓뎅??";
         cout << selected_language << endl;
     }
 }

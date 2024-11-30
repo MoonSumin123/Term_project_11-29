@@ -22,13 +22,13 @@ Language::Language() {
     english.push_back("Account Transfer: "); //14
     english.push_back("Error opening file for writing."); //15
     english.push_back("All transaction history has been saved to all_transaction_history.txt"); //16
-    english.push_back("Card"); //17
+    english.push_back("Card: "); //17
     english.push_back("Deposit"); //18
     english.push_back("Withdrawl"); //19
     english.push_back("Transfer"); //20
     english.push_back("KRW"); //21
-    english.push_back("Source"); //22
-    english.push_back("Destination"); //23
+    english.push_back("Source: "); //22
+    english.push_back("Destination: "); //23
 
     korean.push_back("카드를 삽입하세요 (카드 번호를 입력하세요): ");
     korean.push_back("비밀번호를 입력하세요: ");
@@ -47,13 +47,13 @@ Language::Language() {
     korean.push_back("계좌 이체: ");
     korean.push_back("파일 열기에 오류가 발생했습니다.");
     korean.push_back("모든 거래 내역이 all_transaction_history.txt에 저장되었습니다.");
-    korean.push_back("카드"); //17
+    korean.push_back("카드: "); //17
     korean.push_back("입금"); //18
     korean.push_back("출금"); //19
     korean.push_back("이체"); //20
     korean.push_back("원"); //21
-    korean.push_back("입금 계좌"); //22
-    korean.push_back("출금 계좌"); //23
+    korean.push_back("입금 계좌: "); //22
+    korean.push_back("출금 계좌: "); //23
 }
 
 Language* Language::getInstance() {

@@ -38,8 +38,8 @@ int main() {
         if (sel_or_exit == 1) {
             ATM* atm = selectATM();
 
-            // ¾ð¾î ¼±ÅÃ
-            // card number È®ÀÎ
+            // ì–¸ì–´ ì„ íƒ
+            // card number í™•ì¸
             // atm->printINPUT("card number")
             Account* account = atm->validCard();
 
@@ -57,18 +57,18 @@ int main() {
                 cin >> choice;
 
                 switch (choice) {
-                case 1: State * x = new state_deposit(*account, *atm, primary); break;
-                case 2: State * x = new state_withdraw(*account, *atm, primary, withdrawal_count); break;
-                case 3: State * x = new state_transfer(*account, *atm, primary); break;
-                case 4: State * x = new state_snapshot(*account, *atm, primary); break;
+                case 1: x = new state_deposit(*account, *atm, primary); break;
+                case 2: x = new state_withdraw(*account, *atm, primary, withdrawal_count); break;
+                case 3: x = new state_transfer(*account, *atm, primary); break;
+                case 4: x = new state_snapshot(*account, *atm, primary); break;
                 case 5: cout << "Exiting session.\n"; break;
                 default: cout << "Invalid choice. Please try again.\n";
                 }
-                if (x!=nullptr)
+                if (x!=nullptr) 
                     x->stateAction();
 
-            } while (choice != 5); // ¼¼¼Ç Á¾·á
-            // ¿ä¾àº» Ãâ·Â
+            } while (choice != 5); // ì„¸ì…˜ ì¢…ë£Œ
+            // ìš”ì•½ë³¸ ì¶œë ¥
             withdrawal_count = 0;
         }
 	

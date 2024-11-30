@@ -301,6 +301,14 @@ void ATM::recordRecentHistory(const string recent_transaction) {
     atm_recent_history.push_back(recent_transaction);
 }
 
+//세션 종료 시 거래 내역 출력
+void printAndClearRecentHistory() {
+    for (const string& history : atm_recent_history) {
+        cout << history << endl;
+    }
+    atm_recent_history.clear();
+}
+
 void ATM::recordAtmHistory(const string transaction) {
     atm_history.push_back(transaction);
 }

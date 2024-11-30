@@ -37,11 +37,11 @@ int main() {
 
         if (sel_or_exit == 1) {
             ATM* atm = selectATM();
-	    Language* lang = Language::getInstance();
+	        Language* lang = Language::getInstance();
             lang->selectLanguage(*atm);
 
-            // ?몄뼱 ?좏깮
-            // card number ?뺤씤
+            // language choice
+            // card number check
             // atm->printINPUT("card number")
             Account* account = atm->validCard();
 
@@ -69,8 +69,8 @@ int main() {
                 if (x!=nullptr) 
                     x->stateAction();
 
-            } while (choice != 5); // ?몄뀡 醫낅즺
-            // ?붿빟蹂?異쒕젰
+            } while (choice != 5); // Exting sesstion
+            // print summary
             withdrawal_count = 0;
         }
 	

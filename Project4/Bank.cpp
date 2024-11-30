@@ -1,5 +1,7 @@
 ﻿#include "BANK.h"
 
+std::vector<Bank> banks;
+
 Bank::Bank(const string& bank_name) : name(bank_name) {}
 
 Bank::~Bank() {

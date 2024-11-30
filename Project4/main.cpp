@@ -62,11 +62,11 @@ int main() {
                 cin >> choice;
 
                 if (choice == "1")
-                    x = new state_deposit(*account, *atm, primary);
+                    x = new state_deposit(*account, *atm, primary, *lang);
                 else if (choice == "2")
-                    x = new state_withdraw(*account, *atm, primary, withdrawal_count);
+                    x = new state_withdraw(*account, *atm, primary, withdrawal_count, *lang);
                 else if (choice == "3")
-                    x = new state_transfer(*account, *atm, primary);
+                    x = new state_transfer(*account, *atm, primary, *lang);
                 else if (choice == "/")
                     x = new state_snapshot(*account, *atm, primary);
                 else if (choice == "4")

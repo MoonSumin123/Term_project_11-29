@@ -151,14 +151,6 @@ void state_deposit::stateAction() {
 	else {
 		oss << "Invalid selection. Returning to the main interface.";
 	}
-	string rec_account;
-	string rec_atm;
-	rec_account = lang.chooseSentence(17) + account.getCardNumber() + "/" + lang.chooseSentence(18) + to_string(total_deposit) + lang.chooseSentence(21) + "/" + lang.chooseSentence(22) + "- , -" + lang.chooseSentence(21) + "/" + lang.chooseSentence(23) + account.getAccountNumber() + ", " + to_string(account.getFund()) + lang.chooseSentence(21);
-	//rec_account = account.card_number + "/" + to_string(total_deposit) + chooseSentence(21) + "/" + "- , -" + chooseSentence(21) + "/" + account.account_number + ", " + to_string(account.getFund()) + chooseSentence(21);   
-	rec_atm = lang.Eng(17) + account.getCardNumber() + "/" + lang.Eng(18) + to_string(total_deposit) + lang.Eng(21) + "/" + lang.Eng(22) + "- , -" + lang.Eng(21) + "/" + lang.Eng(23) + account.getAccountNumber() + ", " + to_string(account.getFund()) + lang.Eng(21);
-	atm.recordRecentHistory(rec_account);
-	atm.recordAtmHistory(rec_atm);
-	cout << oss.str() << endl;
 }
 
 void state_withdraw::stateAction() {
@@ -204,14 +196,6 @@ void state_withdraw::stateAction() {
 		string result = atm.withdraw(amount, withdrawal_fee);
 		account.subFund(amount+withdrawal_fee);
 
-		string rec_account;
-		string rec_atm;
-
-		rec_account = lang.chooseSentence(17) + account.getCardNumber() + "/" + lang.chooseSentence(19) + to_string(fund_amount) + lang.chooseSentence(21) + "/" + lang.chooseSentence(22) + "- , -" + lang.chooseSentence(21) + "/" + lang.chooseSentence(23) + account.getAccountNumber() + ", " + to_string(account.getFund()) + lang.chooseSentence(21);
-		rec_atm = lang.Eng(17) + account.getCardNumber() + "/" + lang.Eng(19) + to_string(fund_amount) + lang.Eng(21) + "/" + lang.Eng(22) + "- , -" + lang.Eng(21) + "/" + lang.Eng(23) + account.getAccountNumber() + ", " + to_string(account.getFund()) + lang.Eng(21);
-
-		atm.recordRecentHistory(rec_account);
-		atm.recordAtmHistory(rec_atm);
 
 		withdrawal_count++;
 		oss << result;

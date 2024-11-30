@@ -11,8 +11,8 @@ using namespace std;
 class Language {
 private:
     static Language* instance;
-    static vector<string> english;
-    static vector<string> korean;
+    static vector<string> eng;
+    static vector<string> kor;
     string selected_language;
 
 public: 

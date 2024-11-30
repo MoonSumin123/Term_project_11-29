@@ -118,8 +118,9 @@ void state_deposit::stateAction() {
 				atm.deposit(&account, fee_deposited);
 				oss << "Deposit successful. New balance: " << account.getFund();
 			}
-			else{
+			else {
 				oss << "The fee amount inserted is incorrect.";
+			}
 		}
 		else {
 			oss <<"Invalid check." ;

@@ -1,4 +1,4 @@
-#ifndef STATEWITHDRAW_H
+﻿#ifndef STATEWITHDRAW_H
 #define STATEWITHDRAW_H
 
 #include "STATE.h"

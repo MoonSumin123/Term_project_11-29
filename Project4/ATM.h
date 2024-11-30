@@ -1,4 +1,4 @@
-#ifndef ATM_H
+﻿#ifndef ATM_H
 #define ATM_H
 
 #include "Bank.h"
@@ -32,8 +32,8 @@ private:
     string type; // Type of ATM
     string language; // Language setting
     Cash* cash;
-    vector<string> atm_recent_history; //ATM에서 현재 세션 동안 진행된 거래만 저장. 세션 종료 시 초기화
-    vector<string> atm_history; //ATM에서 진행된 거래 누적 저장.
+    vector<string> atm_recent_history; //ATM?먯꽌 ?꾩옱 ?몄뀡 ?숈븞 吏꾪뻾??嫄곕옒留???? ?몄뀡 醫낅즺 ??珥덇린??
+    vector<string> atm_history; //ATM?먯꽌 吏꾪뻾??嫄곕옒 ?꾩쟻 ???
     static int transaction_id;
 
 public:
@@ -53,7 +53,7 @@ public:
     string printAvailableCash() const;
     int getTotalAvailableCash() const;
 
-    int deposit(Account* account, unordered_map<int, int>& cash_deposited); //다른데서도 primary확인해야 함
+    int deposit(Account* account, unordered_map<int, int>& cash_deposited); //?ㅻⅨ?곗꽌??primary?뺤씤?댁빞 ??
     string withdraw(int amount, int fee);
     bool withdrawAvailable(int amount);
     string cashTransfer(Account* destination, int amount, int fee);
@@ -65,7 +65,7 @@ public:
     bool is_primary(Account* account) const;
     bool getTransactionAvailable(bool primary) const;
 
-    //string checkBalance(Account* account); // 수정
+    //string checkBalance(Account* account); // ?섏젙
     void printAccountHistory(Account* account);
 
     void printATMInfo() const;

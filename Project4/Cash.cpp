@@ -1,4 +1,4 @@
-#include "CASH.h"
+ï»¿#include "CASH.h"
 
 using namespace std;
 
@@ -7,16 +7,16 @@ Cash::~Cash() {
     cout << "[Destructor] Cash" << endl;
 }
 
-int Cash::getValue() const { return cash_value; };//ÃÑ ±Ý¾× ¹ÝÈ¯ cash_value¸¦ º¯µ¿ÀÌ ÀÖÀ»¶§¸¶´Ù ¸Å¹ø ¾÷µ¥ÀÌÆ®ÇØ¾ß ÇÔ
+int Cash::getValue() const { return cash_value; };//ì´ ê¸ˆì•¡ ë°˜í™˜ cash_valueë¥¼ ë³€ë™ì´ ìžˆì„ë•Œë§ˆë‹¤ ë§¤ë²ˆ ì—…ë°ì´íŠ¸í•´ì•¼ í•¨
 
 unordered_map<int, int> Cash::getAvailableCash() {
     return cash_available;
 }
 
-int Cash::getTotalAvailableCash() const { // ÃÑ °¡¿ë Çö±ÝÀ» °è»êÇÏ´Â ¸Þ¼­µå
+int Cash::getTotalAvailableCash() const { // ì´ ê°€ìš© í˜„ê¸ˆì„ ê³„ì‚°í•˜ëŠ” ë©”ì„œë“œ
     int total = 0;
     for (const auto& pair : cash_available) {
-        total += pair.first * pair.second; // ±ÇÁ¾ * ¼ö·®
+        total += pair.first * pair.second; // ê¶Œì¢… * ìˆ˜ëŸ‰
     }
     return total;
 }
@@ -24,7 +24,7 @@ int Cash::getTotalAvailableCash() const { // ÃÑ °¡¿ë Çö±ÝÀ» °è»êÇÏ´Â ¸Þ¼­µå
 
 void Cash::addCash(int denomination, int count) {
     cash_available[denomination] += count;
-    cash_value += denomination * count; // ÃÑ ±Ý¾× ¾÷µ¥ÀÌÆ®
+    cash_value += denomination * count; // ì´ ê¸ˆì•¡ ì—…ë°ì´íŠ¸
 }
 void Cash::subCash(int denomination, int count) {
     if (cash_available[denomination] >= count) {

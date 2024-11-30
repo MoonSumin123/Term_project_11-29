@@ -1,4 +1,4 @@
-#include "ACCOUNT.h"
+﻿#include "ACCOUNT.h"
 
 Account::Account(string bank_name, string user_name, int initial_funds, string password, string card_number, const string& account_number)
     : account_bank_name(bank_name), account_user_name(user_name), account_password(password), account_funds(initial_funds), account_number(account_number), card_number(card_number) {
@@ -31,7 +31,7 @@ void Account::recordAccountHistory(const string& transaction) {
     account_history.push_back(transaction);
 }
 
-// ?? Get the transaction history //sessionÁ¾·á ½Ã Ãâ·Â?
+// ?? Get the transaction history //session횁쩐쨌찼 쩍횄 횄창쨌횂?
 const vector<string>& Account::getAccountHistory() const {
     return account_history;
 }

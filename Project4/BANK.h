@@ -1,4 +1,4 @@
-#ifndef BANK_H
+﻿#ifndef BANK_H
 #define BANK_H
 
 #include <string>
@@ -28,7 +28,7 @@ public:
     ~Bank();
     string getName() const { return name; }
     Account* createAccount(string user_name, int initial_funds, string password, string card_number, const string& accout_number);// Create a new account
-    Account* getAccount(string account_number); // Get an account by ID //¼öÁ¤
+    Account* getAccount(string account_number); // Get an account by ID //쩌철횁짚
     const unordered_map<string, Account*>& getAccounts() const { return bank_accounts; }
     static Bank* getOrCreateBank(const string& bank_name, vector<Bank>& banks);
 };

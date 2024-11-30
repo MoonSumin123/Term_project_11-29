@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <unordered_map>
 #include <vector>
 #include <string>
@@ -9,8 +9,8 @@
 
 using namespace std;
 
-// ¼öÇ¥ °æ¿ìÀÇ ¼ö ¹İ¿µ ÇÊ¿ä
-//language, ATM type ¹İ¿µ ÇÊ¿ä
+// ìˆ˜í‘œ ê²½ìš°ì˜ ìˆ˜ ë°˜ì˜ í•„ìš”
+//language, ATM type ë°˜ì˜ í•„ìš”
 
 // Forward declaration of Bank class
 class Bank;
@@ -30,12 +30,12 @@ private:
     string account_user_name; // Account holder's name
     string account_password; // Account password
     int account_funds; // Account balance
-    //»èÁ¦ string connected_card_number; 
+    //ì‚­ì œ string connected_card_number; 
     Card* associated_card;
     vector<string> transaction_history; // Transaction history ??
 
 public:
-    //»èÁ¦ Account(Bank* bank, string user_name, int account_number, int initial_funds, string password, string card_number);
+    //ì‚­ì œ Account(Bank* bank, string user_name, int account_number, int initial_funds, string password, string card_number);
     Account(Bank* bank, string user_name, int initial_funds, string password, const string& card_number, const string& account_number);
     ~Account();
 
@@ -43,13 +43,13 @@ public:
     string getBankName() const; // Get the bank name
     int getAccountId() const { return account_id; }// Get the account ID
     string getAccountNumber() const { return account_number; }
-    //»èÁ¦ string getConnectedCardNumber() const { return connected_card_number; }
+    //ì‚­ì œ string getConnectedCardNumber() const { return connected_card_number; }
     void addFund(int fund); // Add funds to the account
     bool subFund(int fund); // Subtract funds from the account
     string getUserName() const { return account_user_name; }
     string getPassword() const { return account_password; } // Get the account password
     int getFund() const { return account_funds; } // Get the account balance
-    Card* getAssociatedCard() const { return associated_card; } //Ä«µå Á¢±ÙÀÚ
+    Card* getAssociatedCard() const { return associated_card; } //ì¹´ë“œ ì ‘ê·¼ì
     const vector<string>& getTransactionHistory() const; // Get transaction history //??
 
 
@@ -81,22 +81,22 @@ class Cash {
 private:
     unordered_map<int, int> cash_available;
     int cash_value;
-    //°¢ ATM¿¡ Á¾¼ÓµÇ´Â º°°³ÀÇ cash°¡ ÇÊ¿ä
+    //ê° ATMì— ì¢…ì†ë˜ëŠ” ë³„ê°œì˜ cashê°€ í•„ìš”
 public:
     Cash() : cash_value(0) {}
-    //°¢ ATM¿¡ Á¾¼ÓµÇ´Â º°°³ÀÇ cash »ı¼º ÇÊ¿ä
+    //ê° ATMì— ì¢…ì†ë˜ëŠ” ë³„ê°œì˜ cash ìƒì„± í•„ìš”
     //virtual ~Cash() {}
-    int getValue() const { return cash_value; };//ÃÑ ±İ¾× ¹İÈ¯ cash_value¸¦ º¯µ¿ÀÌ ÀÖÀ»¶§¸¶´Ù ¸Å¹ø ¾÷µ¥ÀÌÆ®ÇØ¾ß ÇÔ
-    //ÃÑ °¡¿ëÁöÆó ÇöÈ² ¹İÈ¯
+    int getValue() const { return cash_value; };//ì´ ê¸ˆì•¡ ë°˜í™˜ cash_valueë¥¼ ë³€ë™ì´ ìˆì„ë•Œë§ˆë‹¤ ë§¤ë²ˆ ì—…ë°ì´íŠ¸í•´ì•¼ í•¨
+    //ì´ ê°€ìš©ì§€í í˜„í™© ë°˜í™˜
     //unordered_map<int, int> getAvailableCash() const {
     unordered_map<int, int> getAvailableCash() {
         return cash_available;
     }
 
-    int getTotalAvailableCash() const { // ÃÑ °¡¿ë Çö±İÀ» °è»êÇÏ´Â ¸Ş¼­µå
+    int getTotalAvailableCash() const { // ì´ ê°€ìš© í˜„ê¸ˆì„ ê³„ì‚°í•˜ëŠ” ë©”ì„œë“œ
         int total = 0;
         for (const auto& pair : cash_available) {
-            total += pair.first * pair.second; // ±ÇÁ¾ * ¼ö·®
+            total += pair.first * pair.second; // ê¶Œì¢… * ìˆ˜ëŸ‰
         }
         return total;
     }
@@ -159,7 +159,7 @@ public:
     //int getAvailableCash();
 
     Bank* getBank();
-    string deposit(int account_id, unordered_map<int, int>& cash_deposited, bool is_primary); //´Ù¸¥µ¥¼­µµ primaryÈ®ÀÎÇØ¾ß ÇÔ
+    string deposit(int account_id, unordered_map<int, int>& cash_deposited, bool is_primary); //ë‹¤ë¥¸ë°ì„œë„ primaryí™•ì¸í•´ì•¼ í•¨
     string withdraw(int account_id, int amount, bool is_primary);
     string transfer();
     string checkBalance(int account_id);
@@ -167,8 +167,8 @@ public:
     void printTransactionHistory(int account_id);  // Print the transaction history of an account
     void printATMInfo() const;
     bool authorizeUser(const string& card_number, const string& password);
-    //bool authorizeAccount(); //?? °èÁÂ ºñ¹ø Ã¼Å©µµ ÇÊ¿ä 
-    //vector<Account> accessableAccounts; //?? ÀÎÁõµÈ account listÇÊ¿ä
+    //bool authorizeAccount(); //?? ê³„ì¢Œ ë¹„ë²ˆ ì²´í¬ë„ í•„ìš” 
+    //vector<Account> accessableAccounts; //?? ì¸ì¦ëœ account listí•„ìš”
     void startSession();
 };
 
@@ -192,7 +192,7 @@ public:
     ~Card();
     string getBankname() { return card_bank->getName(); };
     Account* getAccount() { return card_account; };
-    bool isAdmin() {return card_admin; }; //admin card number 9999 ÁöÁ¤, admin ÀÎ½Ä ½Ã ´ÙÀ½ action ±¸ÇöÇÏ±â
+    bool isAdmin() {return card_admin; }; //admin card number 9999 ì§€ì •, admin ì¸ì‹ ì‹œ ë‹¤ìŒ action êµ¬í˜„í•˜ê¸°
 };
 
 
@@ -212,13 +212,13 @@ protected:
 public:
     State(Account* account, ATM* atm) : state_account(account), atm(atm) {}
     virtual ~State() {}
-    virtual void stateAction(); // ATM µ¿ÀÛÀ» Ã³¸®
+    virtual void stateAction(); // ATM ë™ì‘ì„ ì²˜ë¦¬
 };
 
 //Implementation of Cash methods
 void Cash::addCash(int denomination, int count) {
     cash_available[denomination] += count;
-    cash_value += denomination * count; // ÃÑ ±İ¾× ¾÷µ¥ÀÌÆ®
+    cash_value += denomination * count; // ì´ ê¸ˆì•¡ ì—…ë°ì´íŠ¸
 }
 void Cash::subCash(int denomination, int count) {
     if (cash_available[denomination] >= count) {
@@ -234,12 +234,12 @@ void Cash::printAvailableCash() const {
 
 
 //Implementation of Account methods
-//»èÁ¦ Account::Account(Bank* bank, string user_name, int account_number, int initial_funds, string password, string card_number)
+//ì‚­ì œ Account::Account(Bank* bank, string user_name, int account_number, int initial_funds, string password, string card_number)
 Account::Account(Bank* bank, string user_name, int initial_funds, string password, const string& card_number, const string& account_number)
-//»èÁ¦ : account_bank(bank), account_user_name(user_name), account_password(password), connected_card_number(card_number), account_funds(initial_funds), account_id(account_number) {
+//ì‚­ì œ : account_bank(bank), account_user_name(user_name), account_password(password), connected_card_number(card_number), account_funds(initial_funds), account_id(account_number) {
     : account_bank(bank), account_user_name(user_name), account_password(password), account_funds(initial_funds), account_number(account_number) {
     account_id = next_id++;
-    associated_card = new Card(this, bank, card_number); //bool adminÀº??
+    associated_card = new Card(this, bank, card_number); //bool adminì€??
     recordTransaction("Initial deposit: " + to_string(initial_funds)); //??
 }
 
@@ -268,7 +268,7 @@ void Account::recordTransaction(const string& transaction) {
     transaction_history.push_back(transaction);
 }
 
-// ?? Get the transaction history //sessionÁ¾·á ½Ã Ãâ·Â?
+// ?? Get the transaction history //sessionì¢…ë£Œ ì‹œ ì¶œë ¥?
 const vector<string>& Account::getTransactionHistory() const {
     return transaction_history;
 }
@@ -281,13 +281,13 @@ const vector<string>& Account::getTransactionHistory() const {
 // Implementation of Bank methods
 Account* Bank::createAccount(string user_name, int initial_funds, string password, const string& card_number, const string& account_number) {
     Account* newAccount = new Account(this, user_name, initial_funds, password, card_number, account_number);
-    accounts[newAccount->getAccountId()] = newAccount; //account id·Î account ÀúÀå
+    accounts[newAccount->getAccountId()] = newAccount; //account idë¡œ account ì €ì¥
     return newAccount;
 }
 
 Account* Bank::getAccount(int account_id) {
-    auto it = accounts.find(account_id); //account_id°¡ ¾øÀ» °æ¿ì accounts.end()°¡ ¹İÈ¯µÊ
-    return (it != accounts.end()) ? it->second : nullptr; //find ¼º°ø ½Ã second=Account* ¹İÈ¯
+    auto it = accounts.find(account_id); //account_idê°€ ì—†ì„ ê²½ìš° accounts.end()ê°€ ë°˜í™˜ë¨
+    return (it != accounts.end()) ? it->second : nullptr; //find ì„±ê³µ ì‹œ second=Account* ë°˜í™˜
 }
 
 Bank::~Bank() {
@@ -301,12 +301,12 @@ Bank* Bank::getOrCreateBank(const string& bank_name, vector<Bank>& banks) {
         });
 
     if (it == banks.end()) {
-        // ÀºÇàÀÌ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é »õ·Î »ı¼º
+        // ì€í–‰ì´ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ ìƒˆë¡œ ìƒì„±
         banks.emplace_back(bank_name);
-        return &banks.back(); // »õ·Î »ı¼ºÇÑ ÀºÇàÀ» °¡¸®Å´
+        return &banks.back(); // ìƒˆë¡œ ìƒì„±í•œ ì€í–‰ì„ ê°€ë¦¬í‚´
     }
     else {
-        // ±âÁ¸ÀÇ ÀºÇàÀ» ¹İÈ¯
+        // ê¸°ì¡´ì˜ ì€í–‰ì„ ë°˜í™˜
         return &(*it);
     }
 }
@@ -320,12 +320,12 @@ ATM::ATM(Bank* bank, const string& serial_number, const string& type, const stri
     : primary_bank(bank), serial_number(serial_number), type(type), language(language), banks(banks_ref){
     for (const auto& pair : initial_cash) {
         cash.addCash(pair.first, pair.second);
-        //°¢ ATM¿¡ Á¾¼ÓµÇ´Â º°°³ÀÇ cash »ı¼º ÇÊ¿ä
+        //ê° ATMì— ì¢…ì†ë˜ëŠ” ë³„ê°œì˜ cash ìƒì„± í•„ìš”
     }
 }
 
 void ATM::addCash(int denomination, int count) {
-    cash.addCash(denomination, count);// ÇÊ¿äÇÑ°¡?
+    cash.addCash(denomination, count);// í•„ìš”í•œê°€?
 }
 void ATM::printAvailableCash() const {
     cash.printAvailableCash();
@@ -348,8 +348,8 @@ string ATM::deposit(int account_id, unordered_map<int, int>& cash_deposited, boo
 
         if (deposit_fee == inserted_fee) {
             for (const auto& cash : cash_deposited) {
-                int denomination = cash.first; // ±ÇÁ¾
-                int count = cash.second; // ¼ö·®
+                int denomination = cash.first; // ê¶Œì¢…
+                int count = cash.second; // ìˆ˜ëŸ‰
 
                 this->cash.addCash(denomination, count);
                 total_deposit += denomination * count;
@@ -371,25 +371,25 @@ string ATM::withdraw(int account_id, int amount, bool is_primary) {
     }
 
     int withdrawal_fee = is_primary ? 1000 : 2000;
-    int remaining_amount = amount + withdrawal_fee; //³²Àº ±İ¾× È®ÀÎ¿ë
+    int remaining_amount = amount + withdrawal_fee; //ë‚¨ì€ ê¸ˆì•¡ í™•ì¸ìš©
 
-    //ATM¿¡ ÃæºĞÇÑ ±İ¾×ÀÌ ÀÖ´ÂÁö È®ÀÎ
+    //ATMì— ì¶©ë¶„í•œ ê¸ˆì•¡ì´ ìˆëŠ”ì§€ í™•ì¸
     if (remaining_amount > cash.getTotalAvailableCash()) {
         return "Insufficient cash available to dispense the requested amount including fees.";
     }
-    //account¿¡ ÃæºĞÇÑ ±İ¾×ÀÌ ÀÖ´ÂÁö È®ÀÎ
+    //accountì— ì¶©ë¶„í•œ ê¸ˆì•¡ì´ ìˆëŠ”ì§€ í™•ì¸
     if (remaining_amount > account->getFund()) {
         return "Insufficient account balance.";
     }
     //unordered_map<int, int> cash_dispensed; // Cash to be dispensed
-    unordered_map<int, int> available_cash = cash.getAvailableCash();// ATMÀÇ °¡¿ë Çö±İÀ» °¡Á®¿À±â
+    unordered_map<int, int> available_cash = cash.getAvailableCash();// ATMì˜ ê°€ìš© í˜„ê¸ˆì„ ê°€ì ¸ì˜¤ê¸°
 
-    // ÇöÀç °¡¿ë Çö±İÀÇ Å°¸¦ º¤ÅÍ·Î º¹»çÇÏ¿© ¿ª¼øÀ¸·Î ¼øÈ¸
+    // í˜„ì¬ ê°€ìš© í˜„ê¸ˆì˜ í‚¤ë¥¼ ë²¡í„°ë¡œ ë³µì‚¬í•˜ì—¬ ì—­ìˆœìœ¼ë¡œ ìˆœíšŒ
     //vector<int> denominations;
     for (const auto& pair : available_cash) {
         denominations.push_back(pair.first);
     }
-    sort(denominations.rbegin(), denominations.rend()); // ³»¸²Â÷¼ø Á¤·Ä
+    sort(denominations.rbegin(), denominations.rend()); // ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
 
     // Withdraw cash using the largest denominations first
     for (int denomination : denominations) {
@@ -397,25 +397,25 @@ string ATM::withdraw(int account_id, int amount, bool is_primary) {
 
         while (remaining_amount >= denomination && available_cash[denomination] > 0) {
             count++;
-            remaining_amount -= denomination; // ³²Àº ±İ¾× ¾÷µ¥ÀÌÆ®
-            cash.subCash(denomination, 1); // Çö±İ °¨¼Ò
+            remaining_amount -= denomination; // ë‚¨ì€ ê¸ˆì•¡ ì—…ë°ì´íŠ¸
+            cash.subCash(denomination, 1); // í˜„ê¸ˆ ê°ì†Œ
         }
 
         if (count > 0) {
-            cash_dispensed[denomination] = count; // Ãâ±İ ¼ö·® ±â·Ï
+            cash_dispensed[denomination] = count; // ì¶œê¸ˆ ìˆ˜ëŸ‰ ê¸°ë¡
         }
     }
-    //³²Àº ±İ¾× ÀÖ´ÂÁö È®ÀÎ
+    //ë‚¨ì€ ê¸ˆì•¡ ìˆëŠ”ì§€ í™•ì¸
     if (remaining_amount > 0) {
         return "withdraw error";
     }
-    //¼ö¼ö·á Â÷°¨ ÈÄ ÀÜ¾× ¾÷µ¥ÀÌÆ®
+    //ìˆ˜ìˆ˜ë£Œ ì°¨ê° í›„ ì”ì•¡ ì—…ë°ì´íŠ¸
     account->subFund(amount + withdrawal_fee);
 
     // Output the dispensed cash
     stringstream ss;
     ss << "Dispensed cash (excluding fee):\n";
-    //ÀÎÃâ Á¤º¸¸¦ ¹®ÀÚ¿­·Î ÀúÀå
+    //ì¸ì¶œ ì •ë³´ë¥¼ ë¬¸ìì—´ë¡œ ì €ì¥
     for (const auto& pair : cash_dispensed) { 
         ss << "KRW " << pair.first << ": " << pair.second << " bills\n";
     }
@@ -451,19 +451,19 @@ void ATM::printTransactionHistory(int account_id) {
 }
 
 bool ATM::authorizeUser(const string & card_number, const string & password) {
-    // Ä«µå ¹øÈ£·Î °èÁÂ Ã£±â
+    // ì¹´ë“œ ë²ˆí˜¸ë¡œ ê³„ì¢Œ ì°¾ê¸°
     for (const auto& bank : banks) {
         for (const auto& account_pair : bank.getAccounts()) {
             Account* account = account_pair.second;
-            // Ä«µå ¹øÈ£°¡ ÀÏÄ¡ÇÏ´Â °èÁÂ Ã£±â
+            // ì¹´ë“œ ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ëŠ” ê³„ì¢Œ ì°¾ê¸°
             if (account->getAssociatedCard()->getCardNumber() == card_number) {
                 if (account->getPassword() == password) {
-                    return true; // ÀÎÁõ ¼º°ø
+                    return true; // ì¸ì¦ ì„±ê³µ
                 }
             }
         }
     }
-    return false; // ÀÎÁõ ½ÇÆĞ
+    return false; // ì¸ì¦ ì‹¤íŒ¨
 }
 
 void ATM::printATMInfo() const {
@@ -473,27 +473,27 @@ void ATM::printATMInfo() const {
         << "Available Cash: \n";
 
     cash.printAvailableCash();
-    //class Cash ³»ºÎ ÇÏÀ§ ÇÔ¼ö·Î Ãâ·Â ±¸ÇöÇÏ±â
+    //class Cash ë‚´ë¶€ í•˜ìœ„ í•¨ìˆ˜ë¡œ ì¶œë ¥ êµ¬í˜„í•˜ê¸°
 }
 
 
-//state ¸Ş¼­µå ±¸Çö
+//state ë©”ì„œë“œ êµ¬í˜„
 void State::stateAction() {
     string inserted_card_number;
     string password;
 
-    // Ä«µå ÀÔ·Â ¹× »ç¿ëÀÚ ÀÎÁõ
+    // ì¹´ë“œ ì…ë ¥ ë° ì‚¬ìš©ì ì¸ì¦
     cout << "Please insert your card (Enter card number): ";
     cin >> inserted_card_number;
 
-    // »ç¿ëÀÚ ÀÎÁõ
+    // ì‚¬ìš©ì ì¸ì¦
     int attempt = 0;
     while (attempt < 3) {
         cout << "Enter password: ";
         cin >> password;
         if (atm->authorizeUser(inserted_card_number, password)) {
             cout << "Authorization successful.\n";
-            break; // ÀÎÁõ ¼º°ø
+            break; // ì¸ì¦ ì„±ê³µ
         }
         else {
             cout << "Wrong password. Try again.\n";
@@ -503,10 +503,10 @@ void State::stateAction() {
 
     if (attempt == 3) {
         cout << "Too many failed attempts. Session terminated.\n";
-        return; // ÀÎÁõ ½ÇÆĞ ½Ã ¼¼¼Ç Á¾·á
+        return; // ì¸ì¦ ì‹¤íŒ¨ ì‹œ ì„¸ì…˜ ì¢…ë£Œ
     }
 
-    // »ç¿ëÀÚ ÀÎÁõ ÈÄ ¼¼¼Ç ÁøÇà
+    // ì‚¬ìš©ì ì¸ì¦ í›„ ì„¸ì…˜ ì§„í–‰
     int action_choice;
     do {
         cout << "Select action:\n";
@@ -523,7 +523,7 @@ void State::stateAction() {
             cout << "Enter account ID for deposit: ";
             cin >> account_id;
 
-            unordered_map<int, int> cash_deposited; // Çö±İ ÀÔ±İ ³»¿ª
+            unordered_map<int, int> cash_deposited; // í˜„ê¸ˆ ì…ê¸ˆ ë‚´ì—­
             cout << "Enter number of KRW 50,000 bills: ";
             cin >> cash_deposited[50000];
             cout << "Enter number of KRW 10,000 bills: ";
@@ -533,7 +533,7 @@ void State::stateAction() {
             cout << "Enter number of KRW 1,000 bills: ";
             cin >> cash_deposited[1000];
 
-            bool is_primary = (atm->getBank()->getName() == state_account->getBankName()); // ÀºÇà È®ÀÎ
+            bool is_primary = (atm->getBank()->getName() == state_account->getBankName()); // ì€í–‰ í™•ì¸
             string deposit_result = atm->deposit(account_id, cash_deposited, is_primary);
             cout << deposit_result << endl;
             break;
@@ -546,7 +546,7 @@ void State::stateAction() {
             cout << "Enter amount to withdraw: ";
             cin >> amount;
 
-            bool is_primary = (atm->getBank()->getName() == state_account->getBankName()); // ÀºÇà È®ÀÎ
+            bool is_primary = (atm->getBank()->getName() == state_account->getBankName()); // ì€í–‰ í™•ì¸
             string withdraw_result = atm->withdraw(account_id, amount, is_primary);
             cout << withdraw_result << endl;
             break;
@@ -556,7 +556,7 @@ void State::stateAction() {
             break;
         }
         case 4: { // Display Account/ATM Snapshot
-            atm->printATMInfo(); // ATM Á¤º¸ Ãâ·Â
+            atm->printATMInfo(); // ATM ì •ë³´ ì¶œë ¥
             break;
         }
         case 5: // Exit Session
@@ -584,11 +584,11 @@ void initializeSystem(vector<Bank>&banks, vector<ATM>&atms, vector<Account>&acco
             cout << "Enter User Name: ";
             cin >> user_name;
             cout << "Enter Account Number (12 digits): ";
-            cin >> account_number; // °èÁÂ ¹øÈ£ ÀÔ·Â ¹Ş±â
+            cin >> account_number; // ê³„ì¢Œ ë²ˆí˜¸ ì…ë ¥ ë°›ê¸°
             cout << "Enter Available Funds (KRW): ";
             cin >> initial_funds;
             cout << "Enter Connected Card Number (4 digits): ";
-            cin >> card_number; // Ä«µå ¹øÈ£ ÀÔ·Â ¹Ş±â
+            cin >> card_number; // ì¹´ë“œ ë²ˆí˜¸ ì…ë ¥ ë°›ê¸°
             cout << "Enter Password (4 digits): ";
             cin >> password;
 
@@ -596,7 +596,7 @@ void initializeSystem(vector<Bank>&banks, vector<ATM>&atms, vector<Account>&acco
             Bank* bank = Bank::getOrCreateBank(bank_name, banks);
 
             //Account new_account(account_id) = 
-            //bank.createAccount(user_name, initial_funds, password, card_number, account_number); // Ä«µå¿Í °èÁÂ ¹øÈ£ Àü´Ş
+            //bank.createAccount(user_name, initial_funds, password, card_number, account_number); // ì¹´ë“œì™€ ê³„ì¢Œ ë²ˆí˜¸ ì „ë‹¬
             //accounts.push_back(account);
             cout << "Account created successfully.\n";
         }
@@ -636,26 +636,26 @@ void initializeSystem(vector<Bank>&banks, vector<ATM>&atms, vector<Account>&acco
                     initial_cash[cash_amount] = cash_quantity;
                 }
             }
-            //// ÀºÇà È®ÀÎ ¹× »ı¼º
+            //// ì€í–‰ í™•ì¸ ë° ìƒì„±
             //auto it = find_if(banks.begin(), banks.end(), [&bank_name](const Bank& bank) {
             //    return bank.getName() == bank_name;
             //    });
 
             //Bank* bank;
             //if (it == banks.end()) {
-            //    // ÀºÇàÀÌ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é »õ·Î »ı¼º
+            //    // ì€í–‰ì´ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ ìƒˆë¡œ ìƒì„±
             //    banks.emplace_back(bank_name);
-            //    bank = &banks.back(); // »õ·Î »ı¼ºÇÑ ÀºÇàÀ» °¡¸®Å´
+            //    bank = &banks.back(); // ìƒˆë¡œ ìƒì„±í•œ ì€í–‰ì„ ê°€ë¦¬í‚´
             //    cout << "New bank created: " << bank_name << endl;
             //}
             //else {
-            //    // ±âÁ¸ÀÇ ÀºÇàÀ» »ç¿ë
+            //    // ê¸°ì¡´ì˜ ì€í–‰ì„ ì‚¬ìš©
             //    bank = &(*it);
             //}
             Bank* primary_bank = Bank::getOrCreateBank(bank_name, banks);
 
             ATM atm(primary_bank, serial_number, type, language, initial_cash, banks);
-            atms.push_back(atm); // ATM ¸®½ºÆ®¿¡ Ãß°¡
+            atms.push_back(atm); // ATM ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
             cout << "ATM created successfully and linked to bank: " << bank_name << endl;
         }
     } while (choice != 4);
@@ -663,11 +663,11 @@ void initializeSystem(vector<Bank>&banks, vector<ATM>&atms, vector<Account>&acco
 
 // Main function
 int main() {
-    vector<Bank> banks; // ÀºÇà ¸ñ·Ï
-    vector<ATM> atms;   // ATM ¸ñ·Ï
-    vector<Account> accounts;// °èÁÂ ¸ñ·Ï
+    vector<Bank> banks; // ì€í–‰ ëª©ë¡
+    vector<ATM> atms;   // ATM ëª©ë¡
+    vector<Account> accounts;// ê³„ì¢Œ ëª©ë¡
 
-    // ÃÊ±â ½Ã½ºÅÛ ¼³Á¤
+    // ì´ˆê¸° ì‹œìŠ¤í…œ ì„¤ì •
     initializeSystem(banks, atms, accounts);
 
     int action_choice;
@@ -680,8 +680,8 @@ int main() {
 
         if (action_choice > 0 && action_choice <= atms.size()) {
             ATM& selected_atm = atms[action_choice - 1];
-            State state(nullptr, &selected_atm); // ÀÎÁõµÈ Account´Â ¾ÆÁ÷ ¾øÀ½.
-            state.stateAction(); // ¼±ÅÃÇÑ ATM ¼¼¼Ç ½ÃÀÛ
+            State state(nullptr, &selected_atm); // ì¸ì¦ëœ AccountëŠ” ì•„ì§ ì—†ìŒ.
+            state.stateAction(); // ì„ íƒí•œ ATM ì„¸ì…˜ ì‹œì‘
         }
 
     } while (action_choice != 0);

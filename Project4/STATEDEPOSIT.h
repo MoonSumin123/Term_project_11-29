@@ -1,4 +1,4 @@
-#ifndef STATEDEPOSIT_H
+﻿#ifndef STATEDEPOSIT_H
 #define STATEDEPOSIT_H
 
 #include "STATE.h"

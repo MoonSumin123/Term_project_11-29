@@ -1,4 +1,4 @@
-#ifndef INITIALIZING_H
+﻿#ifndef INITIALIZING_H
 #define INITIALIZING_H
 
 #include "ATM.h"

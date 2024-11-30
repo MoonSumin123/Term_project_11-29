@@ -1,4 +1,4 @@
-#include "INITIALIZING.h"
+ï»¿#include "INITIALIZING.h"
 
 void initializeSystem() {
     int choice;
@@ -14,11 +14,11 @@ void initializeSystem() {
             cout << "Enter User Name: ";
             cin >> user_name;
             cout << "Enter Account Number (12 digits): ";
-            cin >> account_number; // °èÁÂ ¹øÈ£ ÀÔ·Â ¹Ş±â
+            cin >> account_number; // ê³„ì¢Œ ë²ˆí˜¸ ì…ë ¥ ë°›ê¸°
             cout << "Enter Available Funds (KRW): ";
             cin >> initial_funds;
             cout << "Enter Connected Card Number (4 digits): ";
-            cin >> card_number; // Ä«µå ¹øÈ£ ÀÔ·Â ¹Ş±â
+            cin >> card_number; // ì¹´ë“œ ë²ˆí˜¸ ì…ë ¥ ë°›ê¸°
             cout << "Enter Password (4 digits): ";
             cin >> password;
 
@@ -63,7 +63,7 @@ void initializeSystem() {
             cin >> cash_quantity;
             initial_cash[1000] = cash_quantity;
 
-            // ÀÔ·ÂµÈ Çö±İÀ» Ãâ·ÂÇÏ¿© È®ÀÎ
+            // ì…ë ¥ëœ í˜„ê¸ˆì„ ì¶œë ¥í•˜ì—¬ í™•ì¸
             cout << "Initial cash setup completed. Current cash amounts:\n";
             for (const auto& cash : initial_cash) {
                 cout << "KRW " << cash.first << ": " << cash.second << " bills" << endl;
@@ -73,7 +73,7 @@ void initializeSystem() {
             Bank* primary_bank = Bank::getOrCreateBank(bank_name, banks);
 
             ATM atm(primary_bank->getName(), serial_number, type, language, initial_cash);
-            atms.push_back(atm); // ATM ¸®½ºÆ®¿¡ Ãß°¡
+            atms.push_back(atm); // ATM ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
             cout << "ATM created successfully and linked to bank: " << bank_name << endl;
         }
     } while (choice != 4);

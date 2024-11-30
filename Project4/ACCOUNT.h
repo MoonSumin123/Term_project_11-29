@@ -1,4 +1,4 @@
-#ifndef ACCOUNT_H
+﻿#ifndef ACCOUNT_H
 #define ACCOUNT_H
 
 #include <iostream>
@@ -41,7 +41,7 @@ public:
     string getUserName() const { return account_user_name; }
     string getPassword() const { return account_password; } // Get the account password
     int getFund() const { return account_funds; } // Get the account balance
-    //Card* getAssociatedCard() const { return associated_card; } //Ä«µå Á¢±ÙÀÚ
+    //Card* getAssociatedCard() const { return associated_card; } //횆짬쨉책 횁짖짹횢?횣
     const vector<string>& getAccountHistory() const; // Get transaction history //??
     void recordAccountHistory(const string& transaction); // Record a transaction
 };

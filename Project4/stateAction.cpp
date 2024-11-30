@@ -1,4 +1,4 @@
-#include "STATE.h"
+﻿#include "STATE.h"
 #include "STATEACCOUNTRECEIPT.h"
 #include "STATESNAPSHOT.h"
 #include "STATEDEPOSIT.h"
@@ -7,7 +7,7 @@
 #include "STATEATMRECEIPT.h"
 using namespace std;
 
-void state_ATM_receipt::stateAction() { //recent history 불러오기(session요약)
+void state_ATM_receipt::stateAction() { //recent history 遺덈윭?ㅺ린(session?붿빟)
 	Language* lang = Language::getInstance();
 	lang->selectLanguage(atm);
 	vector<string> rec = atm.getAtmHistory();
@@ -18,7 +18,7 @@ void state_ATM_receipt::stateAction() { //recent history 불러오기(session요
 	}
 }
 
-//ATM_receipt가 현재 세션 동안 진행된 거래 내역 출력하는 함수고, 통장 정리는 요구사항 아니니까 account_receipt 함수 필요 없음.
+//ATM_receipt媛 ?꾩옱 ?몄뀡 ?숈븞 吏꾪뻾??嫄곕옒 ?댁뿭 異쒕젰?섎뒗 ?⑥닔怨? ?듭옣 ?뺣━???붽뎄?ы빆 ?꾨땲?덇퉴 account_receipt ?⑥닔 ?꾩슂 ?놁쓬.
 void state_account_receipt::stateAction() {
 
 	Language* lang = Language::getInstance();
@@ -55,14 +55,14 @@ void state_deposit::stateAction() {
 
 	int choice;
 	cout << "Please select your deposit method." << endl;
-	cout << "1. Card deposit\n 2. Check deposit"; //입력이 숫자가 아니면? exception handling
+	cout << "1. Card deposit\n 2. Check deposit"; //?낅젰???レ옄媛 ?꾨땲硫? exception handling
 	cin >> choice;
 	if (choice == 1) {
 		
-		unordered_map<int, int> cash_deposited = atm.makeCashDeposited(); // 현금 입금 내역 
+		unordered_map<int, int> cash_deposited = atm.makeCashDeposited(); // ?꾧툑 ?낃툑 ?댁뿭 
 		unordered_map<int, int> fee_deposited = atm.makeFeeDeposited(deposit_fee); 
 		
-		int total_cash_count = 0;//현금 개수 50장 제한용
+		int total_cash_count = 0;//?꾧툑 媛쒖닔 50???쒗븳??
 		for (const auto& cash : cash_deposited) {
 			total_cash_count += cash.second;
 		}
@@ -81,8 +81,8 @@ void state_deposit::stateAction() {
 			oss << "The fee amount inserted is incorrect.";
 	}
 	else if (choice == 2) {
-		int count = 0;//장수
-		int check = 0;//total금액
+		int count = 0;//?μ닔
+		int check = 0;//total湲덉븸
 
 		while (count < 30) {
 			int inserted_check, inserted_count;
@@ -90,18 +90,18 @@ void state_deposit::stateAction() {
 			cin >> inserted_check;
 
 			if (inserted_check == 0) {
-				break; // 0 입력 시 입력 종료
+				break; // 0 ?낅젰 ???낅젰 醫낅즺
 			}
 			else if (inserted_check < 100000) {
 				cout << "Checks must exceed 100,000 KRW.\n";
-				continue; // 다시 입력
+				continue; // ?ㅼ떆 ?낅젰
 			}
 			cout << "Enter the number of checks for this amount: ";
 			cin >> inserted_count;
 	
 			if (count + inserted_count > 30) {
 				cout << "Cannot exceed 30 checks in total. You can add " << (30 - count) << " more checks.\n";
-				continue; // 다시 입력
+				continue; // ?ㅼ떆 ?낅젰
 			}
 			check += inserted_check;
 			count += inserted_count;
@@ -137,7 +137,7 @@ void state_deposit::stateAction() {
 }
 
 void state_withdraw::stateAction() {
-	ostringstream oss; //출금횟수 3회 제한, 1회 50만원 제한
+	ostringstream oss; //異쒓툑?잛닔 3???쒗븳, 1??50留뚯썝 ?쒗븳
 
 	if (withdrawal_count >= 3) {
 		cout << "Maximum withdrawal attempts reached. Session will be terminated.\n";
@@ -202,7 +202,7 @@ void state_transfer::stateAction() {
 		if (vec.getName() == destination_bank_name)
 			destination_bank = &vec;
 	}
-	// 찾기 못한 경우 exception handling
+	// 李얘린 紐삵븳 寃쎌슦 exception handling
 	if (destination_bank == nullptr) {
 		cout << "Destination bank not found.\n";
 		return;

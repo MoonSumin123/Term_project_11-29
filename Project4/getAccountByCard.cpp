@@ -1,12 +1,12 @@
-#include "GETACCOUNTBYCARD.h"
+ï»¿#include "GETACCOUNTBYCARD.h"
 
 
 Account* getAccountByCardNumber(int card_number) {
     for (Account vec : accounts) {
         Account* account = &vec;
         if (account->getAssociatedCard()->getCardNumber() == card_number) {
-            return account; // Ä«µå ¹øÈ£·Î °èÁÂ Ã£±â
+            return account; // ì¹´ë“œ ë²ˆí˜¸ë¡œ ê³„ì¢Œ ì°¾ê¸°
         }
     }
-    return nullptr; // Ä«µå ¹øÈ£¿¡ ÇØ´çÇÏ´Â °èÁÂ°¡ ¾øÀ» °æ¿ì
+    return nullptr; // ì¹´ë“œ ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” ê³„ì¢Œê°€ ì—†ì„ ê²½ìš°
 }

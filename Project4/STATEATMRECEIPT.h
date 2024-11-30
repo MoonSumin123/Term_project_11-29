@@ -1,4 +1,4 @@
-#ifndef STATEATMRECEIPT_H
+﻿#ifndef STATEATMRECEIPT_H
 #define STATEATMRECEIPT_H
 
 #include "STATE.h"

@@ -1,12 +1,12 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <sstream>
 #include <iomanip>
 #include <vector>
 using namespace std;
 
-// Account.getReceipt(), Account receipt º¯¼ö
-// ATM.getReceipt(), ATM receipt º¯¼ö
-// verify admin card -> admin card ÀÔ·Â ¹æ½Ä?
+// Account.getReceipt(), Account receipt ë³€ìˆ˜
+// ATM.getReceipt(), ATM receipt ë³€ìˆ˜
+// verify admin card -> admin card ì…ë ¥ ë°©ì‹?
 
 
 class State {

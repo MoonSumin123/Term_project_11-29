@@ -1,4 +1,4 @@
-#include "ATM.h"
+﻿#include "ATM.h"
 using namespace std;
 
 vector<ATM> atms;
@@ -30,8 +30,8 @@ int ATM::deposit(Account* account, unordered_map<int, int>& cash_deposited) {
     lang->selectLanguage(*this);
     int total_deposit = 0;
     for (const auto& cash : cash_deposited) {
-        int denomination = cash.first; // 권종
-        int count = cash.second; // 수량
+        int denomination = cash.first; // 沅뚯쥌
+        int count = cash.second; // ?섎웾
 
         this->cash->addCash(denomination, count);
         total_deposit += denomination * count;
@@ -48,14 +48,14 @@ int ATM::deposit(Account* account, unordered_map<int, int>& cash_deposited) {
 }
 
 bool ATM::withdrawAvailable(int remaining_amount) {
-    unordered_map<int, int> available_cash = cash->getAvailableCash();// ATM의 가용 현금을 가져오기
+    unordered_map<int, int> available_cash = cash->getAvailableCash();// ATM??媛???꾧툑??媛?몄삤湲?
 
-    // 현재 가용 현금의 키를 벡터로 복사하여 역순으로 순회
+    // ?꾩옱 媛???꾧툑???ㅻ? 踰≫꽣濡?蹂듭궗?섏뿬 ??닚?쇰줈 ?쒗쉶
     vector<int> denominations;
     for (const auto& pair : available_cash) {
         denominations.push_back(pair.first);
     }
-    sort(denominations.rbegin(), denominations.rend()); // 내림차순 정렬
+    sort(denominations.rbegin(), denominations.rend()); // ?대┝李⑥닚 ?뺣젹
 
     // Withdraw cash using the largest denominations first
     for (int denomination : denominations) {
@@ -63,7 +63,7 @@ bool ATM::withdrawAvailable(int remaining_amount) {
 
         while (remaining_amount >= denomination && available_cash[denomination] > 0) {
             count++;
-            remaining_amount -= denomination; // 남은 금액 업데이트
+            remaining_amount -= denomination; // ?⑥? 湲덉븸 ?낅뜲?댄듃
         }
     }
 
@@ -77,14 +77,14 @@ string ATM::withdraw(int remaining_amount, int withdrawal_fee) {
     int total_amount = remaining_amount;
     
     unordered_map<int, int> cash_dispensed; // Cash to be dispensed
-    unordered_map<int, int> available_cash = cash->getAvailableCash();// ATM의 가용 현금을 가져오기
+    unordered_map<int, int> available_cash = cash->getAvailableCash();// ATM??媛???꾧툑??媛?몄삤湲?
 
-    // 현재 가용 현금의 키를 벡터로 복사하여 역순으로 순회
+    // ?꾩옱 媛???꾧툑???ㅻ? 踰≫꽣濡?蹂듭궗?섏뿬 ??닚?쇰줈 ?쒗쉶
     vector<int> denominations;
     for (const auto& pair : available_cash) {
         denominations.push_back(pair.first);
     }
-    sort(denominations.rbegin(), denominations.rend()); // 내림차순 정렬
+    sort(denominations.rbegin(), denominations.rend()); // ?대┝李⑥닚 ?뺣젹
 
     // Withdraw cash using the largest denominations first
     for (int denomination : denominations) {
@@ -92,19 +92,19 @@ string ATM::withdraw(int remaining_amount, int withdrawal_fee) {
 
         while (remaining_amount >= denomination && available_cash[denomination] > 0) {
             count++;
-            remaining_amount -= denomination; // 남은 금액 업데이트
-            cash->subCash(denomination, 1); // 현금 감소
+            remaining_amount -= denomination; // ?⑥? 湲덉븸 ?낅뜲?댄듃
+            cash->subCash(denomination, 1); // ?꾧툑 媛먯냼
         }
 
         if (count > 0) {
-            cash_dispensed[denomination] = count; // 출금 수량 기록
+            cash_dispensed[denomination] = count; // 異쒓툑 ?섎웾 湲곕줉
         }
     }
 
     // Output the dispensed cash
     ostringstream oss;
     oss << "Dispensed cash (including fee):\n";
-    //인출 정보를 문자열로 저장
+    //?몄텧 ?뺣낫瑜?臾몄옄?대줈 ???
     for (const auto& pair : cash_dispensed) {
         oss << "KRW " << pair.first << ": " << pair.second << " bills\n";
     }
@@ -115,9 +115,9 @@ string ATM::withdraw(int remaining_amount, int withdrawal_fee) {
 
 string ATM::cashTransfer(Account* destination, int amount, int fee) {
     ostringstream oss;
-    unordered_map<int, int> cash_deposited = makeCashDeposited(); // 현금 입금 내역
+    unordered_map<int, int> cash_deposited = makeCashDeposited(); // ?꾧툑 ?낃툑 ?댁뿭
     unordered_map<int, int> fee_deposited = makeFeeDeposited(fee);
-    int total_cash_count = 0;//현금 개수 50장 제한용
+    int total_cash_count = 0;//?꾧툑 媛쒖닔 50???쒗븳??
     for (const auto& cash : cash_deposited) {
         total_cash_count += cash.second;
     }
@@ -144,7 +144,7 @@ string ATM::accountTransfer(Account* source, Account* destination, int amount) {
 }
 
 unordered_map<int, int> ATM::makeCashDeposited() {
-    unordered_map<int, int> cash_deposited; // 현금 입금 내역
+    unordered_map<int, int> cash_deposited; // ?꾧툑 ?낃툑 ?댁뿭
     cout << "Enter amount to deposit into account " << endl;
     cout << "Enter number of KRW 50,000 bills: ";
     cin >> cash_deposited[50000];
@@ -182,11 +182,11 @@ string ATM::checkBalance(Account* account) {
 
 
 bool ATM::isCorrectPassword(string card_number, const string& password) {
-    Account* account = getAccountByCardNumber(card_number); // 카드 번호로 계좌 찾기
+    Account* account = getAccountByCardNumber(card_number); // 移대뱶 踰덊샇濡?怨꾩쥖 李얘린
     if (account && account->getPassword() == password) {
-        return true; // 인증 성공
+        return true; // ?몄쬆 ?깃났
     }
-    return false; // 인증 실패
+    return false; // ?몄쬆 ?ㅽ뙣
 }
 
 
@@ -195,11 +195,11 @@ Account* ATM::getAccountByCardNumber(string card_number) {
         for (const auto& account_pair : bank.getAccounts()) {
             Account* account = account_pair.second;
             if (account->getCardNumber() == card_number) {
-                return account; // 카드 번호로 계좌 찾기
+                return account; // 移대뱶 踰덊샇濡?怨꾩쥖 李얘린
             }
         }
     }
-    return nullptr; // 카드 번호에 해당하는 계좌가 없을 경우
+    return nullptr; // 移대뱶 踰덊샇???대떦?섎뒗 怨꾩쥖媛 ?놁쓣 寃쎌슦
 }
 
 bool ATM::is_primary(Account* account) const {
@@ -223,12 +223,12 @@ Account* ATM::validCard() {
     cin >> inserted_card_number;
 
     if (inserted_card_number == "9999") {
-        admin_menu(); // 관리자 메뉴 호출
-        return nullptr; // 관리자 메뉴로 돌아가므로 계좌 반환하지 않음
+        admin_menu(); // 愿由ъ옄 硫붾돱 ?몄텧
+        return nullptr; // 愿由ъ옄 硫붾돱濡??뚯븘媛誘濡?怨꾩쥖 諛섑솚?섏? ?딆쓬
     }
     else {
-        // 카드 유효성 검사
-        if (isValidCard(inserted_card_number)) { // 카드 입력 및 사용자 인증
+        // 移대뱶 ?좏슚??寃??
+        if (isValidCard(inserted_card_number)) { // 移대뱶 ?낅젰 諛??ъ슜???몄쬆
             int attempt = 0;
             while (attempt < 3) {
                 cout << "Enter password: ";
@@ -237,7 +237,7 @@ Account* ATM::validCard() {
                 if (isCorrectPassword(inserted_card_number, entered_password)) {
                     Account* account = getAccountByCardNumber(inserted_card_number);
                     cout << "Authorization successful.\n";
-                    return account; // 인증 성공 시 계좌 반환
+                    return account; // ?몄쬆 ?깃났 ??怨꾩쥖 諛섑솚
                 }
                 else {
                     cout << "Wrong password. Try again.\n";
@@ -245,30 +245,30 @@ Account* ATM::validCard() {
                 }
             }
 
-            // 비밀번호 입력 시도 횟수 초과
+            // 鍮꾨?踰덊샇 ?낅젰 ?쒕룄 ?잛닔 珥덇낵
             if (attempt == 3) {
                 cout << "Too many failed attempts. Session terminated.\n";
-                return nullptr; // 인증 실패 시 NULL 반환
+                return nullptr; // ?몄쬆 ?ㅽ뙣 ??NULL 諛섑솚
             }
         }
         else {
             cout << "The card is not valid.\n";
-            return nullptr; // 카드가 유효하지 않은 경우 NULL 반환
+            return nullptr; // 移대뱶媛 ?좏슚?섏? ?딆? 寃쎌슦 NULL 諛섑솚
         }
     }
-    return nullptr; // 기본적으로 NULL 반환
+    return nullptr; // 湲곕낯?곸쑝濡?NULL 諛섑솚
 }
 
 bool ATM::isValidCard(string card_number) {
-    Account* account = getAccountByCardNumber(card_number); // 카드 번호로 계좌 찾기
+    Account* account = getAccountByCardNumber(card_number); // 移대뱶 踰덊샇濡?怨꾩쥖 李얘린
     if (account) {
-        // Single Bank ATM의 경우, 계좌의 은행이 주 은행인지 확인
+        // Single Bank ATM??寃쎌슦, 怨꾩쥖????됱씠 二???됱씤吏 ?뺤씤
         if (type == "Single Bank ATM" && account->getBankName() != primary_bank) {
-            return false; // 주 은행이 아닌 경우
+            return false; // 二???됱씠 ?꾨땶 寃쎌슦
         }
-        return true; // 카드 유효
+        return true; // 移대뱶 ?좏슚
     }
-    return false; // 카드 유효하지 않음
+    return false; // 移대뱶 ?좏슚?섏? ?딆쓬
 }
 
 
@@ -289,7 +289,7 @@ void ATM::printAccountHistory(Account* account) {
     }
 }
 
-//ATM 정보, History
+//ATM ?뺣낫, History
 void ATM::printATMInfo() const {
     cout << "ATM Serial Number: " << serial_number << "\n"
         << "Type: " << type << "\n"
@@ -303,7 +303,7 @@ void ATM::recordRecentHistory(const string recent_transaction) {
     atm_recent_history.push_back(recent_transaction);
 }
 
-//세션 종료 시 거래 내역 출력
+//?몄뀡 醫낅즺 ??嫄곕옒 ?댁뿭 異쒕젰
 void ATM::printAndClearRecentHistory() {
     for (const string& history : atm_recent_history) {
         cout << history << endl;
@@ -320,17 +320,17 @@ vector<string> ATM::getAtmHistory() {
 }
 
 ////admin_menu
-//void ATM::printAtmHistory() { //receipt때 필요?
+//void ATM::printAtmHistory() { //receipt???꾩슂?
 //    Language* lang = Language::getInstance();
-//    //class transaction 필요
+//    //class transaction ?꾩슂
 //    vector<Transaction> transactions = getAtmHistory();
 //
-//    // 거래 내역을 콘솔에 출력
+//    // 嫄곕옒 ?댁뿭??肄섏넄??異쒕젰
 //    printIn(lang->chooseSentence(8)); //cout << "Transaction History:\n"; 
 //    cout << "-------------------------------------------\n";
-//    cout << "ID\tCard Number\tType\tAmount\tDetails\n";//printIn으로 출력 필요
+//    cout << "ID\tCard Number\tType\tAmount\tDetails\n";//printIn?쇰줈 異쒕젰 ?꾩슂
 //    cout << "-------------------------------------------\n";
-//    for (const auto& transaction : transactions) { //언어 반영 필요
+//    for (const auto& transaction : transactions) { //?몄뼱 諛섏쁺 ?꾩슂
 //        cout << transaction.id << "\t"
 //            << transaction.cardNumber << "\t"
 //            << transaction.type << "\t"
@@ -338,15 +338,15 @@ vector<string> ATM::getAtmHistory() {
 //            << transaction.details << "\n";
 //    }
 //
-//    // 거래 내역을 파일로 출력
+//    // 嫄곕옒 ?댁뿭???뚯씪濡?異쒕젰
 //    //outputTransactionHistoryToFile(transactions);
 //}
 
-//// 파일로 거래 내역을 출력하는 함수-->admin으로 옮기기?
+//// ?뚯씪濡?嫄곕옒 ?댁뿭??異쒕젰?섎뒗 ?⑥닔-->admin?쇰줈 ??린湲?
 //void ATM::outputTransactionHistoryToFile(const vector<Transaction>& transactions) {
 //    ofstream outFile("transaction_history.txt");
 //    if (!outFile) {
-//        cout << "Error opening file for writing.\n"; //printIn으로 출력 필요
+//        cout << "Error opening file for writing.\n"; //printIn?쇰줈 異쒕젰 ?꾩슂
 //        return;
 //    }
 //

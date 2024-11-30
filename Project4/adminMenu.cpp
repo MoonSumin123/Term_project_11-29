@@ -1,4 +1,4 @@
-#include "ADMINMENU.h"
+ï»¿#include "ADMINMENU.h"
 #include "LANGUAGE.h"
 
 
@@ -7,10 +7,10 @@ void admin_menu() {
     ostringstream oss;
     oss << (lang->chooseSentence(7)); // cout << "Transaction History admin Menu\n"; 
     oss << "-------------------------------------------\n";
-    //oss << "ATM SN\tID\tCard Number\tType\tAmount\tDetails\n";//Ç¥ Ã³·³ ÇÒÁö or ÇÑÁÙ¿¡ ´Ù ¾Ë·ÁÁÙÁö
+    //oss << "ATM SN\tID\tCard Number\tType\tAmount\tDetails\n";//í‘œ ì²˜ëŸ¼ í• ì§€ or í•œì¤„ì— ë‹¤ ì•Œë ¤ì¤„ì§€
     oss << "-------------------------------------------\n";
     for (ATM& atm : atms) {
-        vector<string> atm_history = atm.getAtmHistory(); // °¢ ATMÀÇ °Å·¡ ³»¿ª °¡Á®¿À±â
+        vector<string> atm_history = atm.getAtmHistory(); // ê° ATMì˜ ê±°ë˜ ë‚´ì—­ ê°€ì ¸ì˜¤ê¸°
         for (size_t index = 0; index < atm_history.size(); ++index) {
             //oss << atm.getSerialNumber() <<"\t" << index << "\t" << atm_history[index];
             oss <<"ATM SN: " << atm.getSerialNumber() << "\t" << "ID: "<<index << "\t" << atm_history[index];
@@ -20,11 +20,11 @@ void admin_menu() {
     cout << oss.str();
 }
 
-// ÆÄÀÏ·Î °Å·¡ ³»¿ªÀ» Ãâ·ÂÇÏ´Â ÇÔ¼ö
+// íŒŒì¼ë¡œ ê±°ë˜ ë‚´ì—­ì„ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 void outputHistoryToFile(const string& str) {
     ofstream outFile;("transaction_history.txt");
     if (!outFile) {
-        cout << "Error opening file for writing.\n"; //printInÀ¸·Î Ãâ·Â ÇÊ¿ä
+        cout << "Error opening file for writing.\n"; //printInìœ¼ë¡œ ì¶œë ¥ í•„ìš”
         return;
     }
 

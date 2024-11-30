@@ -1,4 +1,4 @@
-#ifndef STATETRANSFER_H
+﻿#ifndef STATETRANSFER_H
 #define STATETRANSFER_H
 
 #include "STATE.h"

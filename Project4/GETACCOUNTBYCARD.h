@@ -1,4 +1,4 @@
-#ifndef GETACCOUNTBYCARD
+﻿#ifndef GETACCOUNTBYCARD
 #define GETACCOUNTBYCARD
 
 #include "ACCOUNT.h"

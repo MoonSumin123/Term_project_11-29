@@ -1,4 +1,4 @@
-#ifndef CASH_H
+﻿#ifndef CASH_H
 #define CASH_H
 
 #include <iostream>

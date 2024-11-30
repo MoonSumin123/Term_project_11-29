@@ -1,4 +1,4 @@
-#include "BANK.h"
+ï»¿#include "BANK.h"
 
 Bank::Bank(const string& bank_name) : name(bank_name) {}
 
@@ -10,7 +10,7 @@ Bank::~Bank() {
 }
 Account* Bank::createAccount(string user_name, int initial_funds, string password, string card_number, const string& account_number) {
     Account* newAccount = new Account(name, user_name, initial_funds, password, card_number, account_number);
-    bank_accounts[account_number] = newAccount; //account number·Î account ÀúÀå
+    bank_accounts[account_number] = newAccount; //account numberë¡œ account ì €ì¥
     return newAccount;
 }
 
@@ -27,12 +27,12 @@ Bank* Bank::getOrCreateBank(const string& bank_name, vector<Bank>& banks) {
         return bank.getName() == bank_name;});
 
     if (it == banks.end()) {
-        // ÀºÇàÀÌ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é »õ·Î »ı¼º
+        // ì€í–‰ì´ ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ ìƒˆë¡œ ìƒì„±
         banks.emplace_back(bank_name);
-        return &banks.back(); // »õ·Î »ı¼ºÇÑ ÀºÇàÀ» °¡¸®Å´
+        return &banks.back(); // ìƒˆë¡œ ìƒì„±í•œ ì€í–‰ì„ ê°€ë¦¬í‚´
     }
     else {
-        // ±âÁ¸ÀÇ ÀºÇàÀ» ¹İÈ¯
+        // ê¸°ì¡´ì˜ ì€í–‰ì„ ë°˜í™˜
         return &(*it);
     }
 }

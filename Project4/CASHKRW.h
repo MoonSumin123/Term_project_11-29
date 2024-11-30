@@ -1,4 +1,4 @@
-#ifndef CASHKRW_H
+﻿#ifndef CASHKRW_H
 #define CASHKRW_H
 
 #include "CASH.h"

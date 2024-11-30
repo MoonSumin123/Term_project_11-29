@@ -1,4 +1,4 @@
-#ifndef SELECTATM
+﻿#ifndef SELECTATM
 #define SELECTATM
 
 #include "ATM.h"

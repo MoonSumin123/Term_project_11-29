@@ -1,4 +1,4 @@
-
+ï»¿
 #ifndef TRANSACTION_H
 #define TRANSACTION_H
 
@@ -9,11 +9,11 @@
 
 class Transaction {
 private:
-    int id;                      // °Å·¡ ID
-    string cardNumber;     // Ä«µå ¹øÈ£
-    string type;           // °Å·¡ À¯Çü (¿¹: "Deposit", "Withdraw", "Transfer")
-    int amount;              // °Å·¡ ±Ý¾×
-    string details;        // °Å·¡ ¼¼ºÎ Á¤º¸
+    int id;                      // ê±°ëž˜ ID
+    string cardNumber;     // ì¹´ë“œ ë²ˆí˜¸
+    string type;           // ê±°ëž˜ ìœ í˜• (ì˜ˆ: "Deposit", "Withdraw", "Transfer")
+    int amount;              // ê±°ëž˜ ê¸ˆì•¡
+    string details;        // ê±°ëž˜ ì„¸ë¶€ ì •ë³´
 public:
     Transaction(int id, const string& cardNumber, const string& type, int amount, const string& details);
 };

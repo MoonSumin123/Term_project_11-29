@@ -1,4 +1,4 @@
-#ifndef STATESNAPSHOT_H
+﻿#ifndef STATESNAPSHOT_H
 #define STATESNAPSHOT_H
 
 #include "STATE.h"

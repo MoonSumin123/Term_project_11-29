@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <unordered_map>
 #include <vector>
 #include <string>
@@ -38,8 +38,8 @@ int main() {
         if (sel_or_exit == 1) {
             ATM* atm = selectATM();
 
-            // 언어 선택
-            // card number 확인
+            // ?몄뼱 ?좏깮
+            // card number ?뺤씤
             // atm->printINPUT("card number")
             Account* account = atm->validCard();
 
@@ -67,8 +67,8 @@ int main() {
                 if (x!=nullptr) 
                     x->stateAction();
 
-            } while (choice != 5); // 세션 종료
-            // 요약본 출력
+            } while (choice != 5); // ?몄뀡 醫낅즺
+            // ?붿빟蹂?異쒕젰
             withdrawal_count = 0;
         }
 	

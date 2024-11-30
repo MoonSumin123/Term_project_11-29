@@ -317,28 +317,28 @@ vector<string> ATM::getAtmHistory() {
     return atm_history;
 }
 
-//admin_menu
-void ATM::printAtmHistory() { //receipt때 필요?
-    Language* lang = Language::getInstance();
-    //class transaction 필요
-    vector<Transaction> transactions = getAtmHistory();
-
-    // 거래 내역을 콘솔에 출력
-    printIn(lang->chooseSentence(8)); //cout << "Transaction History:\n"; 
-    cout << "-------------------------------------------\n";
-    cout << "ID\tCard Number\tType\tAmount\tDetails\n";//printIn으로 출력 필요
-    cout << "-------------------------------------------\n";
-    for (const auto& transaction : transactions) { //언어 반영 필요
-        cout << transaction.id << "\t"
-            << transaction.cardNumber << "\t"
-            << transaction.type << "\t"
-            << transaction.amount << "\t"
-            << transaction.details << "\n";
-    }
-
-    // 거래 내역을 파일로 출력
-    //outputTransactionHistoryToFile(transactions);
-}
+////admin_menu
+//void ATM::printAtmHistory() { //receipt때 필요?
+//    Language* lang = Language::getInstance();
+//    //class transaction 필요
+//    vector<Transaction> transactions = getAtmHistory();
+//
+//    // 거래 내역을 콘솔에 출력
+//    printIn(lang->chooseSentence(8)); //cout << "Transaction History:\n"; 
+//    cout << "-------------------------------------------\n";
+//    cout << "ID\tCard Number\tType\tAmount\tDetails\n";//printIn으로 출력 필요
+//    cout << "-------------------------------------------\n";
+//    for (const auto& transaction : transactions) { //언어 반영 필요
+//        cout << transaction.id << "\t"
+//            << transaction.cardNumber << "\t"
+//            << transaction.type << "\t"
+//            << transaction.amount << "\t"
+//            << transaction.details << "\n";
+//    }
+//
+//    // 거래 내역을 파일로 출력
+//    //outputTransactionHistoryToFile(transactions);
+//}
 
 //// 파일로 거래 내역을 출력하는 함수-->admin으로 옮기기?
 //void ATM::outputTransactionHistoryToFile(const vector<Transaction>& transactions) {

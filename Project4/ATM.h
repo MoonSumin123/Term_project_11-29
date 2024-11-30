@@ -73,8 +73,6 @@ public:
     void recordAtmHistory(const string transaction);
     vector<string> getAtmHistory();
 
-    void printAtmHistory();  // Print the transaction history of an account // 수정
-    void outputTransactionHistoryToFile(const vector<Transaction>& transactions);
 };
 
 extern vector<ATM> atms;

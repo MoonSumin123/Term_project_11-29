@@ -9,14 +9,15 @@
 void state_ATM_receipt::stateAction() {
 	Language* lang = Language::getInstance();
 	lang->selectLanguage(atm);
-	vector<Transaction> rec = atm.getAtmHistory();
+	vector<string> rec = atm.getAtmHistory();
 
 	lang->printIn(lang->chooseSentence(8)); //"Transaction History:"
-	for (const Transaction& vec : rec) {
+	for (const string vec : rec) {
 		cout << vec << endl;
 	}
 }
 
+//ATM_receiptê°€ í˜„ìž¬ ì„¸ì…˜ ë™ì•ˆ ì§„í–‰ëœ ê±°ëž˜ ë‚´ì—­ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜ê³ , í†µìž¥ ì •ë¦¬ëŠ” ìš”êµ¬ì‚¬í•­ ì•„ë‹ˆë‹ˆê¹Œ account_receipt í•¨ìˆ˜ í•„ìš” ì—†ìŒ.
 void state_account_receipt::stateAction() {
 
 	Language* lang = Language::getInstance();
@@ -53,10 +54,10 @@ void state_deposit::stateAction() {
 
 	int choice;
 	cout << "Please select your deposit method." << endl;
-	cout << "1. Card deposit\n 2. Check deposit"; //ÀÔ·ÂÀÌ ¼ýÀÚ°¡ ¾Æ´Ï¸é? exception handling
+	cout << "1. Card deposit\n 2. Check deposit"; //ìž…ë ¥ì´ ìˆ«ìžê°€ ì•„ë‹ˆë©´? exception handling
 	cin >> choice;
 	if (choice == 1) {
-		unordered_map<int, int> cash_deposited = atm.makeCashDeposited(); // Çö±Ý ÀÔ±Ý ³»¿ª
+		unordered_map<int, int> cash_deposited = atm.makeCashDeposited(); // í˜„ê¸ˆ ìž…ê¸ˆ ë‚´ì—­
 		unordered_map<int, int> fee_deposited = atm.makeFeeDeposited(deposit_fee);
 
 		if (fee_deposited[1000] * 1000 == deposit_fee) {
@@ -92,7 +93,7 @@ void state_deposit::stateAction() {
 	else {
 		oss << "Invalid selection. Returning to the main interface.";
 	}
-	account.recordAccountHistory(oss.str());//¿Ö ¿À·ù?
+	account.recordAccountHistory(oss.str());//ì™œ ì˜¤ë¥˜?
 	atm.recordAtmHistory(oss.str());
 	cout << oss.str() << endl;
 }
@@ -116,7 +117,7 @@ void state_withdraw::stateAction() {
 		return;
 	}
 	else if (amount <= withdrawal_fee) {
-		cout << "±×°É ¿Ö ÇÔ?" << endl;
+		cout << "ê·¸ê±¸ ì™œ í•¨?" << endl;
 		return;
 	}
 
@@ -138,7 +139,7 @@ void state_withdraw::stateAction() {
 	else 
 		oss << "There is not enough cash in the ATM.";
 	
-	account.recordAccountHistory(oss.str());//¿Ö ¿À·ù?
+	account.recordAccountHistory(oss.str());//ì™œ ì˜¤ë¥˜?
 	atm.recordAtmHistory(oss.str());
 	cout << oss.str();
 }
@@ -157,7 +158,7 @@ void state_transfer::stateAction() {
 		if (vec.getName() == destination_bank_name)
 			destination_bank = &vec;
 	}
-	// Ã£±â ¸øÇÑ °æ¿ì exception handling
+	// ì°¾ê¸° ëª»í•œ ê²½ìš° exception handling
 	if (!destination_bank) {
 		cout << "Destination bank not found.\n";
 		return;
@@ -176,7 +177,7 @@ void state_transfer::stateAction() {
 	if (transfer_type == 1) {
 		transfer_fee = 1000;
 		if (amount <= transfer_fee) {
-			cout << "±×°É ¿ÖÇÔ" << endl;
+			cout << "ê·¸ê±¸ ì™œí•¨" << endl;
 		}
 
 		oss << atm.cashTransfer(destination, amount, transfer_fee);
@@ -193,7 +194,7 @@ void state_transfer::stateAction() {
 		else
 			transfer_fee = 3000;
 		if (amount <= transfer_fee) {
-			cout << "±×°É ¿ÖÇÔ" << endl;
+			cout << "ê·¸ê±¸ ì™œí•¨" << endl;
 		}
 
 		oss << atm.accountTransfer(&account, destination, amount-transfer_fee);
@@ -201,7 +202,7 @@ void state_transfer::stateAction() {
 	else 
 		cout << "Invalid transfer type selected.\n";
 
-	account.recordAccountHistory(oss.str());//¿Ö ¿À·ù?
+	account.recordAccountHistory(oss.str());//ì™œ ì˜¤ë¥˜?
 	atm.recordAtmHistory(oss.str());
 	cout << oss.str() << endl;
 }

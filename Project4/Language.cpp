@@ -32,30 +32,30 @@ Language::Language() {
     eng.push_back("Source: "); //22
     eng.push_back("Destination: "); //23
 
-    kor.push_back("移대뱶瑜??쎌엯?섏꽭??(移대뱶 踰덊샇瑜??낅젰?섏꽭??: ");
-    kor.push_back("鍮꾨?踰덊샇瑜??낅젰?섏꽭?? ");
-    kor.push_back("?몄쬆 ?깃났.");
-    kor.push_back("?섎せ??鍮꾨?踰덊샇?낅땲?? ?ㅼ떆 ?쒕룄?섏꽭??");
-    kor.push_back("移대뱶媛 ?좏슚?섏? ?딆뒿?덈떎.");
-    kor.push_back("?낅젰 ?쒕룄 ?잛닔瑜?珥덇낵?덉뒿?덈떎. ?몄뀡??醫낅즺?⑸땲??");
-    kor.push_back("?몄뀡 醫낅즺.");
-    kor.push_back("嫄곕옒 ?댁뿭 愿由ъ옄 硫붾돱");
-    kor.push_back("嫄곕옒 ?댁뿭:");
-    kor.push_back("ATM ?쇰젴 踰덊샇: ");
-    kor.push_back("嫄곕옒 ID: ");
-    kor.push_back("?낃툑 嫄곕옒: ");
-    kor.push_back("異쒓툑 嫄곕옒: ");
-    kor.push_back("?꾧툑 ?댁껜: ");
-    kor.push_back("怨꾩쥖 ?댁껜: ");
-    kor.push_back("?뚯씪 ?닿린???ㅻ쪟媛 諛쒖깮?덉뒿?덈떎.");
-    kor.push_back("紐⑤뱺 嫄곕옒 ?댁뿭??all_transaction_history.txt????λ릺?덉뒿?덈떎.");
-    kor.push_back("移대뱶: "); //17
-    kor.push_back("?낃툑"); //18
-    kor.push_back("異쒓툑"); //19
-    kor.push_back("?댁껜"); //20
-    kor.push_back("??); //21
-    kor.push_back("?낃툑 怨꾩쥖: "); //22
-    kor.push_back("異쒓툑 怨꾩쥖: "); //23
+    kor.push_back("카드를 삽입하세요 (카드 번호를 입력하세요): ");
+    kor.push_back("비밀번호를 입력하세요: ");
+    kor.push_back("인증 성공.");
+    kor.push_back("잘못된 비밀번호입니다. 다시 시도하세요.");
+    kor.push_back("카드가 유효하지 않습니다.");
+    kor.push_back("입력 시도 횟수를 초과했습니다. 세션이 종료됩니다.");
+    kor.push_back("세션 종료.");
+    kor.push_back("거래 내역 관리자 메뉴");
+    kor.push_back("거래 내역:");
+    kor.push_back("ATM 일련 번호: ");
+    kor.push_back("거래 ID: ");
+    kor.push_back("입금 거래: ");
+    kor.push_back("출금 거래: ");
+    kor.push_back("현금 이체: ");
+    kor.push_back("계좌 이체: ");
+    kor.push_back("파일 열기에 오류가 발생했습니다.");
+    kor.push_back("모든 거래 내역이 all_transaction_history.txt에 저장되었습니다.");
+    kor.push_back("카드: "); //17
+    kor.push_back("입금"); //18
+    kor.push_back("출금"); //19
+    kor.push_back("이체"); //20
+    kor.push_back("원"); //21
+    kor.push_back("입금 계좌: "); //22
+    kor.push_back("출금 계좌: "); //23
 }
 
 Language* Language::getInstance() {
@@ -71,9 +71,9 @@ void Language::selectLanguage(ATM& atm) {
     } 
     else {
         int languagetype;
-        cout << "Select the language: 1.english 2.?쒓뎅??" << endl;
+        cout << "Select the language: 1.english 2.한국어" << endl;
         cin >> languagetype;
-        selected_language = (languagetype == 1) ? "english" : "?쒓뎅??;
+        selected_language = (languagetype == 1) ? "english" : "한국어";
         cout << selected_language << endl;
     }
 }
@@ -96,13 +96,13 @@ string Language::Eng(int index) {
     return eng[index];
 }
 
-//Input 諛쏆쓣 ???ъ슜?섎뒗 print //out??蹂꾨룄濡??꾩슂?좎??
+//Input 받을 시 사용하는 print //out도 별도로 필요할지?
 void Language::printIn(const string& str) {
     cout << str << endl;
 }
 
-//error 異쒕젰 ???ъ슜?섎뒗 print
+//error 출력 시 사용하는 print
 void Language::printError(const string& str) {
-    cerr << str << endl; //std::cout 蹂?섎뒗 踰꾪띁瑜?媛吏怨??덉뼱??踰꾪띁???곗씠?곌? ?볦씠硫?異쒕젰?섏?留? 
-    //std::cerr 蹂?섎뒗 踰꾪띁媛 ?놁뼱??利됱떆 ?붾㈃??異쒕젰?쒕떎??李⑥씠?먯씠 ?덉쓬. ?뚮Ц???먮윭 諛쒖깮 ???먮윭 硫붿떆吏瑜?怨㏓컮濡?諛쏄린 ?꾪빐 ?ъ슜.
+    cerr << str << endl; //std::cout 변수는 버퍼를 가지고 있어서 버퍼에 데이터가 쌓이면 출력하지만, 
+    //std::cerr 변수는 버퍼가 없어서 즉시 화면에 출력한다는 차이점이 있음. 때문에 에러 발생 시 에러 메시지를 곧바로 받기 위해 사용.
 }

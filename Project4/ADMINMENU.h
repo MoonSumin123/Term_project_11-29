@@ -9,4 +9,5 @@
 void admin_menu();
 void outputHistoryToFile(const string& str);
 
+
 #endif ADMINMENU_H

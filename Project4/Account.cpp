@@ -2,8 +2,7 @@
 
 Account::Account(string bank_name, string user_name, int initial_funds, string password, string card_number, const string& account_number)
     : account_bank_name(bank_name), account_user_name(user_name), account_password(password), account_funds(initial_funds), account_number(account_number), card_number(card_number) {
-    
-        //associated_card = new Card(card_number)
+    cout << "[Constructor] Account: " << account_number << endl;
 }
 
 Account::~Account() {
@@ -31,9 +30,8 @@ void Account::recordAccountHistory(const string& transaction) {
     account_history.push_back(transaction);
 }
 
-// ?? Get the transaction history //session횁쩐쨌찼 쩍횄 횄창쨌횂?
+// ?? Get the transaction history //이거 사용 여부?
 const vector<string>& Account::getAccountHistory() const {
     return account_history;
 }
 
-vector<Account> accounts;

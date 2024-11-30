@@ -83,6 +83,14 @@ string Language::chooseSentence(int index) {
     }
     return vec[index];
 }
+
+string Language::Eng(int index) {
+    if (index < 0 || index >= vec.size()) {
+        return "Index out of range.";
+    }
+    return eng[index];
+}
+
 //Input 받을 시 사용하는 print //out도 별도로 필요할지?
 void Language::printIn(const string& str) {
     cout << str << endl;

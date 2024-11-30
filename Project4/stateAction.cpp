@@ -8,17 +8,16 @@
 using namespace std;
 
 void state_ATM_receipt::stateAction() { //recent history 불러오기(session요약)
-	Language* lang = Language::getInstance();
 	vector<string> rec = atm.getAtmHistory();
 
-	lang->printIn(lang->chooseSentence(8)); //"Transaction History:"
+	lang.printIn(lang.chooseSentence(8)); //"Transaction History:"
 	for (const string vec : rec) {
 		cout << vec << endl;
 	}
 }
 
 //ATM_receipt가 현재 세션 동안 진행된 거래 내역 출력하는 함수고, 통장 정리는 요구사항 아니니까 account_receipt 함수 필요 없음.
-void state_account_receipt::stateAction() {
+/*void state_account_receipt::stateAction() {
 
 	Language* lang = Language::getInstance();
 	lang->selectLanguage(atm);
@@ -28,7 +27,7 @@ void state_account_receipt::stateAction() {
 	for (const string& vec : rec) {
 		cout << vec << endl;
 	}
-}
+}*/
 
 void state_snapshot::stateAction() {
 	ostringstream oss;
@@ -204,7 +203,16 @@ void state_withdraw::stateAction() {
 	if (avail) {
 		string result = atm.withdraw(amount, withdrawal_fee);
 		account.subFund(amount+withdrawal_fee);
-		//여기 record
+
+		string rec_account;
+		string rec_atm;
+
+		rec_account = lang.chooseSentence(17) + account.getCardNumber() + "/" + lang.chooseSentence(19) + to_string(fund_amount) + lang.chooseSentence(21) + "/" + lang.chooseSentence(22) + "- , -" + lang.chooseSentence(21) + "/" + lang.chooseSentence(23) + account.getAccountNumber() + ", " + to_string(account.getFund()) + lang.chooseSentence(21);
+		rec_atm = lang.Eng(17) + account.getCardNumber() + "/" + lang.Eng(19) + to_string(fund_amount) + lang.Eng(21) + "/" + lang.Eng(22) + "- , -" + lang.Eng(21) + "/" + lang.Eng(23) + account.getAccountNumber() + ", " + to_string(account.getFund()) + lang.Eng(21);
+
+		atm.recordRecentHistory(rec_account);
+		atm.recordAtmHistory(rec_atm);
+
 		withdrawal_count++;
 		oss << result;
 	}

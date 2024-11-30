@@ -20,7 +20,8 @@ public:
     ~Language() {};
     static Language* getInstance();
     void selectLanguage(ATM& atm);
-    string chooseSentence(int index); 
+    string chooseSentence(int index);
+    string Eng(int index);
     void printIn(const string& str);
     void printError(const string& str);
 };

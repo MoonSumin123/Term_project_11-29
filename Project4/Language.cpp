@@ -85,7 +85,7 @@ string Language::chooseSentence(int index) {
 }
 
 string Language::Eng(int index) {
-    if (index < 0 || index >= vec.size()) {
+    if (index < 0 || index >= eng.size()) {
         return "Index out of range.";
     }
     return eng[index];

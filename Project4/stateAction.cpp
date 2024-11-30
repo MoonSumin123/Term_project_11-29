@@ -104,7 +104,7 @@ void state_deposit::stateAction() {
 				cout << "Cannot exceed 30 checks in total. You can add " << (30 - count) << " more checks.\n";
 				continue; // 다시 반복
 			}
-			check += inserted_check;
+			check += inserted_check*count;
 			count += inserted_count;
 		}
 	

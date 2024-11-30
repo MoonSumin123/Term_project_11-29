@@ -18,8 +18,7 @@ void state_ATM_receipt::stateAction() { //recent history 불러오기(session요
 	}
 }
 
-//ATM_receipt媛 ?꾩옱 ?몄뀡 ?숈븞 吏꾪뻾??嫄곕옒 ?댁뿭 異쒕젰?섎뒗 ?⑥닔怨? ?듭옣 ?뺣━???붽뎄?ы빆 ?꾨땲?덇퉴 account_receipt ?⑥닔 ?꾩슂 ?놁쓬.
-//뭐라고 썼던 건지 ?
+//ATM_receipt가 현재 세션 동안 진행된 거래 내역 출력하는 함수고, 통장 정리는 요구사항 아니니까 account_receipt 함수 필요 없음.
 void state_account_receipt::stateAction() {
 
 	Language* lang = Language::getInstance();

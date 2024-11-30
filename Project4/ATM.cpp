@@ -107,8 +107,15 @@ string ATM::cashTransfer(Account* destination, int amount, int fee) {
     ostringstream oss;
     unordered_map<int, int> cash_deposited = makeCashDeposited(); // 현금 입금 내역
     unordered_map<int, int> fee_deposited = makeFeeDeposited(fee);
-
-    if (fee_deposited[1000] * 1000 == fee) {
+    int total_cash_count = 0;//현금 개수 50장 제한용
+    for (const auto& cash : cash_deposited) {
+        total_cash_count += cash.second;
+    }
+    total_cash_count += fee_deposited[1000];
+    if (total_cash_count > 50) {
+        oss << "Cash limit exceeded. Maximum 50 bills allowed.";
+    }
+    else if (fee_deposited[1000] * 1000 == fee) {
         int fund_amount = deposit(destination, cash_deposited);
         destination->addFund(fund_amount);
         deposit(destination, fee_deposited);
@@ -282,11 +289,11 @@ void ATM::printATMInfo() const {
     cash->printAvailableCash();
 }
 
-void ATM::recordAtmHistory(const Transaction& transaction) {
+void ATM::recordAtmHistory(const string& transaction) {
     this->atm_history.push_back(transaction);
 }
 
-vector<Transaction> ATM::getAtmHistory() {
+vector<string> ATM::getAtmHistory() {
     return this->atm_history;
 }
 
@@ -310,30 +317,30 @@ void ATM::printAtmHistory() { //receipt때 필요?
     }
 
     // 거래 내역을 파일로 출력
-    outputTransactionHistoryToFile(transactions);
+    //outputTransactionHistoryToFile(transactions);
 }
 
-// 파일로 거래 내역을 출력하는 함수
-void ATM::outputTransactionHistoryToFile(const vector<Transaction>& transactions) {
-    ofstream outFile("transaction_history.txt");
-    if (!outFile) {
-        cout << "Error opening file for writing.\n"; //printIn으로 출력 필요
-        return;
-    }
-
-    outFile << "Transaction History:\n";
-    outFile << "-------------------------------------------\n";
-    outFile << "ID\tCard Number\tType\tAmount\tDetails\n";
-    outFile << "-------------------------------------------\n";
-
-    for (const auto& transaction : transactions) {
-        outFile << transaction.id << "\t"
-            << transaction.cardNumber << "\t"
-            << transaction.type << "\t"
-            << transaction.amount << "\t"
-            << transaction.details << "\n";
-    }
-
-    outFile.close();
-    cout << "Transaction history has been saved to transaction_history.txt\n";
-}
+//// 파일로 거래 내역을 출력하는 함수-->admin으로 옮기기?
+//void ATM::outputTransactionHistoryToFile(const vector<Transaction>& transactions) {
+//    ofstream outFile("transaction_history.txt");
+//    if (!outFile) {
+//        cout << "Error opening file for writing.\n"; //printIn으로 출력 필요
+//        return;
+//    }
+//
+//    outFile << "Transaction History:\n";
+//    outFile << "-------------------------------------------\n";
+//    outFile << "ID\tCard Number\tType\tAmount\tDetails\n";
+//    outFile << "-------------------------------------------\n";
+//
+//    for (const auto& transaction : transactions) {
+//        outFile << transaction.id << "\t"
+//            << transaction.cardNumber << "\t"
+//            << transaction.type << "\t"
+//            << transaction.amount << "\t"
+//            << transaction.details << "\n";
+//    }
+//
+//    outFile.close();
+//    cout << "Transaction history has been saved to transaction_history.txt\n";
+//}

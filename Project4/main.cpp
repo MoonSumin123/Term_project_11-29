@@ -45,6 +45,7 @@ int main() {
 
             int choice;
             bool primary = atm->is_primary(account);
+            int withdrawal_count = 0;
             do {
                 State* x = nullptr;
                 cout << "Select action:\n";
@@ -57,7 +58,7 @@ int main() {
 
                 switch (choice) {
                 case 1: State * x = new state_deposit(*account, *atm, primary); break;
-                case 2: State * x = new state_withdraw(*account, *atm, primary); break;
+                case 2: State * x = new state_withdraw(*account, *atm, primary, withdrawal_count); break;
                 case 3: State * x = new state_transfer(*account, *atm, primary); break;
                 case 4: State * x = new state_snapshot(*account, *atm, primary); break;
                 case 5: cout << "Exiting session.\n"; break;
@@ -68,7 +69,7 @@ int main() {
 
             } while (choice != 5); // 세션 종료
             // 요약본 출력
-            
+            withdrawal_count = 0;
         }
 	
     } while (sel_or_exit == 1);

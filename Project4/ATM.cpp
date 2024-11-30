@@ -192,7 +192,7 @@ Account* ATM::getAccountByCardNumber(string card_number) {
     for (const auto& bank : banks) {
         for (const auto& account_pair : bank.getAccounts()) {
             Account* account = account_pair.second;
-            if (account->getAssociatedCard()->getCardNumber() == card_number) {
+            if (account->getCardNumber() == card_number) {
                 return account; // 카드 번호로 계좌 찾기
             }
         }

@@ -50,6 +50,8 @@ void state_snapshot::stateAction() {
 
 void state_deposit::stateAction() {
 	ostringstream oss;
+	Language* lang = Language::getInstance();
+	lang->selectLanguage(atm);
 
 	int deposit_fee = primary ? 1000 : 2000;
 
@@ -177,6 +179,7 @@ void state_withdraw::stateAction() {
 	if (avail) {
 		string result = atm.withdraw(amount, withdrawal_fee);
 		account.subFund(amount+withdrawal_fee);
+		//여기 record
 		withdrawal_count++;
 		oss << result;
 	}
@@ -189,6 +192,9 @@ void state_withdraw::stateAction() {
 }
 
 void state_transfer::stateAction() {
+	Language* lang = Language::getInstance();
+	lang->selectLanguage(atm);
+	
 	ostringstream oss;
 
 	string destination_account_number, destination_bank_name;

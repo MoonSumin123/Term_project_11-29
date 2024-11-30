@@ -3,6 +3,8 @@
 Language* Language::instance = nullptr;
 vector<string> Language::eng;
 vector<string> Language::kor;
+string selected_language;
+vector<string> selected_vector;
 
 Language::Language() {    
     eng.push_back("Please insert your card (Enter card number): "); //0
@@ -76,12 +78,15 @@ void Language::selectLanguage(ATM& atm) {
     }
 }
 
+void Language::selectVector() {
+    selected_vector = (selected_language == "english") ? eng : kor;
+}
+
 string Language::chooseSentence(int index) {
-    vector<string> vec = (selected_language == "english") ? eng : kor;
-    if (index < 0 || index >= vec.size()) {
+    if (index < 0 || index >= selected_vector.size()) {
         return "Index out of range.";
     }
-    return vec[index];
+    return selected_vector[index];
 }
 
 string Language::Eng(int index) {

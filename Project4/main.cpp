@@ -39,6 +39,7 @@ int main() {
             ATM* atm = selectATM();
 	    Language* lang = Language::getInstance();
             lang->selectLanguage(*atm);
+            lang->selectVector();
 
             // ?몄뼱 ?좏깮
             // card number ?뺤씤

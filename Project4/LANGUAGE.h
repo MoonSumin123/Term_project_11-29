@@ -22,12 +22,14 @@ private:
     static vector<string> eng;
     static vector<string> kor;
     string selected_language;
+    vector<string> selected_vector;
 
 public: 
     Language();
     ~Language() {};
     static Language* getInstance();
     void selectLanguage(ATM& atm);
+    void selectVector();
     string chooseSentence(int index);
     string Eng(int index);
     void printIn(const string& str);

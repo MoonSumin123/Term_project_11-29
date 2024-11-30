@@ -27,7 +27,7 @@ int ATM::getTotalAvailableCash() const {
 
 int ATM::deposit(Account* account, unordered_map<int, int>& cash_deposited) {
     Language* lang = Language::getInstance();
-    lang->selectLanguage(*this);
+
     int total_deposit = 0;
     for (const auto& cash : cash_deposited) {
         int denomination = cash.first; // 沅뚯쥌
@@ -114,6 +114,9 @@ string ATM::withdraw(int remaining_amount, int withdrawal_fee) {
 }
 
 string ATM::cashTransfer(Account* destination, int amount, int fee) {
+    Language* lang = Language::getInstance();
+    lang->selectLanguage(*this);
+
     ostringstream oss;
     unordered_map<int, int> cash_deposited = makeCashDeposited(); // ?꾧툑 ?낃툑 ?댁뿭
     unordered_map<int, int> fee_deposited = makeFeeDeposited(fee);
@@ -129,6 +132,7 @@ string ATM::cashTransfer(Account* destination, int amount, int fee) {
         int fund_amount = deposit(destination, cash_deposited);
         destination->addFund(fund_amount);
         deposit(destination, fee_deposited);
+
         oss << "Cash transfer successful.";
     }
     else
@@ -139,6 +143,8 @@ string ATM::cashTransfer(Account* destination, int amount, int fee) {
 string ATM::accountTransfer(Account* source, Account* destination, int amount) {
     source->subFund(amount);
     destination->addFund(amount);
+
+    
 
     return "Account transfer successful.";
 }

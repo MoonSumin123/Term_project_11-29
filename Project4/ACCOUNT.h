@@ -33,6 +33,7 @@ public:
     ~Account();
 
     // Methods
+    string getCardNumber() const { return card_number; }
     string getBankName() const; // Get the bank name
     string getAccountNumber() const { return account_number; }
     void addFund(int fund); // Add funds to the account

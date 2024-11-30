@@ -31,9 +31,9 @@ private:
     string serial_number; // Serial number of the ATM
     string type; // Type of ATM
     string language; // Language setting
-    Cash* cash;
-    vector<string> atm_recent_history; //ATM?먯꽌 ?꾩옱 ?몄뀡 ?숈븞 吏꾪뻾??嫄곕옒留???? ?몄뀡 醫낅즺 ??珥덇린??
-    vector<string> atm_history; //ATM?먯꽌 吏꾪뻾??嫄곕옒 ?꾩쟻 ???
+    Cash* cash = nullptr;
+    vector<string> atm_recent_history; //ATM에서 현재 세션 동안 진행된 거래만 저장. 세션 종료 시 초기화
+    vector<string> atm_history; //ATM에서 진행된 거래 누적 저장.
     static int transaction_id;
 
 public:

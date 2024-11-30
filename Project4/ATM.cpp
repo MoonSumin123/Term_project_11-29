@@ -6,7 +6,7 @@ int transaction_id = 1;
 
 // ATM class
 ATM::ATM(string bank, const string& serial_number, const string& type, const string& language, const unordered_map<int, int>& initial_cash)
-    : primary_bank(bank), serial_number(serial_number), type(type), language(language) {
+    : primary_bank(bank), serial_number(serial_number), type(type), language(language), cash(new Cash()) {
     for (const auto& pair : initial_cash) {
         cash->addCash(pair.first, pair.second);
     }

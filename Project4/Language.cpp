@@ -71,7 +71,7 @@ void Language::selectLanguage(ATM& atm) {
         int languagetype;
         cout << "Select the language: 1.english 2.한국어" << endl;
         cin >> languagetype;
-        selected_language = (languagetype == 1) ? "english" : "한국어;
+        selected_language = (languagetype == 1) ? "english" : "한국어";
         cout << selected_language << endl;
     }
 }

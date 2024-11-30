@@ -133,7 +133,7 @@ string ATM::cashTransfer(Account* destination, int fee) {
 }
 
 string ATM::accountTransfer(Account* source, Account* destination, int amount, int fee) {
-    source->subFund(amount+fee);
+    source->subFund(amount+fee); 
     destination->addFund(amount);
 
     return "Account transfer successful.";

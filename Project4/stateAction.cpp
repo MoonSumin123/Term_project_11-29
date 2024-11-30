@@ -153,7 +153,7 @@ void state_deposit::stateAction() {
 	}
 }
 
-void state_withdraw::stateAction() {
+void state_withdraw::stateAction() { //source account 잔액 충분한지 확인 되어있는지 확인
 	ostringstream oss; 
 
 	if (withdrawal_count >= 3) {

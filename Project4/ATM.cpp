@@ -40,7 +40,7 @@ int ATM::deposit(Account* account, unordered_map<int, int>& cash_deposited) {
     //rec_account = account.card_number + "/" + to_string(total_deposit) + chooseSentence(21) + "/" + "- , -" + chooseSentence(21) + "/" + account.account_number + ", " + to_string(account.getFund()) + chooseSentence(21);   
     rec_atm = lang->Eng[17] + account.card_number + "/" + lang->Eng[18] + to_string(total_deposit) + lang->Eng[21] + "/" + lang->Eng[22] + "- , -" + lang->Eng[21] + "/" + lang->Eng[23] + account.account_number + ", " + to_string(account.getFund()) + lang->Eng[21]; 
     recordRecentHistory(rec_account);
-    recordHistory(rec_atm);
+    recordAtmHistory(rec_atm);
     
     return total_deposit;
 }

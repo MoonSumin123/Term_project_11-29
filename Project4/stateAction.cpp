@@ -197,13 +197,13 @@ void state_transfer::stateAction() {
 	cout << "Enter destination account number: ";
 	cin >> destination_account_number;
 
-	Bank* destination_bank;
+	Bank* destination_bank = nullptr;
 	for (Bank vec : banks) {
 		if (vec.getName() == destination_bank_name)
 			destination_bank = &vec;
 	}
 	// 찾기 못한 경우 exception handling
-	if (!destination_bank) {
+	if (destination_bank == nullptr) {
 		cout << "Destination bank not found.\n";
 		return;
 	}

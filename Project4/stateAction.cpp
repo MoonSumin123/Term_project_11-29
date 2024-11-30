@@ -7,17 +7,18 @@
 #include "STATEATMRECEIPT.h"
 using namespace std;
 
-void state_ATM_receipt::stateAction() { //recent history ºÒ·¯¿À±â(session¿ä¾à)
+void state_ATM_receipt::stateAction() { //recent history ë¶ˆëŸ¬ì˜¤ê¸°(sessionìš”ì•½)
 	Language* lang = Language::getInstance();
 	lang->selectLanguage(atm);
-	vector<Transaction> rec = atm.getAtmHistory();
+	vector<string> rec = atm.getAtmHistory();
 
 	lang->printIn(lang->chooseSentence(8)); //"Transaction History:"
-	for (const Transaction& vec : rec) {
+	for (const string vec : rec) {
 		cout << vec << endl;
 	}
 }
 
+//ATM_receiptê°€ í˜„ì¬ ì„¸ì…˜ ë™ì•ˆ ì§„í–‰ëœ ê±°ë˜ ë‚´ì—­ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜ê³ , í†µì¥ ì •ë¦¬ëŠ” ìš”êµ¬ì‚¬í•­ ì•„ë‹ˆë‹ˆê¹Œ account_receipt í•¨ìˆ˜ í•„ìš” ì—†ìŒ.
 void state_account_receipt::stateAction() {
 
 	Language* lang = Language::getInstance();
@@ -54,14 +55,14 @@ void state_deposit::stateAction() {
 
 	int choice;
 	cout << "Please select your deposit method." << endl;
-	cout << "1. Card deposit\n 2. Check deposit"; //ÀÔ·ÂÀÌ ¼ıÀÚ°¡ ¾Æ´Ï¸é? exception handling
+	cout << "1. Card deposit\n 2. Check deposit"; //ì…ë ¥ì´ ìˆ«ìê°€ ì•„ë‹ˆë©´? exception handling
 	cin >> choice;
 	if (choice == 1) {
 		
-		unordered_map<int, int> cash_deposited = atm.makeCashDeposited(); // Çö±İ ÀÔ±İ ³»¿ª 
+		unordered_map<int, int> cash_deposited = atm.makeCashDeposited(); // í˜„ê¸ˆ ì…ê¸ˆ ë‚´ì—­ 
 		unordered_map<int, int> fee_deposited = atm.makeFeeDeposited(deposit_fee); 
 		
-		int total_cash_count = 0;//Çö±İ °³¼ö 50Àå Á¦ÇÑ¿ë
+		int total_cash_count = 0;//í˜„ê¸ˆ ê°œìˆ˜ 50ì¥ ì œí•œìš©
 		for (const auto& cash : cash_deposited) {
 			total_cash_count += cash.second;
 		}
@@ -81,7 +82,7 @@ void state_deposit::stateAction() {
 	}
 	else if (choice == 2) {
 		//int total_checks = 0;
-		//unordered_map<int, int> check_deposited; // ¼öÇ¥ ±İ¾×°ú °³¼ö ÀúÀå
+		//unordered_map<int, int> check_deposited; // ìˆ˜í‘œ ê¸ˆì•¡ê³¼ ê°œìˆ˜ ì €ì¥
 
 		//while (total_checks < 30) {
 		//	int check_amount, check_count;
@@ -89,7 +90,7 @@ void state_deposit::stateAction() {
 		//	cin >> check_amount;
 
 		//	if (check_amount == 0) {
-		//		break; // 0 ÀÔ·Â ½Ã ÀÔ·Â Á¾·á
+		//		break; // 0 ì…ë ¥ ì‹œ ì…ë ¥ ì¢…ë£Œ
 		//	}
 
 		//	cout << "Enter the number of checks for this amount: ";
@@ -97,19 +98,19 @@ void state_deposit::stateAction() {
 
 		//	if (check_count + total_checks > 30) {
 		//		cout << "Cannot exceed 30 checks in total. You can add " << (30 - total_checks) << " more checks.\n";
-		//		continue; // ´Ù½Ã ÀÔ·Â
+		//		continue; // ë‹¤ì‹œ ì…ë ¥
 		//	}
 
 		//	if (check_amount < 100000) {
 		//		oss << "Checks must exceed 100,000 KRW." << endl;
-		//		continue; // ´Ù½Ã ÀÔ·Â
+		//		continue; // ë‹¤ì‹œ ì…ë ¥
 		//	}
 
-		//	check_deposited[check_amount] += check_count; // ¼öÇ¥ ±İ¾×°ú °³¼ö ±â·Ï
-		//	total_checks += check_count; // ÃÑ ¼öÇ¥ °³¼ö Áõ°¡
+		//	check_deposited[check_amount] += check_count; // ìˆ˜í‘œ ê¸ˆì•¡ê³¼ ê°œìˆ˜ ê¸°ë¡
+		//	total_checks += check_count; // ì´ ìˆ˜í‘œ ê°œìˆ˜ ì¦ê°€
 		//}
 
-		//// ¼öÇ¥ °³¼ö Á¦ÇÑ È®ÀÎ
+		//// ìˆ˜í‘œ ê°œìˆ˜ ì œí•œ í™•ì¸
 		//if (total_checks > 30) {
 		//	oss << "Total number of checks exceeds the limit. Maximum 30 checks allowed.";
 		//}
@@ -120,7 +121,7 @@ void state_deposit::stateAction() {
 		if (check < 100000) 
 			oss << "Checks must exceed 100,000 KRW.";
 
-		//¼öÇ¥ °³¼ö 30Àå Á¦ÇÑ --> ¿©·¯ÀåÀÇ ¼öÇ¥¸é ±İ¾×µµ ´Ù ´Ù¸¥Áö?
+		//ìˆ˜í‘œ ê°œìˆ˜ 30ì¥ ì œí•œ --> ì—¬ëŸ¬ì¥ì˜ ìˆ˜í‘œë©´ ê¸ˆì•¡ë„ ë‹¤ ë‹¤ë¥¸ì§€?
 		else {
 			unordered_map<int, int> fee_deposited;
 			cout << "Enter the deposit fee: " << deposit_fee << endl;
@@ -145,7 +146,7 @@ void state_deposit::stateAction() {
 }
 
 void state_withdraw::stateAction() {
-	ostringstream oss; //Ãâ±İÈ½¼ö 3È¸ Á¦ÇÑ, 1È¸ 50¸¸¿ø Á¦ÇÑ
+	ostringstream oss; //ì¶œê¸ˆíšŸìˆ˜ 3íšŒ ì œí•œ, 1íšŒ 50ë§Œì› ì œí•œ
 
 	if (withdrawal_count >= 3) {
 		cout << "Maximum withdrawal attempts reached. Session will be terminated.\n";
@@ -210,7 +211,7 @@ void state_transfer::stateAction() {
 		if (vec.getName() == destination_bank_name)
 			destination_bank = &vec;
 	}
-	// Ã£±â ¸øÇÑ °æ¿ì exception handling
+	// ì°¾ê¸° ëª»í•œ ê²½ìš° exception handling
 	if (!destination_bank) {
 		cout << "Destination bank not found.\n";
 		return;

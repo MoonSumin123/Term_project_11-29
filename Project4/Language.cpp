@@ -14,32 +14,46 @@ Language::Language() {
     english.push_back("Exiting session."); //6
     english.push_back("Transaction History admin Menu"); //7
     english.push_back("Transaction History:"); //8
-    english.push_back("ATM Serial Number: ");
-    english.push_back("Transaction ID: ");
-    english.push_back("Deposit Transaction: ");
-    english.push_back("Withdraw Transaction: ");
-    english.push_back("Cash Transfer: ");
-    english.push_back("Account Transfer: ");
-    english.push_back("Error opening file for writing.");
-    english.push_back("All transaction history has been saved to all_transaction_history.txt");
+    english.push_back("ATM Serial Number: "); //9
+    english.push_back("Transaction ID: "); //10
+    english.push_back("Deposit Transaction: "); //11
+    english.push_back("Withdraw Transaction: "); //12
+    english.push_back("Cash Transfer: "); //13
+    english.push_back("Account Transfer: "); //14
+    english.push_back("Error opening file for writing."); //15
+    english.push_back("All transaction history has been saved to all_transaction_history.txt"); //16
+    english.push_back("Card: "); //17
+    english.push_back("Deposit"); //18
+    english.push_back("Withdrawl"); //19
+    english.push_back("Transfer"); //20
+    english.push_back("KRW"); //21
+    english.push_back("Source: "); //22
+    english.push_back("Destination: "); //23
 
-    korean.push_back("Ä«µå¸¦ »ğÀÔÇÏ¼¼¿ä (Ä«µå ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä): ");
-    korean.push_back("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
-    korean.push_back("ÀÎÁõ ¼º°ø.");
-    korean.push_back("Àß¸øµÈ ºñ¹Ğ¹øÈ£ÀÔ´Ï´Ù. ´Ù½Ã ½ÃµµÇÏ¼¼¿ä.");
-    korean.push_back("Ä«µå°¡ À¯È¿ÇÏÁö ¾Ê½À´Ï´Ù.");
-    korean.push_back("ÀÔ·Â ½Ãµµ È½¼ö¸¦ ÃÊ°úÇß½À´Ï´Ù. ¼¼¼ÇÀÌ Á¾·áµË´Ï´Ù.");
-    korean.push_back("¼¼¼Ç Á¾·á.");
-    korean.push_back("°Å·¡ ³»¿ª °ü¸®ÀÚ ¸Ş´º");
-    korean.push_back("°Å·¡ ³»¿ª:");
-    korean.push_back("ATM ÀÏ·Ã ¹øÈ£: ");
-    korean.push_back("°Å·¡ ID: ");
-    korean.push_back("ÀÔ±İ °Å·¡: ");
-    korean.push_back("Ãâ±İ °Å·¡: ");
-    korean.push_back("Çö±İ ÀÌÃ¼: ");
-    korean.push_back("°èÁÂ ÀÌÃ¼: ");
-    korean.push_back("ÆÄÀÏ ¿­±â¿¡ ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.");
-    korean.push_back("¸ğµç °Å·¡ ³»¿ªÀÌ all_transaction_history.txt¿¡ ÀúÀåµÇ¾ú½À´Ï´Ù.");
+    korean.push_back("ì¹´ë“œë¥¼ ì‚½ì…í•˜ì„¸ìš” (ì¹´ë“œ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”): ");
+    korean.push_back("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”: ");
+    korean.push_back("ì¸ì¦ ì„±ê³µ.");
+    korean.push_back("ì˜ëª»ëœ ë¹„ë°€ë²ˆí˜¸ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì‹œë„í•˜ì„¸ìš”.");
+    korean.push_back("ì¹´ë“œê°€ ìœ íš¨í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+    korean.push_back("ì…ë ¥ ì‹œë„ íšŸìˆ˜ë¥¼ ì´ˆê³¼í–ˆìŠµë‹ˆë‹¤. ì„¸ì…˜ì´ ì¢…ë£Œë©ë‹ˆë‹¤.");
+    korean.push_back("ì„¸ì…˜ ì¢…ë£Œ.");
+    korean.push_back("ê±°ë˜ ë‚´ì—­ ê´€ë¦¬ì ë©”ë‰´");
+    korean.push_back("ê±°ë˜ ë‚´ì—­:");
+    korean.push_back("ATM ì¼ë ¨ ë²ˆí˜¸: ");
+    korean.push_back("ê±°ë˜ ID: ");
+    korean.push_back("ì…ê¸ˆ ê±°ë˜: ");
+    korean.push_back("ì¶œê¸ˆ ê±°ë˜: ");
+    korean.push_back("í˜„ê¸ˆ ì´ì²´: ");
+    korean.push_back("ê³„ì¢Œ ì´ì²´: ");
+    korean.push_back("íŒŒì¼ ì—´ê¸°ì— ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
+    korean.push_back("ëª¨ë“  ê±°ë˜ ë‚´ì—­ì´ all_transaction_history.txtì— ì €ì¥ë˜ì—ˆìŠµë‹ˆë‹¤.");
+    korean.push_back("ì¹´ë“œ: "); //17
+    korean.push_back("ì…ê¸ˆ"); //18
+    korean.push_back("ì¶œê¸ˆ"); //19
+    korean.push_back("ì´ì²´"); //20
+    korean.push_back("ì›"); //21
+    korean.push_back("ì…ê¸ˆ ê³„ì¢Œ: "); //22
+    korean.push_back("ì¶œê¸ˆ ê³„ì¢Œ: "); //23
 }
 
 Language* Language::getInstance() {
@@ -55,9 +69,9 @@ void Language::selectLanguage(ATM& atm) {
     } 
     else {
         int languagetype;
-        cout << "Select the language: 1.english 2.ÇÑ±¹¾î " << endl;
+        cout << "Select the language: 1.english 2.í•œêµ­ì–´ " << endl;
         cin >> languagetype;
-        selected_language = (languagetype == 1) ? "english" : "ÇÑ±¹¾î";
+        selected_language = (languagetype == 1) ? "english" : "í•œêµ­ì–´";
         cout << selected_language << endl;
     }
 }
@@ -69,13 +83,13 @@ string Language::chooseSentence(int index) {
     }
     return vec[index];
 }
-//Input ¹ŞÀ» ½Ã »ç¿ëÇÏ´Â print //outµµ º°µµ·Î ÇÊ¿äÇÒÁö?
+//Input ë°›ì„ ì‹œ ì‚¬ìš©í•˜ëŠ” print //outë„ ë³„ë„ë¡œ í•„ìš”í• ì§€?
 void Language::printIn(const string& str) {
     cout << str << endl;
 }
 
-//error Ãâ·Â ½Ã »ç¿ëÇÏ´Â print
+//error ì¶œë ¥ ì‹œ ì‚¬ìš©í•˜ëŠ” print
 void Language::printError(const string& str) {
-    cerr << str << endl; //std::cout º¯¼ö´Â ¹öÆÛ¸¦ °¡Áö°í ÀÖ¾î¼­ ¹öÆÛ¿¡ µ¥ÀÌÅÍ°¡ ½×ÀÌ¸é Ãâ·ÂÇÏÁö¸¸, 
-    //std::cerr º¯¼ö´Â ¹öÆÛ°¡ ¾ø¾î¼­ Áï½Ã È­¸é¿¡ Ãâ·ÂÇÑ´Ù´Â Â÷ÀÌÁ¡ÀÌ ÀÖÀ½. ¶§¹®¿¡ ¿¡·¯ ¹ß»ı ½Ã ¿¡·¯ ¸Ş½ÃÁö¸¦ °ğ¹Ù·Î ¹Ş±â À§ÇØ »ç¿ë.
+    cerr << str << endl; //std::cout ë³€ìˆ˜ëŠ” ë²„í¼ë¥¼ ê°€ì§€ê³  ìˆì–´ì„œ ë²„í¼ì— ë°ì´í„°ê°€ ìŒ“ì´ë©´ ì¶œë ¥í•˜ì§€ë§Œ, 
+    //std::cerr ë³€ìˆ˜ëŠ” ë²„í¼ê°€ ì—†ì–´ì„œ ì¦‰ì‹œ í™”ë©´ì— ì¶œë ¥í•œë‹¤ëŠ” ì°¨ì´ì ì´ ìˆìŒ. ë•Œë¬¸ì— ì—ëŸ¬ ë°œìƒ ì‹œ ì—ëŸ¬ ë©”ì‹œì§€ë¥¼ ê³§ë°”ë¡œ ë°›ê¸° ìœ„í•´ ì‚¬ìš©.
 }

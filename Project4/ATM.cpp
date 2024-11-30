@@ -26,26 +26,34 @@ int ATM::getTotalAvailableCash() const {
 }
 
 int ATM::deposit(Account* account, unordered_map<int, int>& cash_deposited) {
+    Language* lang = Language::getInstance();
+	lang->selectLanguage(atm);
     int total_deposit = 0;
     for (const auto& cash : cash_deposited) {
-        int denomination = cash.first; // ±ÇÁ¾
-        int count = cash.second; // ¼ö·®
+        int denomination = cash.first; // ê¶Œì¢…
+        int count = cash.second; // ìˆ˜ëŸ‰
 
         this->cash->addCash(denomination, count);
         total_deposit += denomination * count;
     }
+    rec_account = chooseSentence(17) + account.card_number + "/" + chooseSentence(18) + to_string(total_deposit) + chooseSentence(21) + "/" + chooseSentence(22) + "- , -" + chooseSentence(21) + "/" + chooseSentence(23) + account.account_number + ", " + to_string(account.getFund()) + chooseSentence(21);   
+    //rec_account = account.card_number + "/" + to_string(total_deposit) + chooseSentence(21) + "/" + "- , -" + chooseSentence(21) + "/" + account.account_number + ", " + to_string(account.getFund()) + chooseSentence(21);   
+    rec_atm = eng[17] + account.card_number + "/" + eng[18] + to_string(total_deposit) + eng[21] + "/" + eng[22] + "- , -" + eng[21] + "/" + eng[23] + account.account_number + ", " + to_string(account.getFund()) + eng[21]; 
+    recordRecentHistory(rec_account);
+    recordHistory(rec_atm);
+    
     return total_deposit;
 }
 
 bool ATM::withdrawAvailable(int remaining_amount) {
-    unordered_map<int, int> available_cash = cash->getAvailableCash();// ATMÀÇ °¡¿ë Çö±İÀ» °¡Á®¿À±â
+    unordered_map<int, int> available_cash = cash->getAvailableCash();// ATMì˜ ê°€ìš© í˜„ê¸ˆì„ ê°€ì ¸ì˜¤ê¸°
 
-    // ÇöÀç °¡¿ë Çö±İÀÇ Å°¸¦ º¤ÅÍ·Î º¹»çÇÏ¿© ¿ª¼øÀ¸·Î ¼øÈ¸
+    // í˜„ì¬ ê°€ìš© í˜„ê¸ˆì˜ í‚¤ë¥¼ ë²¡í„°ë¡œ ë³µì‚¬í•˜ì—¬ ì—­ìˆœìœ¼ë¡œ ìˆœíšŒ
     vector<int> denominations;
     for (const auto& pair : available_cash) {
         denominations.push_back(pair.first);
     }
-    sort(denominations.rbegin(), denominations.rend()); // ³»¸²Â÷¼ø Á¤·Ä
+    sort(denominations.rbegin(), denominations.rend()); // ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
 
     // Withdraw cash using the largest denominations first
     for (int denomination : denominations) {
@@ -53,7 +61,7 @@ bool ATM::withdrawAvailable(int remaining_amount) {
 
         while (remaining_amount >= denomination && available_cash[denomination] > 0) {
             count++;
-            remaining_amount -= denomination; // ³²Àº ±İ¾× ¾÷µ¥ÀÌÆ®
+            remaining_amount -= denomination; // ë‚¨ì€ ê¸ˆì•¡ ì—…ë°ì´íŠ¸
         }
     }
 
@@ -67,14 +75,14 @@ string ATM::withdraw(int remaining_amount, int withdrawal_fee) {
     int total_amount = remaining_amount;
     
     unordered_map<int, int> cash_dispensed; // Cash to be dispensed
-    unordered_map<int, int> available_cash = cash->getAvailableCash();// ATMÀÇ °¡¿ë Çö±İÀ» °¡Á®¿À±â
+    unordered_map<int, int> available_cash = cash->getAvailableCash();// ATMì˜ ê°€ìš© í˜„ê¸ˆì„ ê°€ì ¸ì˜¤ê¸°
 
-    // ÇöÀç °¡¿ë Çö±İÀÇ Å°¸¦ º¤ÅÍ·Î º¹»çÇÏ¿© ¿ª¼øÀ¸·Î ¼øÈ¸
+    // í˜„ì¬ ê°€ìš© í˜„ê¸ˆì˜ í‚¤ë¥¼ ë²¡í„°ë¡œ ë³µì‚¬í•˜ì—¬ ì—­ìˆœìœ¼ë¡œ ìˆœíšŒ
     vector<int> denominations;
     for (const auto& pair : available_cash) {
         denominations.push_back(pair.first);
     }
-    sort(denominations.rbegin(), denominations.rend()); // ³»¸²Â÷¼ø Á¤·Ä
+    sort(denominations.rbegin(), denominations.rend()); // ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
 
     // Withdraw cash using the largest denominations first
     for (int denomination : denominations) {
@@ -82,19 +90,19 @@ string ATM::withdraw(int remaining_amount, int withdrawal_fee) {
 
         while (remaining_amount >= denomination && available_cash[denomination] > 0) {
             count++;
-            remaining_amount -= denomination; // ³²Àº ±İ¾× ¾÷µ¥ÀÌÆ®
-            cash->subCash(denomination, 1); // Çö±İ °¨¼Ò
+            remaining_amount -= denomination; // ë‚¨ì€ ê¸ˆì•¡ ì—…ë°ì´íŠ¸
+            cash->subCash(denomination, 1); // í˜„ê¸ˆ ê°ì†Œ
         }
 
         if (count > 0) {
-            cash_dispensed[denomination] = count; // Ãâ±İ ¼ö·® ±â·Ï
+            cash_dispensed[denomination] = count; // ì¶œê¸ˆ ìˆ˜ëŸ‰ ê¸°ë¡
         }
     }
 
     // Output the dispensed cash
     ostringstream oss;
     oss << "Dispensed cash (including fee):\n";
-    //ÀÎÃâ Á¤º¸¸¦ ¹®ÀÚ¿­·Î ÀúÀå
+    //ì¸ì¶œ ì •ë³´ë¥¼ ë¬¸ìì—´ë¡œ ì €ì¥
     for (const auto& pair : cash_dispensed) {
         oss << "KRW " << pair.first << ": " << pair.second << " bills\n";
     }
@@ -105,9 +113,9 @@ string ATM::withdraw(int remaining_amount, int withdrawal_fee) {
 
 string ATM::cashTransfer(Account* destination, int amount, int fee) {
     ostringstream oss;
-    unordered_map<int, int> cash_deposited = makeCashDeposited(); // Çö±İ ÀÔ±İ ³»¿ª
+    unordered_map<int, int> cash_deposited = makeCashDeposited(); // í˜„ê¸ˆ ì…ê¸ˆ ë‚´ì—­
     unordered_map<int, int> fee_deposited = makeFeeDeposited(fee);
-    int total_cash_count = 0;//Çö±İ °³¼ö 50Àå Á¦ÇÑ¿ë
+    int total_cash_count = 0;//í˜„ê¸ˆ ê°œìˆ˜ 50ì¥ ì œí•œìš©
     for (const auto& cash : cash_deposited) {
         total_cash_count += cash.second;
     }
@@ -134,7 +142,7 @@ string ATM::accountTransfer(Account* source, Account* destination, int amount) {
 }
 
 unordered_map<int, int> ATM::makeCashDeposited() {
-    unordered_map<int, int> cash_deposited; // Çö±İ ÀÔ±İ ³»¿ª
+    unordered_map<int, int> cash_deposited; // í˜„ê¸ˆ ì…ê¸ˆ ë‚´ì—­
     cout << "Enter amount to deposit into account " << endl;
     cout << "Enter number of KRW 50,000 bills: ";
     cin >> cash_deposited[50000];
@@ -172,11 +180,11 @@ string ATM::checkBalance(Account* account) {
 
 
 bool ATM::isCorrectPassword(string card_number, const string& password) {
-    Account* account = getAccountByCardNumber(card_number); // Ä«µå ¹øÈ£·Î °èÁÂ Ã£±â
+    Account* account = getAccountByCardNumber(card_number); // ì¹´ë“œ ë²ˆí˜¸ë¡œ ê³„ì¢Œ ì°¾ê¸°
     if (account && account->getPassword() == password) {
-        return true; // ÀÎÁõ ¼º°ø
+        return true; // ì¸ì¦ ì„±ê³µ
     }
-    return false; // ÀÎÁõ ½ÇÆĞ
+    return false; // ì¸ì¦ ì‹¤íŒ¨
 }
 
 
@@ -185,11 +193,11 @@ Account* ATM::getAccountByCardNumber(string card_number) {
         for (const auto& account_pair : bank.getAccounts()) {
             Account* account = account_pair.second;
             if (account->getAssociatedCard()->getCardNumber() == card_number) {
-                return account; // Ä«µå ¹øÈ£·Î °èÁÂ Ã£±â
+                return account; // ì¹´ë“œ ë²ˆí˜¸ë¡œ ê³„ì¢Œ ì°¾ê¸°
             }
         }
     }
-    return nullptr; // Ä«µå ¹øÈ£¿¡ ÇØ´çÇÏ´Â °èÁÂ°¡ ¾øÀ» °æ¿ì
+    return nullptr; // ì¹´ë“œ ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” ê³„ì¢Œê°€ ì—†ì„ ê²½ìš°
 }
 
 bool ATM::is_primary(Account* account) const {
@@ -213,12 +221,12 @@ Account* ATM::validCard() {
     cin >> inserted_card_number;
 
     if (inserted_card_number == "9999") {
-        admin_menu(); // °ü¸®ÀÚ ¸Ş´º È£Ãâ
-        return nullptr; // °ü¸®ÀÚ ¸Ş´º·Î µ¹¾Æ°¡¹Ç·Î °èÁÂ ¹İÈ¯ÇÏÁö ¾ÊÀ½
+        admin_menu(); // ê´€ë¦¬ì ë©”ë‰´ í˜¸ì¶œ
+        return nullptr; // ê´€ë¦¬ì ë©”ë‰´ë¡œ ëŒì•„ê°€ë¯€ë¡œ ê³„ì¢Œ ë°˜í™˜í•˜ì§€ ì•ŠìŒ
     }
     else {
-        // Ä«µå À¯È¿¼º °Ë»ç
-        if (isValidCard(inserted_card_number)) { // Ä«µå ÀÔ·Â ¹× »ç¿ëÀÚ ÀÎÁõ
+        // ì¹´ë“œ ìœ íš¨ì„± ê²€ì‚¬
+        if (isValidCard(inserted_card_number)) { // ì¹´ë“œ ì…ë ¥ ë° ì‚¬ìš©ì ì¸ì¦
             int attempt = 0;
             while (attempt < 3) {
                 cout << "Enter password: ";
@@ -227,7 +235,7 @@ Account* ATM::validCard() {
                 if (isCorrectPassword(inserted_card_number, entered_password)) {
                     Account* account = getAccountByCardNumber(inserted_card_number);
                     cout << "Authorization successful.\n";
-                    return account; // ÀÎÁõ ¼º°ø ½Ã °èÁÂ ¹İÈ¯
+                    return account; // ì¸ì¦ ì„±ê³µ ì‹œ ê³„ì¢Œ ë°˜í™˜
                 }
                 else {
                     cout << "Wrong password. Try again.\n";
@@ -235,30 +243,30 @@ Account* ATM::validCard() {
                 }
             }
 
-            // ºñ¹Ğ¹øÈ£ ÀÔ·Â ½Ãµµ È½¼ö ÃÊ°ú
+            // ë¹„ë°€ë²ˆí˜¸ ì…ë ¥ ì‹œë„ íšŸìˆ˜ ì´ˆê³¼
             if (attempt == 3) {
                 cout << "Too many failed attempts. Session terminated.\n";
-                return nullptr; // ÀÎÁõ ½ÇÆĞ ½Ã NULL ¹İÈ¯
+                return nullptr; // ì¸ì¦ ì‹¤íŒ¨ ì‹œ NULL ë°˜í™˜
             }
         }
         else {
             cout << "The card is not valid.\n";
-            return nullptr; // Ä«µå°¡ À¯È¿ÇÏÁö ¾ÊÀº °æ¿ì NULL ¹İÈ¯
+            return nullptr; // ì¹´ë“œê°€ ìœ íš¨í•˜ì§€ ì•Šì€ ê²½ìš° NULL ë°˜í™˜
         }
     }
-    return nullptr; // ±âº»ÀûÀ¸·Î NULL ¹İÈ¯
+    return nullptr; // ê¸°ë³¸ì ìœ¼ë¡œ NULL ë°˜í™˜
 }
 
 bool ATM::isValidCard(string card_number) {
-    Account* account = getAccountByCardNumber(card_number); // Ä«µå ¹øÈ£·Î °èÁÂ Ã£±â
+    Account* account = getAccountByCardNumber(card_number); // ì¹´ë“œ ë²ˆí˜¸ë¡œ ê³„ì¢Œ ì°¾ê¸°
     if (account) {
-        // Single Bank ATMÀÇ °æ¿ì, °èÁÂÀÇ ÀºÇàÀÌ ÁÖ ÀºÇàÀÎÁö È®ÀÎ
+        // Single Bank ATMì˜ ê²½ìš°, ê³„ì¢Œì˜ ì€í–‰ì´ ì£¼ ì€í–‰ì¸ì§€ í™•ì¸
         if (type == "Single Bank ATM" && account->getBankName() != primary_bank) {
-            return false; // ÁÖ ÀºÇàÀÌ ¾Æ´Ñ °æ¿ì
+            return false; // ì£¼ ì€í–‰ì´ ì•„ë‹Œ ê²½ìš°
         }
-        return true; // Ä«µå À¯È¿
+        return true; // ì¹´ë“œ ìœ íš¨
     }
-    return false; // Ä«µå À¯È¿ÇÏÁö ¾ÊÀ½
+    return false; // ì¹´ë“œ ìœ íš¨í•˜ì§€ ì•ŠìŒ
 }
 
 
@@ -279,7 +287,7 @@ void ATM::printAccountHistory(Account* account) {
     }
 }
 
-//ATM Á¤º¸, History
+//ATM ì •ë³´, History
 void ATM::printATMInfo() const {
     cout << "ATM Serial Number: " << serial_number << "\n"
         << "Type: " << type << "\n"
@@ -289,26 +297,30 @@ void ATM::printATMInfo() const {
     cash->printAvailableCash();
 }
 
-void ATM::recordAtmHistory(const string& transaction) {
-    this->atm_history.push_back(transaction);
+void ATM::recordRecentHistory(const string recent_transaction) {
+    atm_recent_history.push_back(recent_transaction);
+}
+
+void ATM::recordAtmHistory(const string transaction) {
+    atm_history.push_back(transaction);
 }
 
 vector<string> ATM::getAtmHistory() {
-    return this->atm_history;
+    return atm_history;
 }
 
-
-void ATM::printAtmHistory() { //receipt¶§ ÇÊ¿ä?
+//admin_menu
+void ATM::printAtmHistory() { //receiptë•Œ í•„ìš”?
     Language* lang = Language::getInstance();
-    //class transaction ÇÊ¿ä
+    //class transaction í•„ìš”
     vector<Transaction> transactions = getAtmHistory();
 
-    // °Å·¡ ³»¿ªÀ» ÄÜ¼Ö¿¡ Ãâ·Â
+    // ê±°ë˜ ë‚´ì—­ì„ ì½˜ì†”ì— ì¶œë ¥
     printIn(lang->chooseSentence(8)); //cout << "Transaction History:\n"; 
     cout << "-------------------------------------------\n";
-    cout << "ID\tCard Number\tType\tAmount\tDetails\n";//printInÀ¸·Î Ãâ·Â ÇÊ¿ä
+    cout << "ID\tCard Number\tType\tAmount\tDetails\n";//printInìœ¼ë¡œ ì¶œë ¥ í•„ìš”
     cout << "-------------------------------------------\n";
-    for (const auto& transaction : transactions) { //¾ğ¾î ¹İ¿µ ÇÊ¿ä
+    for (const auto& transaction : transactions) { //ì–¸ì–´ ë°˜ì˜ í•„ìš”
         cout << transaction.id << "\t"
             << transaction.cardNumber << "\t"
             << transaction.type << "\t"
@@ -316,15 +328,15 @@ void ATM::printAtmHistory() { //receipt¶§ ÇÊ¿ä?
             << transaction.details << "\n";
     }
 
-    // °Å·¡ ³»¿ªÀ» ÆÄÀÏ·Î Ãâ·Â
+    // ê±°ë˜ ë‚´ì—­ì„ íŒŒì¼ë¡œ ì¶œë ¥
     //outputTransactionHistoryToFile(transactions);
 }
 
-//// ÆÄÀÏ·Î °Å·¡ ³»¿ªÀ» Ãâ·ÂÇÏ´Â ÇÔ¼ö-->adminÀ¸·Î ¿Å±â±â?
+//// íŒŒì¼ë¡œ ê±°ë˜ ë‚´ì—­ì„ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜-->adminìœ¼ë¡œ ì˜®ê¸°ê¸°?
 //void ATM::outputTransactionHistoryToFile(const vector<Transaction>& transactions) {
 //    ofstream outFile("transaction_history.txt");
 //    if (!outFile) {
-//        cout << "Error opening file for writing.\n"; //printInÀ¸·Î Ãâ·Â ÇÊ¿ä
+//        cout << "Error opening file for writing.\n"; //printInìœ¼ë¡œ ì¶œë ¥ í•„ìš”
 //        return;
 //    }
 //

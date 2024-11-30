@@ -55,7 +55,7 @@ void state_deposit::stateAction() {
 
 	int choice;
 	cout << "Please select your deposit method." << endl;
-	cout << "1. Card deposit\n 2. Check deposit"; //입력이 숫자가 아니면? exception handling
+	cout << "1. Cash deposit\n2. Check deposit"; //입력이 숫자가 아니면? exception handling
 	cin >> choice;
 	if (choice == 1) {
 		
@@ -221,8 +221,7 @@ void state_transfer::stateAction() {
 	string destination_account_number, destination_bank_name;
 	cout << "Enter destination bank name: ";
 	cin >> destination_bank_name;
-	cout << "Enter destination account number: ";
-	cin >> destination_account_number;
+	
 
 	Bank* destination_bank = nullptr;
 	for (Bank* vec : banks) {
@@ -234,25 +233,28 @@ void state_transfer::stateAction() {
 		cout << "Destination bank not found.\n";
 		return;
 	}
-	
-	Account* destination = destination_bank->getAccount(destination_account_number);
 
+	cout << "Enter destination account number: ";
+	cin >> destination_account_number;
+	if (account.getAccountNumber() == destination_account_number) {
+		cout << "Source and Destination are the same.\n";
+		return;
+	}
+	Account* destination = destination_bank->getAccount(destination_account_number);
+	if (destination == nullptr) {
+		cout << "Destination account not found.\n";
+		return;
+	}
 
 	int transfer_type, amount;
 	cout << "Choose transfer type:\n1. Cash Transfer\n2. Account Transfer\n Select Type: ";
 	cin >> transfer_type;
-	cout << "Please enter Transfer Amount.\n Amount: ";
-	cin >> amount;
 
 	int transfer_fee;
 	if (transfer_type == 1) {
 		transfer_fee = 1000;
 
-		if (amount <= transfer_fee) {
-			cout << "Amount less than fee." << endl;
-		}
-
-		oss << atm.cashTransfer(destination, amount, transfer_fee); 
+		oss << atm.cashTransfer(destination, transfer_fee); 
 	}
 	else if (transfer_type == 2) {
 		cout << "Please enter the amount to transfer." << endl;
@@ -267,9 +269,14 @@ void state_transfer::stateAction() {
 			transfer_fee = 3000;
 		if (amount <= transfer_fee) {
 			cout << "Amount less than fee." << endl;
+			return;
+		}
+		if (amount+transfer_fee > account.getFund()) {
+			cout << "Not enough account fund ." << endl;
+			return;
 		}
 
-		oss << atm.accountTransfer(&account, destination, amount-transfer_fee);
+		oss << atm.accountTransfer(&account, destination, amount, transfer_fee);
 	}
 	else 
 		cout << "Invalid transfer type selected.\n";

@@ -4,6 +4,14 @@
 #include "ATM.h"
 #include "Account.h"
 
+class Account;
+class ATM;
+class Bank;
+class Card;
+class Cash;
+class Language;
+class State;
+
 using namespace std;
 
 class State {

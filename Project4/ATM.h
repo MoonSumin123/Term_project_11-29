@@ -14,6 +14,14 @@
 #include "ADMINMENU.h"
 #include "TRANSACTION.h"
 
+class Account;
+class ATM;
+class Bank;
+class Card;
+class Cash;
+class Language;
+class State;
+
 using namespace std;
 
 class ATM {

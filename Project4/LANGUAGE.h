@@ -15,12 +15,14 @@ private:
     static vector<string> korean;
     string selected_language;
 
-    Language();
-
 public: 
+    Language();
+    ~Language() {};
     static Language* getInstance();
     void selectLanguage(ATM& atm);
     string chooseSentence(int index); 
+    void printIn(const string& str);
+    void printError(const string& str);
 };
 
 #endif LANGUAGE_H

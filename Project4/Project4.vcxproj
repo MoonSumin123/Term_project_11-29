@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Account.cpp" />
+    <ClCompile Include="adminMenu.cpp" />
     <ClCompile Include="Bank.cpp" />
     <ClCompile Include="ATM.cpp" />
     <ClCompile Include="Card.cpp" />
@@ -137,8 +138,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="selectATM.cpp" />
     <ClCompile Include="stateAction.cpp" />
+    <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ADMINMENU.h" />
     <ClInclude Include="CARD.h" />
     <ClInclude Include="INITIALIZING.h" />
     <ClInclude Include="SELECTATM.h" />
@@ -148,11 +151,13 @@
     <ClInclude Include="ACCOUNT.h" />
     <ClInclude Include="CASH.h" />
     <ClInclude Include="STATEACCOUNTRECEIPT.h" />
+    <ClInclude Include="STATEATMRECEIPT.h" />
     <ClInclude Include="STATEDEPOSIT.h" />
     <ClInclude Include="STATESNAPSHOT.h" />
     <ClInclude Include="STATETRANSFER.h" />
     <ClInclude Include="STATEWITHDRAW.h" />
     <ClInclude Include="LANGUAGE.h" />
+    <ClInclude Include="TRANSACTION.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

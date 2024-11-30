@@ -2,6 +2,7 @@
 using namespace std;
 
 vector<ATM> atms;
+int transaction_id = 1;
 
 // ATM class
 ATM::ATM(string bank, const string& serial_number, const string& type, const string& language, const unordered_map<int, int>& initial_cash)
@@ -15,13 +16,11 @@ ATM::~ATM() {
     cout << "[Destructor] ATM: " << serial_number << endl;
 }
 
-void ATM::addCash(int denomination, int count) {
-    cash->addCash(denomination, count);// 필요한가?
-}
 
 string ATM::printAvailableCash() const {
     return cash->printAvailableCash();
 }
+
 int ATM::getTotalAvailableCash() const {
     return cash->getTotalAvailableCash();
 }
@@ -154,27 +153,15 @@ unordered_map<int, int> ATM::makeFeeDeposited(int fee) {
     return fee_deposited;
 }
 
-
+/*
 string ATM::checkBalance(Account* account) {
     if (account) {
         return "Current balance: " + to_string(account->getFund());
     }
     return "Account not found.";
 }
+*/
 
-
-void ATM::printTransactionHistory(Account* account) {
-    if (account) {
-        const auto& history = account->getTransactionHistory();
-        cout << "Transaction history for account " << account->getAccountNumber() << ":\n";
-        for (const auto& transaction : history) {
-            cout << transaction << endl;
-        }
-    }
-    else {
-        cout << "Account not found.\n";
-    }
-}
 
 
 bool ATM::isCorrectPassword(string card_number, const string& password) {
@@ -196,75 +183,6 @@ Account* ATM::getAccountByCardNumber(string card_number) {
         }
     }
     return nullptr; // 카드 번호에 해당하는 계좌가 없을 경우
-}
-
-void ATM::admin_menu() {
-    cout << "Transaction History Menu\n";
-    displayTransactionHistory();
-}
-
-void ATM::displayTransactionHistory() {
-    
-        // 모든 거래 내역을 저장하는 벡터
-        vector<string> transactions = getTransactionHistory(); // 모든 거래를 가져오는 함수
-
-    // 거래 내역을 콘솔에 출력
-    cout << "Transaction History:\n";
-    cout << "-------------------------------------------\n";
-    cout << "ID\tCard Number\tType\tAmount\tDetails\n";
-    cout << "-------------------------------------------\n";
-
-    for (const auto& transaction : transactions) {
-        cout << transaction.id << "\t"
-            << transaction.cardNumber << "\t"
-            << transaction.type << "\t"
-            << transaction.amount << "\t"
-            << transaction.details << "\n";
-    }
-
-    // 거래 내역을 파일로 출력
-    outputTransactionHistoryToFile(transactions);
-}
-// 파일로 거래 내역을 출력하는 함수
-void ATM::outputTransactionHistoryToFile(const vector<Transaction>& transactions) {
-    ofstream outFile("transaction_history.txt");
-    if (!outFile) {
-        cout << "Error opening file for writing.\n";
-        return;
-    }
-
-    outFile << "Transaction History:\n";
-    outFile << "-------------------------------------------\n";
-    outFile << "ID\tCard Number\tType\tAmount\tDetails\n";
-    outFile << "-------------------------------------------\n";
-
-    for (const auto& transaction : transactions) {
-        outFile << transaction.id << "\t"
-            << transaction.cardNumber << "\t"
-            << transaction.type << "\t"
-            << transaction.amount << "\t"
-            << transaction.details << "\n";
-    }
-
-    outFile.close();
-    cout << "Transaction history has been saved to transaction_history.txt\n";
-}
-
-
-void ATM::printATMInfo() const {
-    cout << "ATM Serial Number: " << serial_number << "\n"
-        << "Type: " << type << "\n"
-        << "Language: " << language << "\n"
-        << "Available Cash: \n";
-
-    cash->printAvailableCash();
-}
-
-vector<string> ATM::getTransactionHistory() {
-    return this->transaction_history;
-}
-void ATM::recordTransactionHistory(string rec) {
-    this->transaction_history.push_back(rec);
 }
 
 bool ATM::is_primary(Account* account) const {
@@ -334,4 +252,88 @@ bool ATM::isValidCard(string card_number) {
         return true; // 카드 유효
     }
     return false; // 카드 유효하지 않음
+}
+
+
+
+
+//Receipt
+void ATM::printAccountHistory(Account* account) {
+    //Account* account = primary_bank->getAccount(account);
+    if (account) {
+        const auto& account_history = account->getAccountHistory();
+        cout << "Transaction history for account " << account->getAccountNumber() << ":\n";
+        for (const auto& transaction : account_history) {
+            cout << transaction << endl;
+        }
+    }
+    else {
+        cout << "Account not found.\n";
+    }
+}
+
+//ATM 정보, History
+void ATM::printATMInfo() const {
+    cout << "ATM Serial Number: " << serial_number << "\n"
+        << "Type: " << type << "\n"
+        << "Language: " << language << "\n"
+        << "Available Cash: \n";
+
+    cash->printAvailableCash();
+}
+
+void ATM::recordAtmHistory(const Transaction& transaction) {
+    this->atm_history.push_back(transaction);
+}
+
+vector<Transaction> ATM::getAtmHistory() {
+    return this->atm_history;
+}
+
+
+void ATM::printAtmHistory() { //receipt때 필요?
+    Language* lang = Language::getInstance();
+    //class transaction 필요
+    vector<Transaction> transactions = getAtmHistory();
+
+    // 거래 내역을 콘솔에 출력
+    printIn(lang->chooseSentence(8)); //cout << "Transaction History:\n"; 
+    cout << "-------------------------------------------\n";
+    cout << "ID\tCard Number\tType\tAmount\tDetails\n";//printIn으로 출력 필요
+    cout << "-------------------------------------------\n";
+    for (const auto& transaction : transactions) { //언어 반영 필요
+        cout << transaction.id << "\t"
+            << transaction.cardNumber << "\t"
+            << transaction.type << "\t"
+            << transaction.amount << "\t"
+            << transaction.details << "\n";
+    }
+
+    // 거래 내역을 파일로 출력
+    outputTransactionHistoryToFile(transactions);
+}
+
+// 파일로 거래 내역을 출력하는 함수
+void ATM::outputTransactionHistoryToFile(const vector<Transaction>& transactions) {
+    ofstream outFile("transaction_history.txt");
+    if (!outFile) {
+        cout << "Error opening file for writing.\n"; //printIn으로 출력 필요
+        return;
+    }
+
+    outFile << "Transaction History:\n";
+    outFile << "-------------------------------------------\n";
+    outFile << "ID\tCard Number\tType\tAmount\tDetails\n";
+    outFile << "-------------------------------------------\n";
+
+    for (const auto& transaction : transactions) {
+        outFile << transaction.id << "\t"
+            << transaction.cardNumber << "\t"
+            << transaction.type << "\t"
+            << transaction.amount << "\t"
+            << transaction.details << "\n";
+    }
+
+    outFile.close();
+    cout << "Transaction history has been saved to transaction_history.txt\n";
 }

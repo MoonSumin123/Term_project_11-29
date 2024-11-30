@@ -4,10 +4,27 @@
 #include "STATEDEPOSIT.h"
 #include "STATEWITHDRAW.h"
 #include "STATETRANSFER.h"
+#include "STATEATMRECEIPT.h"
+
+void state_ATM_receipt::stateAction() {
+	Language* lang = Language::getInstance();
+	lang->selectLanguage(atm);
+	vector<Transaction> rec = atm.getAtmHistory();
+
+	lang->printIn(lang->chooseSentence(8)); //"Transaction History:"
+	for (const Transaction& vec : rec) {
+		cout << vec << endl;
+	}
+}
 
 void state_account_receipt::stateAction() {
-	vector<string> rec = account.getTransactionHistory();
-	for (string vec : rec) {
+
+	Language* lang = Language::getInstance();
+	lang->selectLanguage(atm);
+	vector<string> rec = account.getAccountHistory();
+
+	lang->printIn(lang->chooseSentence(8)); //"Transaction History:"
+	for (const string& vec : rec) {
 		cout << vec << endl;
 	}
 }
@@ -75,6 +92,8 @@ void state_deposit::stateAction() {
 	else {
 		oss << "Invalid selection. Returning to the main interface.";
 	}
+	account.recordAccountHistory(oss.str());//왜 오류?
+	atm.recordAtmHistory(oss.str());
 	cout << oss.str() << endl;
 }
 
@@ -119,6 +138,8 @@ void state_withdraw::stateAction() {
 	else 
 		oss << "There is not enough cash in the ATM.";
 	
+	account.recordAccountHistory(oss.str());//왜 오류?
+	atm.recordAtmHistory(oss.str());
 	cout << oss.str();
 }
 
@@ -180,5 +201,7 @@ void state_transfer::stateAction() {
 	else 
 		cout << "Invalid transfer type selected.\n";
 
+	account.recordAccountHistory(oss.str());//왜 오류?
+	atm.recordAtmHistory(oss.str());
 	cout << oss.str() << endl;
 }

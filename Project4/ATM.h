@@ -10,6 +10,9 @@
 #include "STATE.h"
 #include <algorithm>
 #include "LANGUAGE.h"
+#include "TRANSACTION.h"
+#include "ADMINMENU.h"
+#include "TRANSACTION.h"
 
 using namespace std;
 
@@ -21,21 +24,25 @@ private:
     string type; // Type of ATM
     string language; // Language setting
     Cash* cash;
-    vector<string> transaction_history; 
+    vector<Transaction> atm_history; 
+    static int transaction_id;
 
 public:
-    //ATM(Bank* bank, string serial_number, string type, string language, const unordered_map<int, int>& initial_cash);
     ATM(string bank, const string& serial_number, const string& type, const string& language, const unordered_map<int, int>& initial_cash);
     ~ATM();
 
     string getBankName() { return primary_bank; };
     string getATMtype() { return type; };
-    void addCash(int denomination, int count);
+    string getLanguage() const { return language; };
+    string getSerialNumber() const { return serial_number; };
+
+    Account* getAccountByCardNumber(string card_number);
+    Account* validCard();
+    bool isValidCard(string card_number);
+    bool isCorrectPassword(string card_number, const string& password);
+
     string printAvailableCash() const;
     int getTotalAvailableCash() const;
-    //int getAvailableCash();
-
-    const vector<Bank>& getBanks() const { return banks; } //?
 
     int deposit(Account* account, unordered_map<int, int>& cash_deposited); //다른데서도 primary확인해야 함
     string withdraw(int amount, int fee);
@@ -43,28 +50,21 @@ public:
     string cashTransfer(Account* destination, int amount, int fee);
     string accountTransfer(Account* source, Account* destination, int amount);
 
-    string checkBalance(Account* account); // 수정
-    string getSerialNumber() const { return serial_number; };
-    void printTransactionHistory(Account* account);  // Print the transaction history of an account // 수정
-    void printATMInfo() const;
-    bool isCorrectPassword(string card_number, const string& password); //?
-
-    vector<string> getTransactionHistory();
-    void recordTransactionHistory(string rec);
-    bool is_primary(Account* account) const;
-    bool getTransactionAvailable(bool primary) const;
-
     unordered_map<int, int> makeCashDeposited();        
     unordered_map<int, int> makeFeeDeposited(int fee);
 
-    void admin_menu();
-    void displayTransactionHistory();
-    void outputTransactionHistoryToFile(const vector<string>& transactions);
-    string getLanguage() const { return language; };
+    bool is_primary(Account* account) const;
+    bool getTransactionAvailable(bool primary) const;
 
-    Account* getAccountByCardNumber(string card_number); 
-    Account* validCard();
-    bool isValidCard(string card_number);
+    //string checkBalance(Account* account); // 수정
+    void printAccountHistory(Account* account);
+
+    void printATMInfo() const;
+    void recordAtmHistory(const Transaction& transaction);
+    vector<Transaction> getAtmHistory();
+
+    void printAtmHistory();  // Print the transaction history of an account // 수정
+    void outputTransactionHistoryToFile(const vector<Transaction>& transactions);
 };
 
 extern vector<ATM> atms;

@@ -18,10 +18,13 @@
 #include "STATETRANSFER.h"
 #include "STATEATMRECEIPT.h"
 #include "STATEACCOUNTRECEIPT.h"
+#include "STATEATMRECEIPT.h"
 #include "STATESNAPSHOT.h"
 #include "INITIALIZING.h"
 #include "SELECTATM.h"
 #include "LANGUAGE.h"
+#include "ADMINMENU.h"
+#include "TRANSACTION.h"
 
 using namespace std;
 

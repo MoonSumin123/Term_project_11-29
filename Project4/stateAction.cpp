@@ -81,62 +81,52 @@ void state_deposit::stateAction() {
 			oss << "The fee amount inserted is incorrect.";
 	}
 	else if (choice == 2) {
-		//int total_checks = 0;
-		//unordered_map<int, int> check_deposited; // 수표 금액과 개수 저장
+		int count = 0;//장수
+		int check = 0;//total금액
 
-		//while (total_checks < 30) {
-		//	int check_amount, check_count;
-		//	cout << "Enter the amount of the check (or 0 to finish): ";
-		//	cin >> check_amount;
+		while (count < 30) {
+			int inserted_check, inserted_count;
+			cout << "Enter the amount of the check (or 0 to finish): ";
+			cin >> inserted_check;
 
-		//	if (check_amount == 0) {
-		//		break; // 0 입력 시 입력 종료
-		//	}
-
-		//	cout << "Enter the number of checks for this amount: ";
-		//	cin >> check_count;
-
-		//	if (check_count + total_checks > 30) {
-		//		cout << "Cannot exceed 30 checks in total. You can add " << (30 - total_checks) << " more checks.\n";
-		//		continue; // 다시 입력
-		//	}
-
-		//	if (check_amount < 100000) {
-		//		oss << "Checks must exceed 100,000 KRW." << endl;
-		//		continue; // 다시 입력
-		//	}
-
-		//	check_deposited[check_amount] += check_count; // 수표 금액과 개수 기록
-		//	total_checks += check_count; // 총 수표 개수 증가
-		//}
-
-		//// 수표 개수 제한 확인
-		//if (total_checks > 30) {
-		//	oss << "Total number of checks exceeds the limit. Maximum 30 checks allowed.";
-		//}
-
-		int check;
-		cout << "Insert the check: ";
-		cin >> check;
-		if (check < 100000) 
-			oss << "Checks must exceed 100,000 KRW.";
-
-		//수표 개수 30장 제한 --> 여러장의 수표면 금액도 다 다른지?
-		else {
+			if (inserted_check == 0) {
+				break; // 0 입력 시 입력 종료
+			}
+			else if (inserted_check < 100000) {
+				cout << "Checks must exceed 100,000 KRW.\n";
+				continue; // 다시 입력
+			}
+			cout << "Enter the number of checks for this amount: ";
+			cin >> inserted_count;
+	
+			if (count + inserted_count > 30) {
+				cout << "Cannot exceed 30 checks in total. You can add " << (30 - count) << " more checks.\n";
+				continue; // 다시 입력
+			}
+			check += inserted_check;
+			count += inserted_count;
+		}
+	
+		if (check > 100000){
 			unordered_map<int, int> fee_deposited;
 			cout << "Enter the deposit fee: " << deposit_fee << endl;
 			cout << "Enter number of KRW 1,000 bills: ";
 			cin >> fee_deposited[1000];
-
+	
 			if (fee_deposited[1000] * 1000 == deposit_fee) {
 				account.addFund(check);
 				atm.deposit(&account, fee_deposited);
 				oss << "Deposit successful. New balance: " << account.getFund();
 			}
-			else
+			else{
 				oss << "The fee amount inserted is incorrect.";
 		}
+		else {
+			oss <<"Invalid check." ;
+		}
+	
 	}
+	
 	else {
 		oss << "Invalid selection. Returning to the main interface.";
 	}

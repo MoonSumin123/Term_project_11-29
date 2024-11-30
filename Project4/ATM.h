@@ -53,7 +53,7 @@ public:
     string printAvailableCash() const;
     int getTotalAvailableCash() const;
 
-    int deposit(Account* account, unordered_map<int, int>& cash_deposited); //?ㅻⅨ?곗꽌??primary?뺤씤?댁빞 ??
+    int deposit(Account* account, unordered_map<int, int>& cash_deposited); 
     string withdraw(int amount, int fee);
     bool withdrawAvailable(int amount);
     string cashTransfer(Account* destination, int amount, int fee);
@@ -65,7 +65,7 @@ public:
     bool is_primary(Account* account) const;
     bool getTransactionAvailable(bool primary) const;
 
-    //string checkBalance(Account* account); // ?섏젙
+    //string checkBalance(Account* account); 
     void printAccountHistory(Account* account);
 
     void printATMInfo() const;

@@ -132,8 +132,6 @@
     <ClCompile Include="ATM.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="Cash.cpp" />
-    <ClCompile Include="CashKRW.cpp" />
-    <ClCompile Include="getAccountByCard.cpp" />
     <ClCompile Include="Initializing.cpp" />
     <ClCompile Include="Language.cpp" />
     <ClCompile Include="main.cpp" />
@@ -142,7 +140,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CARD.h" />
-    <ClInclude Include="CASHKRW.h" />
     <ClInclude Include="INITIALIZING.h" />
     <ClInclude Include="SELECTATM.h" />
     <ClInclude Include="STATE.h" />
@@ -151,12 +148,10 @@
     <ClInclude Include="ACCOUNT.h" />
     <ClInclude Include="CASH.h" />
     <ClInclude Include="STATEACCOUNTRECEIPT.h" />
-    <ClInclude Include="STATEATMRECEIPT.h" />
     <ClInclude Include="STATEDEPOSIT.h" />
     <ClInclude Include="STATESNAPSHOT.h" />
     <ClInclude Include="STATETRANSFER.h" />
     <ClInclude Include="STATEWITHDRAW.h" />
-    <ClInclude Include="GETACCOUNTBYCARD.h" />
     <ClInclude Include="LANGUAGE.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

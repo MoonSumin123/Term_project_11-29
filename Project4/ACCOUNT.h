@@ -11,10 +11,8 @@ using namespace std;
 
 class Account {
 private:
-    static int next_id; // 1, 2, 3... generator //?
-    int account_id; // 1, 2, 3... Unique account ID //? 
     string account_number; //12 digits
-    Bank* account_bank; // Pointer to the associated bank
+    string account_bank_name; // Pointer to the associated bank
     string account_user_name; // Account holder's name
     string account_password; // Account password
     int account_funds; // Account balance
@@ -22,12 +20,11 @@ private:
     vector<string> transaction_history; // Transaction history ??
 
 public:
-    Account(Bank* bank, string user_name, int initial_funds, string password, string card_number, const string& account_number);
+    Account(string bank_name, string user_name, int initial_funds, string password, string card_number, const string& account_number);
     ~Account();
 
     // Methods
     string getBankName() const; // Get the bank name
-    int getAccountId() const { return account_id; }// Get the account ID //?
     string getAccountNumber() const { return account_number; }
     void addFund(int fund); // Add funds to the account
     void subFund(int fund); // Subtract funds from the account
@@ -36,7 +33,6 @@ public:
     int getFund() const { return account_funds; } // Get the account balance
     Card* getAssociatedCard() const { return associated_card; } //카드 접근자
     const vector<string>& getTransactionHistory() const; // Get transaction history //??
-    bool passwordMatching();
 
 private:
     void recordTransaction(const string& transaction); // Record a transaction

@@ -21,7 +21,7 @@
 #include "STATESNAPSHOT.h"
 #include "INITIALIZING.h"
 #include "SELECTATM.h"
-#include "GETACCOUNTBYCARD.h"
+#include "LANGUAGE.h"
 
 using namespace std;
 
@@ -41,9 +41,9 @@ int main() {
             Account* account = atm->validCard();
 
             int choice;
-            State* x = nullptr;
             bool primary = atm->is_primary(account);
             do {
+                State* x = nullptr;
                 cout << "Select action:\n";
                 cout << "1. Deposit\n";
                 cout << "2. Withdraw\n";
@@ -53,10 +53,10 @@ int main() {
                 cin >> choice;
 
                 switch (choice) {
-                case 1: State * x = new state_deposit(account, atm, primary); break;
-                case 2: State * x = new state_withdraw(account, atm, primary); break;
-                case 3: State * x = new state_transfer(account, atm, primary); break;
-                case 4: State * x = new state_snapshot(account, atm, primary); break;
+                case 1: State * x = new state_deposit(*account, *atm, primary); break;
+                case 2: State * x = new state_withdraw(*account, *atm, primary); break;
+                case 3: State * x = new state_transfer(*account, *atm, primary); break;
+                case 4: State * x = new state_snapshot(*account, *atm, primary); break;
                 case 5: cout << "Exiting session.\n"; break;
                 default: cout << "Invalid choice. Please try again.\n";
                 }

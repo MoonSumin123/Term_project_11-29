@@ -4,15 +4,15 @@ using namespace std;
 vector<ATM> atms;
 
 // ATM class
-ATM::ATM(Bank* bank, const string& serial_number, const string& type, const string& language, const unordered_map<int, int>& initial_cash, vector<Bank>& banks_ref)
-    : primary_bank(bank), serial_number(serial_number), type(type), language(language), banks(banks_ref) {
+ATM::ATM(string bank, const string& serial_number, const string& type, const string& language, const unordered_map<int, int>& initial_cash)
+    : primary_bank(bank), serial_number(serial_number), type(type), language(language) {
     for (const auto& pair : initial_cash) {
         cash->addCash(pair.first, pair.second);
     }
 }
-
-Bank* ATM::getBank() {
-    return primary_bank;
+ATM::~ATM() {
+    delete cash;
+    cout << "[Destructor] ATM: " << serial_number << endl;
 }
 
 void ATM::addCash(int denomination, int count) {
@@ -155,8 +155,7 @@ unordered_map<int, int> ATM::makeFeeDeposited(int fee) {
 }
 
 
-string ATM::checkBalance(int account_id) {
-    Account* account = primary_bank->getAccount(account_id);
+string ATM::checkBalance(Account* account) {
     if (account) {
         return "Current balance: " + to_string(account->getFund());
     }
@@ -164,11 +163,10 @@ string ATM::checkBalance(int account_id) {
 }
 
 
-void ATM::printTransactionHistory(int account_id) {
-    Account* account = primary_bank->getAccount(account_id);
+void ATM::printTransactionHistory(Account* account) {
     if (account) {
         const auto& history = account->getTransactionHistory();
-        cout << "Transaction history for account " << account_id << ":\n";
+        cout << "Transaction history for account " << account->getAccountNumber() << ":\n";
         for (const auto& transaction : history) {
             cout << transaction << endl;
         }
@@ -262,11 +260,6 @@ void ATM::printATMInfo() const {
     cash->printAvailableCash();
 }
 
-void ATM::setState(State* state) { //XXXXXX
-    delete currentState;
-    currentState = state;
-}
-
 vector<string> ATM::getTransactionHistory() {
     return this->transaction_history;
 }
@@ -274,11 +267,11 @@ void ATM::recordTransactionHistory(string rec) {
     this->transaction_history.push_back(rec);
 }
 
-bool ATM::is_primary(Account* account) {
-    return (primary_bank->getName() == account->getBankName());
+bool ATM::is_primary(Account* account) const {
+    return (primary_bank == account->getBankName());
 }
 
-bool ATM::getTransactionAvailable(bool primary) {
+bool ATM::getTransactionAvailable (bool primary) const {
     if (this->type == "Multi Bank ATM")
         return true;
     else if (primary)
@@ -335,7 +328,7 @@ bool ATM::isValidCard(string card_number) {
     Account* account = getAccountByCardNumber(card_number); // 카드 번호로 계좌 찾기
     if (account) {
         // Single Bank ATM의 경우, 계좌의 은행이 주 은행인지 확인
-        if (type == "Single Bank ATM" && account->getBankName() != account->getAssociatedCard()->getBankname()) {
+        if (type == "Single Bank ATM" && account->getBankName() != primary_bank) {
             return false; // 주 은행이 아닌 경우
         }
         return true; // 카드 유효

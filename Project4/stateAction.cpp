@@ -1,23 +1,12 @@
 #include "STATE.h"
-#include "STATEATMRECEIPT.h"
 #include "STATEACCOUNTRECEIPT.h"
 #include "STATESNAPSHOT.h"
 #include "STATEDEPOSIT.h"
 #include "STATEWITHDRAW.h"
 #include "STATETRANSFER.h"
 
-
-void state_ATM_receipt::stateAction() {
-	// verify admin card
-
-	vector<string> rec = atm->getTransactionHistory();
-	for (string vec : rec) {
-		cout << vec << endl;
-	}
-}
-
 void state_account_receipt::stateAction() {
-	vector<string> rec = this->account->getTransactionHistory();
+	vector<string> rec = account.getTransactionHistory();
 	for (string vec : rec) {
 		cout << vec << endl;
 	}
@@ -27,8 +16,8 @@ void state_snapshot::stateAction() {
 	ostringstream oss;
 	for (ATM& vec : atms) {
 		oss << "ATM [SN: " << vec.getSerialNumber() << "] "
-			<< "Type: " << vec.type << "\n"
-			<< "Language: " << vec.language << "\n"
+			<< "Type: " << vec.getATMtype() << "\n"
+			<< "Language: " << vec.getLanguage() << "\n"
 			<< "remaining cash: {" << vec.getTotalAvailableCash() << "}\n";
 	}
 	for (Account& vec : accounts) {
@@ -48,15 +37,16 @@ void state_deposit::stateAction() {
 	int choice;
 	cout << "Please select your deposit method." << endl;
 	cout << "1. Card deposit\n 2. Check deposit"; //입력이 숫자가 아니면? exception handling
+	cin >> choice;
 	if (choice == 1) {
-		unordered_map<int, int> cash_deposited = atm->makeCashDeposited(); // 현금 입금 내역
-		unordered_map<int, int> fee_deposited = atm->makeFeeDeposited(deposit_fee);
+		unordered_map<int, int> cash_deposited = atm.makeCashDeposited(); // 현금 입금 내역
+		unordered_map<int, int> fee_deposited = atm.makeFeeDeposited(deposit_fee);
 
 		if (fee_deposited[1000] * 1000 == deposit_fee) {
-			int fund_amount = atm->deposit(account, cash_deposited);
-			account->addFund(fund_amount);
-			atm->deposit(account, fee_deposited);
-			oss << "Deposit successful. New balance: " << account->getFund();
+			int fund_amount = atm.deposit(&account, cash_deposited);
+			account.addFund(fund_amount);
+			atm.deposit(&account, fee_deposited);
+			oss << "Deposit successful. New balance: " << account.getFund();
 		}
 		else
 			oss << "The fee amount inserted is incorrect.";
@@ -74,9 +64,9 @@ void state_deposit::stateAction() {
 			cin >> fee_deposited[1000];
 
 			if (fee_deposited[1000] * 1000 == deposit_fee) {
-				account->addFund(check);
-				atm->deposit(account, fee_deposited);
-				oss << "Deposit successful. New balance: " << account->getFund();
+				account.addFund(check);
+				atm.deposit(&account, fee_deposited);
+				oss << "Deposit successful. New balance: " << account.getFund();
 			}
 			else
 				oss << "The fee amount inserted is incorrect.";
@@ -111,19 +101,19 @@ void state_withdraw::stateAction() {
 		return;
 	}
 
-	if (amount > atm->getTotalAvailableCash()) {
+	if (amount > atm.getTotalAvailableCash()) {
 		cout << "Insufficient cash available to dispense the requested amount including fees." << endl;
 		return;
 	}
-	if (amount+withdrawal_fee > account->getFund()) {
+	if (amount+withdrawal_fee > account.getFund()) {
 		cout << "Insufficient account balance." << endl;
 		return;
 	}
 
-	bool avail = atm->withdrawAvailable(amount);
+	bool avail = atm.withdrawAvailable(amount);
 	if (avail) {
-		string result = atm->withdraw(amount, withdrawal_fee);
-		account->subFund(amount+withdrawal_fee);
+		string result = atm.withdraw(amount, withdrawal_fee);
+		account.subFund(amount+withdrawal_fee);
 		oss << result;
 	}
 	else 
@@ -135,8 +125,7 @@ void state_withdraw::stateAction() {
 void state_transfer::stateAction() {
 	ostringstream oss;
 
-	int destination_account_number;
-	string destination_bank_name;
+	string destination_account_number, destination_bank_name;
 	cout << "Enter destination bank name: ";
 	cin >> destination_bank_name;
 	cout << "Enter destination account number: ";
@@ -159,6 +148,8 @@ void state_transfer::stateAction() {
 	int transfer_type, amount;
 	cout << "Choose transfer type:\n1. Cash Transfer\n2. Account Transfer\n Select Type: ";
 	cin >> transfer_type;
+	cout << "Please enter Transfer Amount.\n Amount: ";
+	cin >> amount;
 
 	int transfer_fee;
 	if (transfer_type == 1) {
@@ -167,16 +158,16 @@ void state_transfer::stateAction() {
 			cout << "그걸 왜함" << endl;
 		}
 
-		oss << atm->cashTransfer(destination, amount, transfer_fee);
+		oss << atm.cashTransfer(destination, amount, transfer_fee);
 	}
 	else if (transfer_type == 2) {
 		cout << "Please enter the amount to transfer." << endl;
 		cout << "Transfer Amount: ";
 		cin >> amount;
 
-		if (primary and (account->getBankName() == destination->getBankName()))
+		if (primary and (account.getBankName() == destination->getBankName()))
 			transfer_fee = 2000;
-		else if (!primary and (account->getBankName() != destination->getBankName()))
+		else if (!primary and (account.getBankName() != destination->getBankName()))
 			transfer_fee = 4000;
 		else
 			transfer_fee = 3000;
@@ -184,7 +175,7 @@ void state_transfer::stateAction() {
 			cout << "그걸 왜함" << endl;
 		}
 
-		oss << atm->accountTransfer(account, destination, amount-transfer_fee);
+		oss << atm.accountTransfer(&account, destination, amount-transfer_fee);
 	}
 	else 
 		cout << "Invalid transfer type selected.\n";

@@ -6,7 +6,7 @@
 class state_deposit : public State {
 private:
 public:
-	state_deposit(Account* account, ATM* atm, bool primary) : State(account, atm, primary) {};
+	state_deposit(Account& account, ATM& atm, bool primary) : State(account, atm, primary) { s_name = "Deposit State"; };
 	~state_deposit() {};
 	void stateAction() override;
 };

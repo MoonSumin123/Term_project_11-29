@@ -20,7 +20,7 @@ Language* Language::getInstance() {
 }
 
 void Language::selectLanguage(ATM& atm) {
-    if (atm.language == "Unilingual") {
+    if (atm.getLanguage() == "Unilingual") {
         selected_language = "english";
     } 
     else {

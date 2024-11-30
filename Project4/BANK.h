@@ -13,15 +13,15 @@ using namespace std;
 class Bank {
 private:
     string name; // Bank name
-    unordered_map<int, Account*> bank_accounts; // Map of accounts of bank
+    unordered_map<string, Account*> bank_accounts; // Map of accounts of bank
 
 public:
-    Bank(const string& bank_name) : name(bank_name) {}
+    Bank(const string& bank_name);
+    ~Bank();
     string getName() const { return name; }
-    Account* createAccount(string user_name, int initial_funds, string password, int card_number, const string& accout_number);// Create a new account
-    Account* getAccount(int account_id); // Get an account by ID //수정
-    const unordered_map<int, Account*>& getAccounts() const { return bank_accounts; }
-    ~Bank();// Destructor to clean up accounts of bank
+    Account* createAccount(string user_name, int initial_funds, string password, string card_number, const string& accout_number);// Create a new account
+    Account* getAccount(string account_number); // Get an account by ID //수정
+    const unordered_map<string, Account*>& getAccounts() const { return bank_accounts; }
     static Bank* getOrCreateBank(const string& bank_name, vector<Bank>& banks);
 };
 

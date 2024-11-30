@@ -1,4 +1,6 @@
 #include "CARD.h"
 
-Card::Card(Account* account, Bank* bank, string card_num) : card_account(account), card_bank(bank), card_number(card_num) {}
-Card::~Card() {}
+Card::Card(string card_num) : card_number(card_num) {}
+Card::~Card() {
+	cout << "[Destructor] Card: " << card_number << endl;
+}

@@ -38,9 +38,11 @@ int main() {
 
         if (sel_or_exit == 1) {
             ATM* atm = selectATM();
+	        Language* lang = Language::getInstance();
+            lang->selectLanguage(*atm);
 
-            // ?몄뼱 ?좏깮
-            // card number ?뺤씤
+            // language choice
+            // card number check
             // atm->printINPUT("card number")
             Account* account = atm->validCard();
             if (account == nullptr)
@@ -52,11 +54,10 @@ int main() {
             do {
                 State* x = nullptr;
                 cout << "Select action:\n";
-                cout << "1. Deposit\n";
+                cout << "1." << lang->chooseSentence(18) << "\n";
                 cout << "2. Withdraw\n";
                 cout << "3. Transfer\n";
-                cout << "4. / (Display Account/ATM Snapshot)\n";
-                cout << "5. Exit Session\n";
+                cout << "4. Exit Session\n";
                 cin >> choice;
 
                 if (choice == "1")
@@ -74,10 +75,9 @@ int main() {
                 
                 if (x!=nullptr) 
                     x->stateAction();
-                }while (choice != "4");
-            
-            // ?몄뀡 醫낅즺
-            // ?붿빟蹂?異쒕젰
+
+            } while (choice != 4); // Exting sesstion
+            // print summary
             withdrawal_count = 0;
         }
 	

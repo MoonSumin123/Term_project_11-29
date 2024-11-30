@@ -30,7 +30,7 @@ void Account::recordAccountHistory(const string& transaction) {
     account_history.push_back(transaction);
 }
 
-// ?? Get the transaction history //session횁쩐쨌찼 쩍횄 횄창쨌횂?
+// ?? Get the transaction history //이거 사용 여부?
 const vector<string>& Account::getAccountHistory() const {
     return account_history;
 }

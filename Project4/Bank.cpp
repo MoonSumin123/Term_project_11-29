@@ -1,8 +1,14 @@
 ﻿#include "BANK.h"
 
+<<<<<<< HEAD
 std::vector<Bank*> banks;
 
 Bank::Bank(const string& bank_name) : name(bank_name) { cout << "[Constructor] Bank: " << name << endl; }
+=======
+std::vector<Bank> banks;
+
+Bank::Bank(const string& bank_name) : name(bank_name) {}
+>>>>>>> 93598afdc332a1815f57adc2df0526b7a2100378
 
 Bank::~Bank() {
     for (auto& pair : bank_accounts) {

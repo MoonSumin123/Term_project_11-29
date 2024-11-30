@@ -38,9 +38,9 @@ int ATM::deposit(Account* account, unordered_map<int, int>& cash_deposited) {
     }
     string rec_account;
     string rec_atm;
-    rec_account = lang->chooseSentence(17) + account->getCardNumber() + "/" + lang->chooseSentence(18) + to_string(total_deposit) + lang->chooseSentence(21) + "/" + lang->chooseSentence(22) + "- , -" + lang->chooseSentence(21) + "/" + lang->chooseSentence(23) + account->getAccountNumber() + ", " + to_string(account->getFund()) + lang->chooseSentence(21);
+    rec_account = lang->chooseSentence(17) + account.card_number + "/" + lang->chooseSentence(18) + to_string(total_deposit) + lang->chooseSentence(21) + "/" + lang->chooseSentence(22) + "- , -" + lang->chooseSentence(21) + "/" + lang->chooseSentence(23) + account.account_number + ", " + to_string(account.getFund()) + lang->chooseSentence(21);   
     //rec_account = account.card_number + "/" + to_string(total_deposit) + chooseSentence(21) + "/" + "- , -" + chooseSentence(21) + "/" + account.account_number + ", " + to_string(account.getFund()) + chooseSentence(21);   
-    rec_atm = lang->Eng(17) + account->getCardNumber() + "/" + lang->Eng(18) + to_string(total_deposit) + lang->Eng(21) + "/" + lang->Eng(22) + "- , -" + lang->Eng(21) + "/" + lang->Eng(23) + account->getAccountNumber() + ", " + to_string(account->getFund()) + lang->Eng(21);
+    rec_atm = lang->Eng(17) + account.card_number + "/" + lang->Eng(18) + to_string(total_deposit) + lang->Eng(21) + "/" + lang->Eng(22) + "- , -" + lang->Eng(21) + "/" + lang->Eng(23) + account.account_number + ", " + to_string(account.getFund()) + lang->Eng(21); 
     recordRecentHistory(rec_account);
     recordAtmHistory(rec_atm);
     

@@ -26,6 +26,8 @@ int ATM::getTotalAvailableCash() const {
 }
 
 int ATM::deposit(Account* account, unordered_map<int, int>& cash_deposited) {
+    Language* lang = Language::getInstance();
+	lang->selectLanguage(atm);
     int total_deposit = 0;
     for (const auto& cash : cash_deposited) {
         int denomination = cash.first; // 권종

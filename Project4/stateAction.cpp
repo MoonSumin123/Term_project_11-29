@@ -55,7 +55,7 @@ void state_deposit::stateAction() {
 
 	int choice;
 	cout << "Please select your deposit method." << endl;
-	cout << "1. Card deposit\n 2. Check deposit"; //입력이 숫자가 아니면? exception handling
+	cout << "1. Cash deposit\n2. Check deposit"; //입력이 숫자가 아니면? exception handling
 	cin >> choice;
 	if (choice == 1) {
 		
@@ -195,16 +195,22 @@ void state_withdraw::stateAction() { //source account 잔액 충분한지 확인
 	if (avail) {
 		string result = atm.withdraw(amount, withdrawal_fee);
 		account.subFund(amount+withdrawal_fee);
+		
+		string rec_account;
+		string rec_atm;
 
+		rec_account = lang.chooseSentence(17) + account.getCardNumber() + "/" + lang.chooseSentence(19) + to_string(amount) + lang.chooseSentence(21) + "/" + lang.chooseSentence(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + "/" + lang.chooseSentence(23) + lang.chooseSentence(21) + "- , -" + lang.chooseSentence(21);
+		rec_atm = lang.Eng(17) + account.getCardNumber() + "/" + lang.Eng(19) + to_string(amount) + lang.Eng(21) + "/" + lang.Eng(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + lang.Eng(21) + "/" + lang.Eng(23) + "- , -" + lang.Eng(21);
+
+		atm.recordRecentHistory(rec_account);
+		atm.recordAtmHistory(rec_atm);
 
 		withdrawal_count++;
 		oss << result;
 	}
 	else 
 		oss << "There is not enough cash in the ATM.";
-	
-	account.recordAccountHistory(oss.str());
-	atm.recordAtmHistory(oss.str());
+
 	cout << oss.str();
 }
 

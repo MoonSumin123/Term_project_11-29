@@ -33,23 +33,27 @@ void state_account_receipt::stateAction() {
 
 void state_snapshot::stateAction() {
 	ostringstream oss;
-	for (ATM& vec : atms) {
-		oss << "ATM [SN: " << vec.getSerialNumber() << "] "
-			<< "Type: " << vec.getATMtype() << "\n"
-			<< "Language: " << vec.getLanguage() << "\n"
-			<< "remaining cash: {" << vec.getTotalAvailableCash() << "}\n";
+	for (ATM* vec : atms) {
+		oss << "ATM [SN: " << vec->getSerialNumber() << "] "
+			<< "Type: " << vec->getATMtype() << ", "
+			<< "Language: " << vec->getLanguage() << ", "
+			<< "remaining cash: {" << vec->getTotalAvailableCash() << "}\n";
 	}
-	for (Account& vec : accounts) {
-		oss << "Account [Bank: " << vec.getBankName() << ", "
-			<< "No: " << vec.getAccountNumber() << ", "
-			<< "Owner: " << vec.getUserName() << "] "
-			<< "Balance: " << vec.getFund() << "\n";
+	for (Bank* vec : banks) {
+		for (auto& pair : vec->getAccounts()) {
+			oss << "Account [Bank: " << pair.second->getBankName() << ", "
+				<< "No: " << pair.second->getAccountNumber() << ", "
+				<< "Owner: " << pair.second->getUserName() << "] "
+				<< "Balance: " << pair.second->getFund() << "\n";
+		}
 	}
 	cout << oss.str();
 }
 
 void state_deposit::stateAction() {
 	ostringstream oss;
+	Language* lang = Language::getInstance();
+	lang->selectLanguage(atm);
 
 	int deposit_fee = primary ? 1000 : 2000;
 
@@ -177,6 +181,7 @@ void state_withdraw::stateAction() {
 	if (avail) {
 		string result = atm.withdraw(amount, withdrawal_fee);
 		account.subFund(amount+withdrawal_fee);
+		//여기 record
 		withdrawal_count++;
 		oss << result;
 	}
@@ -189,6 +194,9 @@ void state_withdraw::stateAction() {
 }
 
 void state_transfer::stateAction() {
+	Language* lang = Language::getInstance();
+	lang->selectLanguage(atm);
+	
 	ostringstream oss;
 
 	string destination_account_number, destination_bank_name;
@@ -198,9 +206,9 @@ void state_transfer::stateAction() {
 	cin >> destination_account_number;
 
 	Bank* destination_bank = nullptr;
-	for (Bank vec : banks) {
-		if (vec.getName() == destination_bank_name)
-			destination_bank = &vec;
+	for (Bank* vec : banks) {
+		if (vec->getName() == destination_bank_name)
+			destination_bank = vec;
 	}
 	// 못 찾은 경우 exception handling 
 	if (destination_bank == nullptr) {

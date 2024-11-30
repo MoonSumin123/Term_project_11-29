@@ -44,6 +44,4 @@ public:
     void recordAccountHistory(const string& transaction); // Record a transaction
 };
 
-extern vector<Account> accounts;
-
 #endif ACCOUNT_H

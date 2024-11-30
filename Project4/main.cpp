@@ -77,7 +77,7 @@ int main() {
                 if (x!=nullptr) 
                     x->stateAction();
 
-            } while (choice != 4); // Exting sesstion
+            } while (choice != "4"); // Exting sesstion
             // print summary
             withdrawal_count = 0;
         }

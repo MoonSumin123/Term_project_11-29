@@ -33,10 +33,6 @@ public:
     static Bank* getOrCreateBank(const string& bank_name);
 };
 
-<<<<<<< HEAD
 extern std::vector<Bank*> banks;
-=======
-extern std::vector<Bank> banks;
->>>>>>> 93598afdc332a1815f57adc2df0526b7a2100378
 
 #endif BANK_H

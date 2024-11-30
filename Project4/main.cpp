@@ -69,7 +69,7 @@ int main() {
                 else if (choice == "3")
                     x = new state_transfer(*account, *atm, primary, *lang);
                 else if (choice == "/")
-                    x = new state_snapshot(*account, *atm, primary);
+                    x = new state_snapshot(*account, *atm, primary, *lang);
                 else if (choice == "4")
                     cout << "Exiting session.\n";
                 else

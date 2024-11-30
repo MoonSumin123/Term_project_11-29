@@ -55,7 +55,7 @@ void state_deposit::stateAction() {
 
 	int choice;
 	cout << "Please select your deposit method." << endl;
-	cout << "1. Card deposit\n 2. Check deposit"; //입력이 숫자가 아니면? exception handling
+	cout << "1. Cash deposit\n2. Check deposit"; //입력이 숫자가 아니면? exception handling
 	cin >> choice;
 	if (choice == 1) {
 		

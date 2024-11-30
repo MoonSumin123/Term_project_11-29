@@ -113,7 +113,7 @@ string ATM::withdraw(int remaining_amount, int withdrawal_fee) {
     return oss.str();
 }
 
-string ATM::cashTransfer(Account* destination, int amount, int fee) {
+string ATM::cashTransfer(Account* destination, int fee) {
     Language* lang = Language::getInstance();
     lang->selectLanguage(*this);
 
@@ -140,11 +140,9 @@ string ATM::cashTransfer(Account* destination, int amount, int fee) {
     return oss.str();
 }
 
-string ATM::accountTransfer(Account* source, Account* destination, int amount) {
-    source->subFund(amount);
+string ATM::accountTransfer(Account* source, Account* destination, int amount, int fee) {
+    source->subFund(amount+fee);
     destination->addFund(amount);
-
-    
 
     return "Account transfer successful.";
 }

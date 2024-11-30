@@ -37,6 +37,8 @@ int main() {
 
         if (sel_or_exit == 1) {
             ATM* atm = selectATM();
+	    Language* lang = Language::getInstance();
+            lang->selectLanguage(*atm);
 
             // ?몄뼱 ?좏깮
             // card number ?뺤씤
@@ -49,7 +51,7 @@ int main() {
             do {
                 State* x = nullptr;
                 cout << "Select action:\n";
-                cout << "1. Deposit\n";
+                cout << "1." << lang->chooseSentence(18) << "\n";
                 cout << "2. Withdraw\n";
                 cout << "3. Transfer\n";
                 cout << "4. / (Display Account/ATM Snapshot)\n";

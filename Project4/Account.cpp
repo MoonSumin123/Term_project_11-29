@@ -7,7 +7,6 @@ Account::Account(string bank_name, string user_name, int initial_funds, string p
 }
 
 Account::~Account() {
-    delete associated_card;
     cout << "[Destructor] Account: " << account_number << endl;
 }
 

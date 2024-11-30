@@ -79,6 +79,7 @@ int main() {
 
             } while (choice != "4"); // Exting sesstion
             // print summary
+            atm->printAndClearRecentHistory();
             withdrawal_count = 0;
         }
 	

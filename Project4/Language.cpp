@@ -68,13 +68,28 @@ Language* Language::getInstance() {
 void Language::selectLanguage(ATM& atm) {
     if (atm.getLanguage() == "Unilingual") {
         selected_language = "english";
-    } 
+    }
     else {
-        int languagetype;
-        cout << "Select the language: 1.english 2.한국어" << endl;
-        cin >> languagetype;
-        selected_language = (languagetype == 1) ? "english" : "한국어";
-        cout << selected_language << endl;
+        bool finish = false;
+        do {
+            int languagetype;
+            cout << "Select the language: 1.english 2.한국어" << endl;
+            cin >> languagetype;
+
+            if (languagetype == 1) {
+                selected_language = "english";
+                cout << selected_language << endl;
+                finish = true;
+            }
+            else if(languagetype == 2) {
+                selected_language = "한국어";
+                cout << selected_language << endl;
+                finish = true;
+            }
+            else {
+                cout << "Invalid Choice." << endl;
+            }
+        } while (finish == false);
     }
 }
 

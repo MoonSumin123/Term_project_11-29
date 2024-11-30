@@ -19,9 +19,10 @@ protected:
     Account& account;
     ATM& atm;
     bool primary;
+    Language& lang;
     string s_name;
 public:
-    State(Account& account, ATM& atm, bool primary) : account(account), atm(atm), primary(primary) { s_name = "State"; }
+    State(Account& account, ATM& atm, bool primary, Language& lang) : account(account), atm(atm), primary(primary), lang(lang) { s_name = "State"; }
     virtual ~State() {cout << "[Destructor]: " << s_name << endl;};
     virtual void stateAction() = 0; // void or bool func
 };

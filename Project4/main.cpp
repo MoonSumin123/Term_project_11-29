@@ -41,6 +41,7 @@ int main() {
 	        Language* lang = Language::getInstance();
             lang->selectLanguage(*atm);
             lang->selectVector();
+            bool endSession=false;
 
             // language choice
             // card number check
@@ -62,23 +63,27 @@ int main() {
                 cin >> choice;
 
                 if (choice == "1")
-                    x = new state_deposit(*account, *atm, primary);
+                    x = new state_deposit(*account, *atm, primary, *lang);
                 else if (choice == "2")
-                    x = new state_withdraw(*account, *atm, primary, withdrawal_count);
+                    x = new state_withdraw(*account, *atm, primary, *lang, withdrawal_count, endSession);
                 else if (choice == "3")
-                    x = new state_transfer(*account, *atm, primary);
+                    x = new state_transfer(*account, *atm, primary, *lang);
                 else if (choice == "/")
                     x = new state_snapshot(*account, *atm, primary);
                 else if (choice == "4")
                     cout << "Exiting session.\n";
                 else
                     cout << "Invalid choice. Please try again.\n";
-                
+                if (endSession) {
+                    cout << "Insufficient cash available to dispense the requested amount including fees." << endl;//현재는 endSession이 쓰이는 경우가 이 경우밖에 없음
+                    break;
+                }
                 if (x!=nullptr) 
                     x->stateAction();
 
             } while (choice != "4"); // Exting sesstion
             // print summary
+            atm->printAndClearRecentHistory();
             withdrawal_count = 0;
         }
 	

@@ -69,7 +69,7 @@ public:
     void printAccountHistory(Account* account);
 
     void printATMInfo() const;
-    void recordRecentHistory(const string transaction); 
+    void recordRecentHistory(const string recent_transaction);
     void printAndClearRecentHistory();
     void recordAtmHistory(const string transaction);
     vector<string> getAtmHistory();

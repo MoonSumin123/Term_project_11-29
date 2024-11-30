@@ -5,6 +5,14 @@
 #include <unordered_map>
 #include <sstream>
 
+class Account;
+class ATM;
+class Bank;
+class Card;
+class Cash;
+class Language;
+class State;
+
 using namespace std;
 
 class Cash {

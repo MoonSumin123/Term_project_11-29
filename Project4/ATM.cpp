@@ -34,6 +34,9 @@ int ATM::deposit(Account* account, unordered_map<int, int>& cash_deposited) {
         this->cash->addCash(denomination, count);
         total_deposit += denomination * count;
     }
+    rec_account = chooseSentence(17) + to_string(account.)
+    rec_atm = english[17] + to_string(account)
+        
     return total_deposit;
 }
 

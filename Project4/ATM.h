@@ -66,7 +66,7 @@ public:
     bool getTransactionAvailable(bool primary) const;
 
     //string checkBalance(Account* account); 
-    void printAccountHistory(Account* account);
+    //void printAccountHistory(Account* account);
 
     void printATMInfo() const;
     void recordRecentHistory(const string recent_transaction);

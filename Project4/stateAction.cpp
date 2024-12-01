@@ -241,7 +241,7 @@ void state_transfer::stateAction() {
 		transfer_fee = 1000;
 
 		unordered_map<bool, string> myMap;
-		myMap = atm.Transfer(destination, transfer_fee); 
+		myMap = atm.Transfer(destination, transfer_fee);  
 
 		if (myMap.find(true) != myMap.end()) {
 			oss << lang.chooseSentence(60);	//"Cash transfer successful."

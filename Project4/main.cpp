@@ -82,6 +82,7 @@ int main() {
                 }
             } while (choice != "5");
             atm->printAndClearRecentHistory();
+            cout << "-------------------------- "; //Exit Session line
         }
 	
     } while (sel_or_exit == 1);

@@ -58,7 +58,7 @@ Language::Language() {
     eng.push_back("Withdrawal Amount: "); //47
     eng.push_back("The maximum withdrawal amount is 500,000 KRW.\n"); //48
     eng.push_back("Amount less than fee.\n"); //49
-    eng.push_back("Maximum withdrawal attempts reached. Session will be terminated.\n"); //50
+    eng.push_back("Maximum withdrawal attempts reached. If you want to withdraw more, please log back in after the session ends.\n"); //50
     eng.push_back("There is not enough cash in the ATM."); //51
     eng.push_back("Enter number of KRW 50,000 bills: "); //52
     eng.push_back("Enter number of KRW 10,000 bills: "); //53
@@ -135,7 +135,7 @@ Language::Language() {
     kor.push_back("출금 금액: "); // 47
     kor.push_back("최대 출금 가능 금액은 500,000원입니다.\n"); // 48
     kor.push_back("수수료보다 적은 금액입니다.\n"); // 49
-    kor.push_back("최대 출금 시도 횟수를 초과했습니다. 세션이 종료됩니다.\n"); // 50
+    kor.push_back("최대 출금 시도 횟수를 초과했습니다. 출금을 원하시면 세션 종료 후 다시 접속바랍니다.\n"); // 50 
     kor.push_back("ATM에 충분한 현금이 없습니다."); // 51
     kor.push_back("50,000원권 지폐 수를 입력하세요: "); // 52
     kor.push_back("10,000원권 지폐 수를 입력하세요: "); // 53

@@ -230,7 +230,7 @@ unordered_map<int, int> ATM::makeDeposited() {
     cin >> cash_deposited[5000];
     cout << lang.chooseSentence(45);//"Enter number of KRW 1,000 bills: ";
     cin >> cash_deposited[1000];
-    cout<< "-------------------------- ";
+    cout<< "----\n";
 
     return cash_deposited;
 }
@@ -243,7 +243,7 @@ unordered_map<int, int> ATM::makeDeposited(int fee) {
     cout << lang.chooseSentence(44) << fee << endl; //"Enter the fee: "
     cout << lang.chooseSentence(45);//"Enter number of KRW 1,000 bills: ";
     cin >> fee_deposited[1000];
-    cout << "-------------------------- ";
+    cout << "----\n";
 
     return fee_deposited;
 }

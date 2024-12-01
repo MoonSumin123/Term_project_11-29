@@ -118,7 +118,7 @@ Language::Language() {
     kor.push_back("유효하지 않은 금액입니다."); // 31
     kor.push_back("입력된 수수료 금액이 올바르지 않습니다."); // 32
     kor.push_back("1. 현금 입금\n2. 수표 입금"); //33
-    kor.push_back("작업을 선택하세요 : \n"); // 34
+    kor.push_back("작업을 선택하세요 : "); // 34
     kor.push_back("영수증 출력"); // 35
     kor.push_back("세션 종료"); // 36
     kor.push_back("유효하지 않은 선택입니다. 다시 시도하세요.\n"); // 37

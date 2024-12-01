@@ -60,21 +60,7 @@ Language::Language() {//일부 \n추가 필요
     eng.push_back("Amount less than fee.\n"); //49
     eng.push_back("Maximum withdrawal attempts reached. Session will be terminated.\n"); //50
     eng.push_back("There is not enough cash in the ATM."); //51
-  
-    
-
-    //list
-
-    //
-    /*
-  
-        
-        
-        
-        
-           */
-    //-----
-
+    eng.push_back("Enter destination bank name: "); //55
 
 
     // 한국어 문구 추가

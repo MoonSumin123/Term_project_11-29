@@ -160,7 +160,7 @@ void state_withdraw::stateAction() {
 		return;
 	}
 	else if (amount % 1000 != 0) {
-		cout << "Invalide amount." << endl;
+		cout << lang.chooseSentence(31) << endl;	//"Invalid amount."
 		return;
 	}
 	else if (amount <= withdrawal_fee) {
@@ -195,7 +195,7 @@ void state_withdraw::stateAction() {
 		oss << result;
 	}
 	else {
-		cout << lang.chooseSentence(51);//"There is not enough cash in the ATM.";
+		cout << lang.chooseSentence(51);	//"There is not enough cash in the ATM.";
 		return;
 	}
 

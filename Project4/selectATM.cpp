@@ -3,6 +3,10 @@
 using namespace std;
 
 ATM* selectATM() {
+    if (atms.size() == 0) {
+        cout << "There are no ATMs" << endl;
+        return nullptr;
+    }
     int action_choice;
     do {
         cout << "Choose an ATM (0 to exit)\n";

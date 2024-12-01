@@ -35,6 +35,9 @@ int main() {
 
         if (sel_or_exit == "1") {
             ATM* atm = selectATM();
+            if (atm == nullptr)
+                continue;
+
             //Language* lang = Language::getInstance();
             lang->selectLanguage(*atm);
             lang->selectVector();
@@ -89,6 +92,8 @@ int main() {
         }
         else if (sel_or_exit == "/")
             snapshot();
+        else if (sel_or_exit != "2")
+            cout << "Invalid input. Try again." << endl;
     } while (sel_or_exit != "2");
 
     std::cout << "Exit the program." << endl;

@@ -55,11 +55,11 @@ Language::Language() {//일부 \n추가 필요
     eng.push_back("Enter the deposit fee: "); //44
     eng.push_back("Enter number of KRW 1,000 bills: "); //45
     eng.push_back("Please enter the amount to withdraw.\n"); //46
-    //eng.push_back(); //47
-    //eng.push_back(); //48
-    //eng.push_back(); //49
-    //eng.push_back(); //50
-    //eng.push_back(); //51
+    eng.push_back("Withdrawal Amount: "); //47
+    eng.push_back("The maximum withdrawal amount is 500,000 KRW.\n"); //48
+    eng.push_back("Amount less than fee.\n"); //49
+    eng.push_back("Maximum withdrawal attempts reached. Session will be terminated.\n"); //50
+    eng.push_back("There is not enough cash in the ATM."); //51
   
     
 
@@ -68,15 +68,10 @@ Language::Language() {//일부 \n추가 필요
     //
     /*
   
-
         
-       
         
-        "Withdrawal Amount: "
-        "The maximum withdrawal amount is 500,000 KRW."
-        "Amount less than fee."
-        "Maximum withdrawal attempts reached. Session will be terminated.\n"
-        "There is not enough cash in the ATM."
+        
+        
            */
     //-----
 

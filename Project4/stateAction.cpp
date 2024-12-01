@@ -144,7 +144,7 @@ void state_withdraw::stateAction() {
 	ostringstream oss; 
 
 	if (withdrawal_count >= 3) {
-		cout << "Maximum withdrawal attempts reached. Session will be terminated.\n";
+		cout << lang.chooseSentence(50);//"Maximum withdrawal attempts reached. Session will be terminated.\n";
 		return; 
 	}
 
@@ -152,11 +152,11 @@ void state_withdraw::stateAction() {
 
 	int amount;
 	cout << lang.chooseSentence(46);//"Please enter the amount to withdraw.\n" 
-	cout << "Withdrawal Amount: ";
+	cout << lang.chooseSentence(47);//"Withdrawal Amount: ";
 	cin >> amount;	
 
 	if (amount > 500000) {
-		cout << "The maximum withdrawal amount is 500,000 KRW." << endl;
+		cout << lang.chooseSentence(48);//"The maximum withdrawal amount is 500,000 KRW.\n"
 		return;
 	}
 	else if (amount % 1000 != 0) {
@@ -164,7 +164,7 @@ void state_withdraw::stateAction() {
 		return;
 	}
 	else if (amount <= withdrawal_fee) {
-		cout << "Amount less than fee." << endl;
+		cout << lang.chooseSentence(49);//"Amount less than fee.\n"
 		return;
 	}
 
@@ -195,7 +195,7 @@ void state_withdraw::stateAction() {
 		oss << result;
 	}
 	else {
-		cout << "There is not enough cash in the ATM.";
+		cout << lang.chooseSentence(51);//"There is not enough cash in the ATM.";
 		return;
 	}
 
@@ -269,7 +269,7 @@ void state_transfer::stateAction() {
 		else
 			transfer_fee = 3000;
 		if (amount <= transfer_fee) {
-			cout << "Amount less than fee." << endl;
+			cout << lang.chooseSentence(49);//"Amount less than fee."
 			return;
 		}
 		if (amount+transfer_fee > account.getFund()) {

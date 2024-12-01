@@ -32,14 +32,13 @@ void state_deposit::stateAction() {
 
 	int choice;
 	cout << "Please select your deposit method." << endl;
-	cout << "1. Cash deposit\n2. Check deposit"; //입력이 숫자가 아니면? exception handling
+	cout << "1. Cash deposit\n2. Check deposit";
 	cin >> choice;
 	if (choice == 1) {
-		
-		unordered_map<int, int> cash_deposited = atm.makeCashDeposited(); // 현금 입금 내역
+		unordered_map<int, int> cash_deposited = atm.makeCashDeposited();
 		unordered_map<int, int> fee_deposited = atm.makeFeeDeposited(deposit_fee); 
 		
-		int total_cash_count = 0;//limit 50
+		int total_cash_count = 0;
 		for (const auto& cash : cash_deposited) {
 			total_cash_count += cash.second;
 		}
@@ -67,8 +66,8 @@ void state_deposit::stateAction() {
 			oss << "The fee amount inserted is incorrect.";
 	}
 	else if (choice == 2) {
-		int count = 0;//limit 30
-		int check = 0;//total amount
+		int count = 0;
+		int check = 0;
 
 		while (count < 30) {
 			int inserted_check, inserted_count;
@@ -76,18 +75,18 @@ void state_deposit::stateAction() {
 			cin >> inserted_check;
 
 			if (inserted_check == 0) {
-				break; // 0 exit
+				break; 
 			}
 			else if (inserted_check < 100000) {
 				cout << "Checks must exceed 100,000 KRW.\n";
-				continue; // 다시 반복
+				continue;
 			}
 			cout << "Enter the number of checks for this amount: ";
 			cin >> inserted_count;
 	
 			if (count + inserted_count > 30) {
 				cout << "Cannot exceed 30 checks in total. You can add " << (30 - count) << " more checks.\n";
-				continue; // 다시 반복
+				continue; 
 			}
 			check += inserted_check*inserted_count;
 			count += inserted_count;
@@ -128,7 +127,7 @@ void state_deposit::stateAction() {
 	}
 }
 
-void state_withdraw::stateAction() { //source account 잔액 충분한지 확인 되어있는지 확인
+void state_withdraw::stateAction() {
 	ostringstream oss; 
 
 	if (withdrawal_count >= 3) {
@@ -157,7 +156,6 @@ void state_withdraw::stateAction() { //source account 잔액 충분한지 확인
 	}
 
 	if (amount > atm.getTotalAvailableCash()) {
-		//cout << "Insufficient cash available to dispense the requested amount including fees." << endl;//main으로 이동
 		endSession = true;
 		return;
 	}
@@ -190,20 +188,17 @@ void state_withdraw::stateAction() { //source account 잔액 충분한지 확인
 }
 
 void state_transfer::stateAction() {
-	
 	ostringstream oss;
 
 	string destination_account_number, destination_bank_name;
 	cout << "Enter destination bank name: ";
 	cin >> destination_bank_name;
-	
 
 	Bank* destination_bank = nullptr;
 	for (Bank* vec : banks) {
 		if (vec->getName() == destination_bank_name)
 			destination_bank = vec;
 	}
-	// 못 찾은 경우 exception handling 
 	if (destination_bank == nullptr) {
 		cout << "Destination bank not found.\n";
 		return;
@@ -233,18 +228,15 @@ void state_transfer::stateAction() {
 		myMap = atm.cashTransfer(destination, transfer_fee); 
 
 		if (myMap.find(true) != myMap.end()) {
-
 			cout << "Cash transfer successful.";
-			//recording
+
 			string rec_account;
 			string rec_atm;
-
 			rec_account = lang.chooseSentence(17) + account.getCardNumber() + "/" + lang.chooseSentence(20) + myMap[true] + lang.chooseSentence(21) + "/" + lang.chooseSentence(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + "/" + lang.chooseSentence(23) + destination_account_number + to_string(destination->getFund()) + lang.chooseSentence(21);
 			rec_atm = lang.Eng(17) + account.getCardNumber() + "/" + lang.Eng(20) + myMap[true] + lang.Eng(21) + "/" + lang.Eng(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + lang.Eng(21) + "/" + lang.Eng(23) + destination_account_number + to_string(destination->getFund()) + lang.Eng(21);
 
 			atm.recordRecentHistory(rec_account);
 			atm.recordAtmHistory(rec_atm);
-			
 		}
 		else {
 			cout << myMap[false];
@@ -274,13 +266,11 @@ void state_transfer::stateAction() {
 
 		string rec_account;
 		string rec_atm;
-
 		rec_account = lang.chooseSentence(17) + account.getCardNumber() + "/" + lang.chooseSentence(20) + to_string(amount) + lang.chooseSentence(21) + "/" + lang.chooseSentence(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + "/" + lang.chooseSentence(23) + destination_account_number + to_string(destination->getFund()) + lang.chooseSentence(21);
 		rec_atm = lang.Eng(17) + account.getCardNumber() + "/" + lang.Eng(20) + to_string(amount) + lang.Eng(21) + "/" + lang.Eng(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + lang.Eng(21) + "/" + lang.Eng(23) + destination_account_number + to_string(destination->getFund()) + lang.Eng(21);
 
 		atm.recordRecentHistory(rec_account);
 		atm.recordAtmHistory(rec_atm);
-
 	}
 	else 
 		cout << "Invalid transfer type selected.\n";

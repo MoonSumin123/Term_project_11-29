@@ -22,6 +22,7 @@ private:
 public:
     Card(string card_num);
     ~Card();
+
     string getCardNumber() const { return card_number; }
 };
 

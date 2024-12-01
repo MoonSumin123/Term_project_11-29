@@ -14,15 +14,14 @@ void initializeSystem() {
             cout << "Enter User Name: ";
             cin >> user_name;
             cout << "Enter Account Number (12 digits): ";
-            cin >> account_number; // 계좌 번호 입력 받기
+            cin >> account_number; 
             cout << "Enter Available Funds (KRW): ";
             cin >> initial_funds;
             cout << "Enter Connected Card Number (4 digits): ";
-            cin >> card_number; // 카드 번호 입력 받기
+            cin >> card_number; 
             cout << "Enter Password (4 digits): ";
             cin >> password;
 
-            // Create bank if it doesn't exist
             Bank* bank = Bank::getOrCreateBank(bank_name);
             bank->createAccount(user_name, initial_funds, password, card_number, account_number);
             cout << "Account created successfully.\n";
@@ -42,7 +41,7 @@ void initializeSystem() {
             cin >> language_int;
             language = (language_int == 1) ? "Unilingual" : "Bilingual";
 
-            unordered_map<int, int> initial_cash; // {denomination: quantity}
+            unordered_map<int, int> initial_cash;
             int cash_quantity;
 
             cout << "Enter Initial Fund (Cash) in the following format:\n";
@@ -63,17 +62,15 @@ void initializeSystem() {
             cin >> cash_quantity;
             initial_cash[1000] = cash_quantity;
 
-            // 입력된 현금을 출력하여 확인
             cout << "Initial cash setup completed. Current cash amounts:\n";
             for (const auto& cash : initial_cash) {
                 cout << "KRW " << cash.first << ": " << cash.second << " bills" << endl;
             }
-            //initial_cash.printAvailableCash();
 
             Bank* primary_bank = Bank::getOrCreateBank(bank_name);
 
             ATM* newatm = new ATM(primary_bank->getName(), serial_number, type, language, initial_cash);
-            atms.push_back(newatm); // ATM 리스트에 추가
+            atms.push_back(newatm);
             cout << "ATM created successfully and linked to bank: " << bank_name << endl;
         }
     } while (choice != 3);

@@ -3,28 +3,33 @@
 using namespace std;
 
 Cash::Cash() {}
+
 Cash::~Cash() {
     cout << "[Destructor] Cash" << endl;
 }
 
-unordered_map<int, int>& Cash::getAvailableCash() {
-    return cash_available;
-}
-
-int Cash::getTotalAvailableCash() const { // 총 가용 현금을 계산하는 메서드
-    int total = 0;
-    for (const auto& pair : cash_available) {
-        total += pair.first * pair.second; // 권종 * 수량
-    }
-    return total;
-}
 
 
 void Cash::addCash(int denomination, int count) {
     cash_available[denomination] += count;
 }
+
 void Cash::subCash(int denomination, int count) {
     cash_available[denomination] -= count;
+}
+
+
+
+int Cash::getTotalAvailableCash() const { 
+    int total = 0;
+    for (const auto& pair : cash_available) {
+        total += pair.first * pair.second;
+    }
+    return total;
+}
+
+unordered_map<int, int>& Cash::getAvailableCash() {
+    return cash_available;
 }
 
 string Cash::printAvailableCash() const {

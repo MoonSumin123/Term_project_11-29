@@ -138,7 +138,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="selectATM.cpp" />
     <ClCompile Include="stateAction.cpp" />
-    <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ADMINMENU.h" />

@@ -18,8 +18,5 @@ void Account::addFund(int fund) {
 }
 
 void Account::subFund(int fund) {
-    if (fund > 0 && fund <= account_funds) {
-        account_funds -= fund;
-    }
+    account_funds -= fund;
 }
-

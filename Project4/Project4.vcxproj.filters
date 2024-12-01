@@ -45,9 +45,6 @@
     <ClCompile Include="Language.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Transaction.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="adminMenu.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>

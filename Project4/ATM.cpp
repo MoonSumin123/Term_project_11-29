@@ -275,34 +275,6 @@ bool ATM::isValidCard(string card_number) {
     return false; // invalid
 }
 
-
-
-/*
-//Receipt
-void ATM::printAccountHistory(Account* account) {
-    if (account) {
-        const auto& account_history = account->getAccountHistory();
-        cout << "Transaction history for account " << account->getAccountNumber() << ":\n";
-        for (const auto& transaction : account_history) {
-            cout << transaction << endl;
-        }
-    }
-    else {
-        cout << "Account not found.\n";
-    }
-}
-*/
-
-//ATM Infomation
-void ATM::printATMInfo() const {
-    cout << "ATM Serial Number: " << serial_number << "\n"
-        << "Type: " << type << "\n"
-        << "Language: " << language << "\n"
-        << "Available Cash: \n";
-
-    cash->printAvailableCash();
-}
-
 void ATM::recordRecentHistory(const string recent_transaction) {
     atm_recent_history.push_back(recent_transaction);
 }

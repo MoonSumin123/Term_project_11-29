@@ -71,16 +71,10 @@
     <ClInclude Include="CARD.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="STATEACCOUNTRECEIPT.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="STATESNAPSHOT.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="STATEDEPOSIT.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="STATEWITHDRAW.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="STATETRANSFER.h">
@@ -95,13 +89,10 @@
     <ClInclude Include="LANGUAGE.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="STATEATMRECEIPT.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="TRANSACTION.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ADMINMENU.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="STATEWITHDRAW.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

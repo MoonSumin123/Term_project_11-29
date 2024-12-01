@@ -1,33 +1,9 @@
 ﻿#include "STATE.h"
-#include "STATEACCOUNTRECEIPT.h"
 #include "STATESNAPSHOT.h"
 #include "STATEDEPOSIT.h"
 #include "STATEWITHDRAW.h"
 #include "STATETRANSFER.h"
-#include "STATEATMRECEIPT.h"
 using namespace std;
-
-void state_ATM_receipt::stateAction() { //recent history 불러오기(session요약)
-	vector<string> rec = atm.getAtmHistory();
-
-	lang.printIn(lang.chooseSentence(8)); //"Transaction History:"
-	for (const string vec : rec) {
-		cout << vec << endl;
-	}
-}
-
-//ATM_receipt가 현재 세션 동안 진행된 거래 내역 출력하는 함수고, 통장 정리는 요구사항 아니니까 account_receipt 함수 필요 없음.
-/*void state_account_receipt::stateAction() {
-
-	Language* lang = Language::getInstance();
-	lang->selectLanguage(atm);
-	vector<string> rec = account.getAccountHistory();
-
-	lang->printIn(lang->chooseSentence(8)); //"Transaction History:"
-	for (const string& vec : rec) {
-		cout << vec << endl;
-	}
-}*/
 
 void state_snapshot::stateAction() {
 	ostringstream oss;

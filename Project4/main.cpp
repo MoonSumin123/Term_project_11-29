@@ -14,9 +14,6 @@
 #include "STATEDEPOSIT.h"
 #include "STATEWITHDRAW.h"
 #include "STATETRANSFER.h"
-#include "STATEATMRECEIPT.h"
-#include "STATEACCOUNTRECEIPT.h"
-#include "STATEATMRECEIPT.h"
 #include "STATESNAPSHOT.h"
 #include "INITIALIZING.h"
 #include "SELECTATM.h"
@@ -40,9 +37,6 @@ int main() {
             lang->selectVector();
             bool endSession=false;
 
-            // language choice
-            // card number check
-            // atm->printINPUT("card number")
             Account* account = atm->validCard();
             if (account == nullptr)
                 continue;
@@ -72,7 +66,7 @@ int main() {
                 else
                     cout << "Invalid choice. Please try again.\n";
                 if (endSession) {
-                    cout << "Insufficient cash available to dispense the requested amount including fees." << endl;//현재는 endSession이 쓰이는 경우가 이 경우밖에 없음
+                    cout << "Insufficient cash available to dispense the requested amount including fees." << endl;
                     break;
                 }
                 if (x != nullptr) {
@@ -80,8 +74,7 @@ int main() {
                 delete x;
                 x = nullptr;
                 }
-            } while (choice != "4"); // Exting sesstion
-            // print summary
+            } while (choice != "4");
             atm->printAndClearRecentHistory();
         }
 	

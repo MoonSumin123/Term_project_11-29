@@ -150,14 +150,11 @@
     <ClInclude Include="BANK.h" />
     <ClInclude Include="ACCOUNT.h" />
     <ClInclude Include="CASH.h" />
-    <ClInclude Include="STATEACCOUNTRECEIPT.h" />
-    <ClInclude Include="STATEATMRECEIPT.h" />
     <ClInclude Include="STATEDEPOSIT.h" />
     <ClInclude Include="STATESNAPSHOT.h" />
     <ClInclude Include="STATETRANSFER.h" />
-    <ClInclude Include="STATEWITHDRAW.h" />
     <ClInclude Include="LANGUAGE.h" />
-    <ClInclude Include="TRANSACTION.h" />
+    <ClInclude Include="STATEWITHDRAW.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

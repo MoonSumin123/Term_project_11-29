@@ -24,8 +24,8 @@ protected:
 public:
     State(Account& account, ATM& atm, bool primary, Language& lang) : account(account), atm(atm), primary(primary), lang(lang) { s_name = "State"; }
     virtual ~State() {cout << "[Destructor]: " << s_name << endl;};
-    virtual void stateAction() = 0; // void or bool func
+    virtual void stateAction() = 0;
 };
 
 
-#endif // STATE_H
+#endif STATE_H

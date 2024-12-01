@@ -37,8 +37,8 @@ void state_deposit::stateAction() {
 	int deposit_fee = primary ? 1000 : 2000;
 
 	int choice;
-	cout << "Please select your deposit method." << endl;
-	cout << "1. Cash deposit\n2. Check deposit";
+	cout << lang.chooseSentence(39);//"Please select your deposit method.\n";
+	cout << lang.chooseSentence(40);//"1. Cash deposit\n2. Check deposit";
 	cin >> choice;
 	if (choice == 1) {
 		unordered_map<int, int> cash_deposited = atm.makeCashDeposited();
@@ -88,14 +88,14 @@ void state_deposit::stateAction() {
 				break; 
 			}
 			else if (inserted_check < 100000) {
-				cout << "Checks must exceed 100,000 KRW.\n";
+				cout << lang.chooseSentence(41);//"Checks must exceed 100,000 KRW.\n";
 				continue;
 			}
-			cout << "Enter the number of checks for this amount: ";
+			cout << lang.chooseSentence(42);//"Enter the number of checks for this amount: ";
 			cin >> inserted_count;
 	
 			if (count + inserted_count > 30) {
-				cout << "Cannot exceed 30 checks in total. You can add " << (30 - count) << " more checks.\n";
+				cout << lang.chooseSentence(43) << (30 - count);//"Cannot exceed 30 checks in total. The number of checks you can add: " ;
 				continue; 
 			}
 			check += inserted_check*inserted_count;
@@ -104,8 +104,8 @@ void state_deposit::stateAction() {
 	
 		if (check > 100000){
 			unordered_map<int, int> fee_deposited;
-			cout << "Enter the deposit fee: " << deposit_fee << endl;
-			cout << "Enter number of KRW 1,000 bills: ";
+			cout << lang.chooseSentence(44) << deposit_fee << endl;//"Enter the deposit fee: "
+			cout << lang.chooseSentence(45);//"Enter number of KRW 1,000 bills: ";
 			cin >> fee_deposited[1000];
 	
 			if (fee_deposited[1000] * 1000 == deposit_fee) {
@@ -152,7 +152,7 @@ void state_withdraw::stateAction() {
 	int withdrawal_fee = primary ? 1000 : 2000;
 
 	int amount;
-	cout << "Please enter the amount to withdraw." << endl;
+	cout << lang.chooseSentence(46);//"Please enter the amount to withdraw.\n" 
 	cout << "Withdrawal Amount: ";
 	cin >> amount;	
 

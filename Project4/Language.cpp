@@ -45,43 +45,39 @@ Language::Language() {//일부 \n추가 필요
     eng.push_back("Select action : \n"); //34
     eng.push_back("Receipt print"); //35
     eng.push_back("Exit Session"); //36
-   
-
-
+    eng.push_back("Invalid choice. Please try again.\n"); //37
+    eng.push_back("Insufficient cash available to dispense the requested amount including fees.\n"); //38
+    eng.push_back("Please select your deposit method.\n"); //39
+    eng.push_back("Enter the amount of the check (or 0 to finish): "); //40
+    eng.push_back("Checks must exceed 100,000 KRW.\n"); //41
+    eng.push_back("Enter the number of checks for this amount: "); //42
+    eng.push_back("Cannot exceed 30 checks in total.The number of checks you can add : " ); //43
+    eng.push_back("Enter the deposit fee: "); //44
+    eng.push_back("Enter number of KRW 1,000 bills: "); //45
+    eng.push_back("Please enter the amount to withdraw.\n"); //46
+    //eng.push_back(); //47
+    //eng.push_back(); //48
+    //eng.push_back(); //49
+    //eng.push_back(); //50
+    //eng.push_back(); //51
+  
+    
 
     //list
 
-    //------
+    //
     /*
   
 
-
-        "Invalid choice. Please try again.\n"
-        "Insufficient cash available to dispense the requested amount including fees."
-        "ATM [SN: "
-        "] Type: "
-        ", Language: "
-        ", remaining cash: {"
-        "}\n"
-        "Account [Bank: "
-        ", No: "
-        ", Owner: "
-        "] Balance: "
-        "Please select your deposit method."
-        "Enter the amount of the check (or 0 to finish): "
-        "Checks must exceed 100,000 KRW.\n"
-        "Enter the number of checks for this amount: "
-        "Cannot exceed 30 checks in total. You can add "
-        " more checks.\n"
-        "Enter the deposit fee: "
-        "Enter number of KRW 1,000 bills: "
-        "Please enter the amount to withdraw."
+        
+       
+        
         "Withdrawal Amount: "
         "The maximum withdrawal amount is 500,000 KRW."
         "Amount less than fee."
         "Maximum withdrawal attempts reached. Session will be terminated.\n"
         "There is not enough cash in the ATM."
-        */
+           */
     //-----
 
 

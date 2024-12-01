@@ -66,11 +66,11 @@ int main() {
                 else if (choice == "4")
                     x = new state_receipt(*account, *atm, primary, *lang);
                 else if (choice == "5")
-                    cout << "Exiting session.\n";
+                    cout << lang->chooseSentence(36) << "\n";
                 else
-                    cout << "Invalid choice. Please try again.\n";
+                    cout << lang->chooseSentence(37);
                 if (endSession) {
-                    cout << "Insufficient cash available to dispense the requested amount including fees." << endl;
+                    cout << lang->chooseSentence(38);//"Insufficient cash available to dispense the requested amount including fees.\n" ;
                     break;
                 }
                 if (x != nullptr) {

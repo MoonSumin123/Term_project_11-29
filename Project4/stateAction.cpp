@@ -173,8 +173,12 @@ void state_withdraw::stateAction() {
 		endSession = true;
 		return;
 	}
-	if (amount+withdrawal_fee > account.getFund()) {
+	if (amount > account.getFund()) {
 		cout << lang.chooseSentence(27) << endl;		//"Insufficient account balance."
+		return;
+	}
+	if (amount+withdrawal_fee > account.getFund()) {
+		cout << lang.chooseSentence(74) << endl;		//"Insufficient account balance(including fee)."
 		return;
 	}
 
@@ -233,7 +237,7 @@ void state_transfer::stateAction() {
 	}
 
 	int transfer_type, amount;
-	cout << lang.chooseSentence(59);	//"Choose transfer type:\n1. Cash Transfer\n2. Account Transfer\n Select Type: "
+	cout << lang.chooseSentence(59);	//"Choose transfer type.\n1. Cash Transfer\t2. Account Transfer\n Select Type: "
 	cin >> transfer_type;
 
 	int transfer_fee;

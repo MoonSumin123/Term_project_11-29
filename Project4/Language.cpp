@@ -41,7 +41,7 @@ Language::Language() {
     eng.push_back("Invalid check."); // 30
     eng.push_back("Invalid amount."); // 31
     eng.push_back("The fee amount inserted is incorrect."); // 32
-    eng.push_back("(1.Cash deposit\t2.Check deposit): "); //33
+    eng.push_back("1. Cash deposit\t2. Check deposit\n Select: "); //33
     eng.push_back("Select action : "); //34
     eng.push_back("Receipt print"); //35
     eng.push_back("Exit Session"); //36
@@ -67,7 +67,7 @@ Language::Language() {
     eng.push_back("Destination bank not found."); //56
     eng.push_back("Enter destination account number: "); //57
     eng.push_back("Destination account not found."); //58
-    eng.push_back("Choose transfer type:\n1. Cash Transfer\n2. Account Transfer\n Select Type: "); //59
+    eng.push_back("Choose transfer type:\n1. Cash Transfer\t2. Account Transfer\n Select Type: "); //59
     eng.push_back("Cash transfer successful."); //60
     eng.push_back("Please enter the amount to transfer."); //61
     eng.push_back("Transfer Amount: "); //62
@@ -82,6 +82,7 @@ Language::Language() {
     eng.push_back("Account transfer successful."); //71
     eng.push_back("Enter amount to deposit into account "); //72
     eng.push_back(" bills"); //73
+    eng.push_back("Insufficient account balance(including fee)."); //74
 
 
     kor.push_back("카드를 삽입하세요 (카드 번호를 입력하세요): "); // 0
@@ -117,7 +118,7 @@ Language::Language() {
     kor.push_back("유효하지 않은 수표입니다."); // 30
     kor.push_back("유효하지 않은 금액입니다."); // 31
     kor.push_back("입력된 수수료 금액이 올바르지 않습니다."); // 32
-    kor.push_back("(1.현금 입금\t2.수표 입금): "); //33
+    kor.push_back("1. 현금 입금\t2. 수표 입금\n선택: "); //33 
     kor.push_back("작업을 선택하세요 : "); // 34
     kor.push_back("영수증 출력"); // 35
     kor.push_back("세션 종료"); // 36
@@ -143,7 +144,7 @@ Language::Language() {
     kor.push_back("목적 은행을 찾을 수 없습니다."); // 56
     kor.push_back("목적 계좌 번호를 입력하세요: "); // 57
     kor.push_back("목적 계좌를 찾을 수 없습니다."); // 58
-    kor.push_back("이체 유형을 선택하세요:\n1. 현금 이체\n2. 계좌 이체\n 선택 유형: "); // 59
+    kor.push_back("이체 유형을 선택하세요:\n1. 현금 이체\t2. 계좌 이체\n 선택 유형: "); // 59
     kor.push_back("현금 이체 성공."); // 60
     kor.push_back("이체할 금액을 입력하세요."); // 61
     kor.push_back("이체 금액: "); // 62
@@ -158,6 +159,7 @@ Language::Language() {
     kor.push_back("계좌 이체 성공."); // 71
     kor.push_back("계좌에 입금할 금액을 입력하세요 "); // 72
     kor.push_back(" 장"); // 73
+    kor.push_back("계좌 잔액이 부족합니다(수수료 포함)."); // 74
 
 }
 

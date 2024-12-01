@@ -52,7 +52,7 @@ Language::Language() {
     eng.push_back("Checks must exceed 100,000 KRW.\n"); //41
     eng.push_back("Enter the number of checks for this amount: "); //42
     eng.push_back("Cannot exceed 30 checks in total.The number of checks you can add : " ); //43
-    eng.push_back("Enter the deposit fee: "); //44
+    eng.push_back("Enter the fee: "); //44
     eng.push_back("Enter number of KRW 1,000 bills: "); //45
     eng.push_back("Please enter the amount to withdraw.\n"); //46
     eng.push_back("Withdrawal Amount: "); //47
@@ -80,7 +80,7 @@ Language::Language() {
     eng.push_back("Total Withdrawal Amount: "); //69
     eng.push_back("Withdrawal Fee: KRW "); //70
     eng.push_back("Account transfer successful."); //71
-    eng.push_back("Enter amount to deposit into account "); //72
+    eng.push_back("Enter amount"); //72
     eng.push_back(" bills"); //73
     eng.push_back("Insufficient account balance(including fee)."); //74
 
@@ -129,7 +129,7 @@ Language::Language() {
     kor.push_back("수표 금액은 최소 100,000원 이상이어야 합니다.\n"); // 41
     kor.push_back("이 금액에 대한 수표 수를 입력하세요: "); // 42
     kor.push_back("총 수표 수는 30장을 초과할 수 없습니다. 추가할 수 있는 수표 수: "); // 43
-    kor.push_back("입금 수수료를 입력하세요: "); // 44
+    kor.push_back("수수료를 입력하세요: "); // 44
     kor.push_back("1,000원권 지폐 수를 입력하세요: "); // 45
     kor.push_back("출금할 금액을 입력하세요.\n"); // 46
     kor.push_back("출금 금액: "); // 47
@@ -157,7 +157,7 @@ Language::Language() {
     kor.push_back("총 출금 금액: "); // 69
     kor.push_back("출금 수수료: 원 "); // 70
     kor.push_back("계좌 이체 성공."); // 71
-    kor.push_back("계좌에 입금할 금액을 입력하세요 "); // 72
+    kor.push_back("금액을 입력하세요 "); // 72
     kor.push_back(" 장"); // 73
     kor.push_back("계좌 잔액이 부족합니다(수수료 포함)."); // 74
 

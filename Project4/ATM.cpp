@@ -221,7 +221,7 @@ string ATM::Transfer(Account* source, Account* destination, int amount, int fee)
 
 unordered_map<int, int> ATM::makeDeposited() {
     unordered_map<int, int> cash_deposited;
-    cout << lang.chooseSentence(72) << endl;    //"Enter amount to deposit into account "
+    cout << lang.chooseSentence(72) << endl;    //"Enter amount"
     cout << lang.chooseSentence(52);//"Enter number of KRW 50,000 bills: ";
     cin >> cash_deposited[50000];
     cout << lang.chooseSentence(53);//"Enter number of KRW 10,000 bills: ";
@@ -240,7 +240,7 @@ unordered_map<int, int> ATM::makeDeposited(int fee) {
     fee_deposited[50000] = 0;
     fee_deposited[10000] = 0;
     fee_deposited[5000] = 0;
-    cout << lang.chooseSentence(44) << fee << endl; //"Enter the deposit fee: "
+    cout << lang.chooseSentence(44) << fee << endl; //"Enter the fee: "
     cout << lang.chooseSentence(45);//"Enter number of KRW 1,000 bills: ";
     cin >> fee_deposited[1000];
     cout << "-------------------------- ";

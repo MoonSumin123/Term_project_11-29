@@ -15,23 +15,11 @@ string Account::getBankName() const {
 
 void Account::addFund(int fund) {
     account_funds += fund;
-    recordAccountHistory("Deposited: " + to_string(fund)); //??
 }
 
 void Account::subFund(int fund) {
     if (fund > 0 && fund <= account_funds) {
         account_funds -= fund;
-        recordAccountHistory("Withdrew: " + to_string(fund)); //??
     }
-}
-
-// ?? Record a transaction
-void Account::recordAccountHistory(const string& transaction) {
-    account_history.push_back(transaction);
-}
-
-// ?? Get the transaction history //이거 사용 여부?
-const vector<string>& Account::getAccountHistory() const {
-    return account_history;
 }
 

@@ -72,7 +72,7 @@ public:
     void recordRecentHistory(const string recent_transaction);
     void printAndClearRecentHistory();
     void recordAtmHistory(const string transaction);
-    vector<string> getAtmHistory();
+    vector<string>& getAtmHistory();
 
 };
 

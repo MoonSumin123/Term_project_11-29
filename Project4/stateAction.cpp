@@ -3,7 +3,13 @@
 #include "STATEDEPOSIT.h"
 #include "STATEWITHDRAW.h"
 #include "STATETRANSFER.h"
+#include "STATERECEIPT.h"
+
 using namespace std;
+
+void state_receipt::stateAction() {
+	atm.printRecentHistory();
+}
 
 void state_snapshot::stateAction() {
 	ostringstream oss;

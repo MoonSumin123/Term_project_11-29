@@ -80,7 +80,7 @@ void state_deposit::stateAction() {
 
 		while (count < 30) {
 			int inserted_check, inserted_count;
-			cout << "Enter the amount of the check (or 0 to finish): ";
+			cout << lang.chooseSentence(40);	//"Enter the amount of the check (or 0 to finish): "
 			cin >> inserted_check;
 
 			if (inserted_check == 0) {
@@ -110,7 +110,7 @@ void state_deposit::stateAction() {
 			if (fee_deposited[1000] * 1000 == deposit_fee) {
 				int fund_amount = atm.deposit(&account, check);
 				atm.deposit(&account, fee_deposited);
-				oss << "Deposit successful. New balance: " << account.getFund();
+				oss << lang.chooseSentence(26) << account.getFund();	//"Deposit successful. New balance: "
 
 				string rec_account;
 				string rec_atm;
@@ -122,19 +122,19 @@ void state_deposit::stateAction() {
 				atm.recordAtmHistory(rec_atm);
 			}
 			else {
-				cout << "The fee amount inserted is incorrect.";
+				cout << lang.chooseSentence(32);	//"The fee amount inserted is incorrect."
 				return;
 			}
 		}
 		else {
-			cout <<"Invalid check." ;
+			cout << lang.chooseSentence(30) ;		//"Invalid check."
 			return;
 		}
 	
 	}
 	
 	else {
-		cout << "Invalid selection. Returning to the main interface.";
+		cout << lang.chooseSentence(24);	//"Invalid selection. Returning to the main interface."
 		return;
 	}
 	cout<<oss.str();
@@ -173,7 +173,7 @@ void state_withdraw::stateAction() {
 		return;
 	}
 	if (amount+withdrawal_fee > account.getFund()) {
-		cout << "Insufficient account balance." << endl;
+		cout << lang.chooseSentence(27) << endl;		//"Insufficient account balance."
 		return;
 	}
 

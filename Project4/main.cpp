@@ -71,6 +71,7 @@ int main() {
                     cout << lang->chooseSentence(36) << "\n";   //Exit Session
                 else
                     cout << lang->chooseSentence(37);   //"Invalid choice. Please try again.\n"
+                
                 if (endSession) {
                     cout << lang->chooseSentence(38);//"Insufficient cash available to dispense the requested amount including fees.\n" ;
                     break;
@@ -81,6 +82,7 @@ int main() {
                 x = nullptr;
                 }
             } while (choice != "5");
+            cout << endl;
             atm->printAndClearRecentHistory();
             cout << "-------------------------- "; //Exit Session line
         }

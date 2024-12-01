@@ -32,9 +32,10 @@ private:
     vector<string> atm_recent_history; 
     vector<string> atm_history;
     static int transaction_id;
+    Language& lang;
 
 public:
-    ATM(string bank, const string& serial_number, const string& type, const string& language, const unordered_map<int, int>& initial_cash);
+    ATM(string bank, const string& serial_number, const string& type, const string& language, const unordered_map<int, int>& initial_cash, Language& lang);
     ~ATM();
 
     string getBankName() { return primary_bank; };

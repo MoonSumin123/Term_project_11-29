@@ -203,7 +203,7 @@ unordered_map<bool, string> ATM::Transfer(Account* destination, int fee) {
         destination->addFund(fund_amount);
         deposit(destination, fee_deposited);
 
-        result[true] = to_string(fund_amount);
+        result[true] = to_string(fund_amount); //transfer amount
     }
     else {
         result[false] = lang.chooseSentence(32);    //"The fee amount inserted is incorrect."
@@ -231,6 +231,7 @@ unordered_map<int, int> ATM::makeDeposited() {
     cin >> cash_deposited[5000];
     cout << lang.chooseSentence(45);//"Enter number of KRW 1,000 bills: ";
     cin >> cash_deposited[1000];
+    cout<< "-------------------------- ";
 
     return cash_deposited;
 }
@@ -243,6 +244,7 @@ unordered_map<int, int> ATM::makeDeposited(int fee) {
     cout << lang.chooseSentence(44) << fee << endl; //"Enter the deposit fee: "
     cout << lang.chooseSentence(45);//"Enter number of KRW 1,000 bills: ";
     cin >> fee_deposited[1000];
+    cout << "-------------------------- ";
 
     return fee_deposited;
 }

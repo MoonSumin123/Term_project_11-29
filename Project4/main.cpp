@@ -48,7 +48,7 @@ int main() {
             int withdrawal_count = 0;
             do {
                 State* x = nullptr;
-                
+                cout << "--------ATM "<<atm->getSerialNumber()<<"------------- ";
                 cout << "1. " << lang->chooseSentence(18) << "\n";  //Deposit
                 cout << "2. " << lang->chooseSentence(19) << "\n";  //Withdraw
                 cout << "3. " << lang->chooseSentence(20) << "\n";  //Transfer
@@ -84,6 +84,7 @@ int main() {
             } while (choice != "5");
             cout << endl;
             atm->printAndClearRecentHistory();
+            cout << "-------------------------- "; //Exit Session line
         }
 	
     } while (sel_or_exit == 1);

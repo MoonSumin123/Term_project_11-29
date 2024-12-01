@@ -5,8 +5,8 @@ vector<ATM*> atms;
 int transaction_id = 1;
 
 // ATM class
-ATM::ATM(string bank, const string& serial_number, const string& type, const string& language, const unordered_map<int, int>& initial_cash)
-    : primary_bank(bank), serial_number(serial_number), type(type), language(language), cash(new Cash()) {
+ATM::ATM(string bank, const string& serial_number, const string& type, const string& language, const unordered_map<int, int>& initial_cash, Language& lang)
+    : primary_bank(bank), serial_number(serial_number), type(type), language(language), cash(new Cash()), lang(lang) {
     for (const auto& pair : initial_cash) {
         cash->addCash(pair.first, pair.second);
     }
@@ -33,7 +33,7 @@ Account* ATM::validCard() {
     string inserted_card_number;
     string entered_password;
 
-    cout << "Please insert your card (Enter card number): ";
+    cout << lang.chooseSentence(0); //"Please insert your card (Enter card number): "
     cin >> inserted_card_number;
 
     if (inserted_card_number == "9999") {
@@ -44,16 +44,16 @@ Account* ATM::validCard() {
         if (isValidCard(inserted_card_number)) { 
             int attempt = 0;
             while (attempt < 3) {
-                cout << "Enter password: ";
+                cout << lang.chooseSentence(1); //"Enter password: "
                 cin >> entered_password;
 
                 if (isCorrectPassword(inserted_card_number, entered_password)) {
                     Account* account = getAccountByCardNumber(inserted_card_number);
-                    cout << "Authorization successful.\n";
+                    cout << lang.chooseSentence(2) << endl;     //"Authorization successful."
                     return account; 
                 }
                 else {
-                    cout << "Wrong password. Try again.\n";
+                    cout << lang.chooseSentence(3) << endl;     //"Wrong password. Try again."
                     attempt++;
                 }
             }
@@ -102,8 +102,12 @@ int ATM::getTotalAvailableCash() const {
 
 
 
-int ATM::deposit(Account* account, unordered_map<int, int>& cash_deposited) {
+int ATM::deposit(Account* account, int check) {
+    account->addFund(check);
+    return check;
+}
 
+int ATM::deposit(Account* account, unordered_map<int, int>& cash_deposited) {
     int total_deposit = 0;
     for (const auto& cash : cash_deposited) {
         int denomination = cash.first; 
@@ -112,7 +116,7 @@ int ATM::deposit(Account* account, unordered_map<int, int>& cash_deposited) {
         this->cash->addCash(denomination, count);
         total_deposit += denomination * count;
     }
-    
+    account->addFund(total_deposit);
     return total_deposit;
 }
 
@@ -202,7 +206,7 @@ unordered_map<bool, string> ATM::cashTransfer(Account* destination, int fee) {
         result[true] = to_string(fund_amount);
     }
     else {
-        result[false] = "The fee amount inserted is incorrect.";
+        result[false] = lang.chooseSentence(32);    //"The fee amount inserted is incorrect."
     }
     return result;
 }

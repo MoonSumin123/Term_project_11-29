@@ -38,7 +38,7 @@ void state_deposit::stateAction() {
 
 	int choice;
 	cout << lang.chooseSentence(39);//"Please select your deposit method.\n";
-	cout << lang.chooseSentence(40);//"1. Cash deposit\n2. Check deposit";
+	cout << lang.chooseSentence(33);	//"1. Cash deposit\n2. Check deposit"
 	cin >> choice;
 	if (choice == 1) {
 		unordered_map<int, int> cash_deposited = atm.makeCashDeposited();
@@ -50,15 +50,14 @@ void state_deposit::stateAction() {
 		}
 		total_cash_count += fee_deposited[1000];
 		if (total_cash_count > 50) {
-			cout << "Cash limit exceeded. Maximum 50 bills allowed.";
+			cout << lang.chooseSentence(25);	//"Cash limit exceeded. Maximum 50 bills allowed."
 			return;
 		}
 	
 		else if (fee_deposited[1000] * 1000 == deposit_fee) {
 			int fund_amount = atm.deposit(&account, cash_deposited);
-			account.addFund(fund_amount);
 			atm.deposit(&account, fee_deposited);
-			oss << "Deposit successful. New balance: " << account.getFund();
+			oss << lang.chooseSentence(26) << account.getFund();	//"Deposit successful. New balance: "
 			
 			string rec_account;
 			string rec_atm;
@@ -70,7 +69,7 @@ void state_deposit::stateAction() {
 			atm.recordAtmHistory(rec_atm);
 		}
 		else {
-			cout << "The fee amount inserted is incorrect.";
+			cout << lang.chooseSentence(32);	//"The fee amount inserted is incorrect."
 			return;
 		}
 			
@@ -109,15 +108,15 @@ void state_deposit::stateAction() {
 			cin >> fee_deposited[1000];
 	
 			if (fee_deposited[1000] * 1000 == deposit_fee) {
-				account.addFund(check);
+				int fund_amount = atm.deposit(&account, check);
 				atm.deposit(&account, fee_deposited);
 				oss << "Deposit successful. New balance: " << account.getFund();
 
 				string rec_account;
 				string rec_atm;
 
-				rec_account = lang.chooseSentence(17) + account.getCardNumber() + " / " + lang.chooseSentence(18) + " / " + to_string(check) + " " + lang.chooseSentence(21) + " / " + lang.chooseSentence(22) + "- , - " + lang.chooseSentence(21) + " / " + lang.chooseSentence(23) + account.getAccountNumber() + ", " + to_string(account.getFund()) + " " + lang.chooseSentence(21);
-				rec_atm = lang.Eng(17) + account.getCardNumber() + " / " + lang.Eng(18) + " / " + to_string(check) + " " + lang.Eng(21) + " / " + lang.Eng(22) + "- , - " + lang.Eng(21) + " / " + lang.Eng(23) + account.getAccountNumber() + ", " + to_string(account.getFund()) + " " + lang.Eng(21);
+				rec_account = lang.chooseSentence(17) + account.getCardNumber() + " / " + lang.chooseSentence(18) + " / " + to_string(fund_amount) + " " + lang.chooseSentence(21) + " / " + lang.chooseSentence(22) + "- , - " + lang.chooseSentence(21) + " / " + lang.chooseSentence(23) + account.getAccountNumber() + ", " + to_string(account.getFund()) + " " + lang.chooseSentence(21);
+				rec_atm = lang.Eng(17) + account.getCardNumber() + " / " + lang.Eng(18) + " / " + to_string(fund_amount) + " " + lang.Eng(21) + " / " + lang.Eng(22) + "- , - " + lang.Eng(21) + " / " + lang.Eng(23) + account.getAccountNumber() + ", " + to_string(account.getFund()) + " " + lang.Eng(21);
 
 				atm.recordRecentHistory(rec_account);
 				atm.recordAtmHistory(rec_atm);

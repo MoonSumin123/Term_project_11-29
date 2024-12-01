@@ -223,11 +223,11 @@ string ATM::accountTransfer(Account* source, Account* destination, int amount, i
 unordered_map<int, int> ATM::makeCashDeposited() {
     unordered_map<int, int> cash_deposited;
     cout << "Enter amount to deposit into account " << endl;
-    cout << "Enter number of KRW 50,000 bills: ";
+    cout << lang.chooseSentence(52);//"Enter number of KRW 50,000 bills: ";
     cin >> cash_deposited[50000];
-    cout << "Enter number of KRW 10,000 bills: ";
+    cout << lang.chooseSentence(53);//"Enter number of KRW 10,000 bills: ";
     cin >> cash_deposited[10000];
-    cout << "Enter number of KRW 5,000 bills: ";
+    cout << lang.chooseSentence(54);//"Enter number of KRW 5,000 bills: ";
     cin >> cash_deposited[5000];
     cout << lang.chooseSentence(45);//"Enter number of KRW 1,000 bills: ";
     cin >> cash_deposited[1000];

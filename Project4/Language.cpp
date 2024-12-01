@@ -60,7 +60,24 @@ Language::Language() {//일부 \n추가 필요
     eng.push_back("Amount less than fee.\n"); //49
     eng.push_back("Maximum withdrawal attempts reached. Session will be terminated.\n"); //50
     eng.push_back("There is not enough cash in the ATM."); //51
+    eng.push_back("Enter number of KRW 50,000 bills: "); //52
+    eng.push_back("Enter number of KRW 10,000 bills: "); //53
+    eng.push_back("Enter number of KRW 5,000 bills: "); //54
+
+    //eng.push_back(); //56
+    //eng.push_back(); //57
+    //eng.push_back(); //58
+    //eng.push_back(); //59
+
+
+
+
     eng.push_back("Enter destination bank name: "); //55
+
+
+           */
+    //-----
+
 
 
     // 한국어 문구 추가
@@ -98,6 +115,28 @@ Language::Language() {//일부 \n추가 필요
     kor.push_back("유효하지 않은 금액입니다."); // 31
     kor.push_back("입력된 수수료 금액이 올바르지 않습니다."); // 32
     kor.push_back("1. 현금 입금\n2. 수표 입금"); //33
+    kor.push_back("작업을 선택하세요 : \n"); // 34
+    kor.push_back("영수증 출력"); // 35
+    kor.push_back("세션 종료"); // 36
+    kor.push_back("유효하지 않은 선택입니다. 다시 시도하세요.\n"); // 37
+    kor.push_back("요청된 금액을 포함한 수수료를 제공할 현금이 부족합니다.\n"); // 38
+    kor.push_back("입금 방식을 선택하세요.\n"); // 39
+    kor.push_back("수표 금액을 입력하세요 (또는 0을 입력해 완료): "); // 40
+    kor.push_back("수표 금액은 최소 100,000원 이상이어야 합니다.\n"); // 41
+    kor.push_back("이 금액에 대한 수표 수를 입력하세요: "); // 42
+    kor.push_back("총 수표 수는 30장을 초과할 수 없습니다. 추가할 수 있는 수표 수: "); // 43
+    kor.push_back("입금 수수료를 입력하세요: "); // 44
+    kor.push_back("1,000원권 지폐 수를 입력하세요: "); // 45
+    kor.push_back("출금할 금액을 입력하세요.\n"); // 46
+    kor.push_back("출금 금액: "); // 47
+    kor.push_back("최대 출금 가능 금액은 500,000원입니다.\n"); // 48
+    kor.push_back("수수료보다 적은 금액입니다.\n"); // 49
+    kor.push_back("최대 출금 시도 횟수를 초과했습니다. 세션이 종료됩니다.\n"); // 50
+    kor.push_back("ATM에 충분한 현금이 없습니다."); // 51
+    kor.push_back("50,000원권 지폐 수를 입력하세요: "); // 52
+    kor.push_back("10,000원권 지폐 수를 입력하세요: "); // 53
+    kor.push_back("5,000원권 지폐 수를 입력하세요: "); // 54
+
 }
 
 Language* Language::getInstance() {

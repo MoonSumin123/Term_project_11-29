@@ -199,7 +199,7 @@ void state_withdraw::stateAction() { //source account 잔액 충분한지 확인
 		string rec_account;
 		string rec_atm;
 
-		rec_account = lang.chooseSentence(17) + account.getCardNumber() + "/" + lang.chooseSentence(19) + to_string(amount) + lang.chooseSentence(21) + "/" + lang.chooseSentence(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + "/" + lang.chooseSentence(23) + lang.chooseSentence(21) + "- , -" + lang.chooseSentence(21);
+		rec_account = lang.chooseSentence(17) + account.getCardNumber() + "/" + lang.chooseSentence(19) + to_string(amount) + lang.chooseSentence(21) + "/" + lang.chooseSentence(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + "/" + lang.chooseSentence(23) + "- , -" + lang.chooseSentence(21);
 		rec_atm = lang.Eng(17) + account.getCardNumber() + "/" + lang.Eng(19) + to_string(amount) + lang.Eng(21) + "/" + lang.Eng(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + lang.Eng(21) + "/" + lang.Eng(23) + "- , -" + lang.Eng(21);
 
 		atm.recordRecentHistory(rec_account);
@@ -277,11 +277,19 @@ void state_transfer::stateAction() {
 		}
 
 		oss << atm.accountTransfer(&account, destination, amount, transfer_fee);
+
+		string rec_account;
+		string rec_atm;
+
+		rec_account = lang.chooseSentence(17) + account.getCardNumber() + "/" + lang.chooseSentence(20) + to_string(amount) + lang.chooseSentence(21) + "/" + lang.chooseSentence(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + "/" + lang.chooseSentence(23) + destination_account_number + to_string(destination->getFund()) + lang.chooseSentence(21);
+		rec_atm = lang.Eng(17) + account.getCardNumber() + "/" + lang.Eng(20) + to_string(amount) + lang.Eng(21) + "/" + lang.Eng(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + lang.Eng(21) + "/" + lang.Eng(23) + destination_account_number + to_string(destination->getFund()) + lang.Eng(21);
+
+		atm.recordRecentHistory(rec_account);
+		atm.recordAtmHistory(rec_atm);
+
 	}
 	else 
 		cout << "Invalid transfer type selected.\n";
 
-	account.recordAccountHistory(oss.str());
-	atm.recordAtmHistory(oss.str());
 	cout << oss.str() << endl;
 }

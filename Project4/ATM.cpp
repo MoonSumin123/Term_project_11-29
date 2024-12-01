@@ -106,8 +106,6 @@ string ATM::withdraw(int remaining_amount, int withdrawal_fee) {
 }
 
 string ATM::cashTransfer(Account* destination, int fee) {
-    Language* lang = Language::getInstance();
-    lang->selectLanguage(*this);
 
     ostringstream oss;
     unordered_map<int, int> cash_deposited = makeCashDeposited(); // 현금 입금 내역

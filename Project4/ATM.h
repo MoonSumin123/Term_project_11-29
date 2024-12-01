@@ -50,6 +50,7 @@ public:
     string printAvailableCash() const;
     int getTotalAvailableCash() const;
 
+    int deposit(Account* account, int check);
     int deposit(Account* account, unordered_map<int, int>& cash_deposited); 
     string withdraw(int amount, int fee);
     bool withdrawAvailable(int amount);

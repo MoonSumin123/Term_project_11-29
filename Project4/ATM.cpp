@@ -102,8 +102,12 @@ int ATM::getTotalAvailableCash() const {
 
 
 
-int ATM::deposit(Account* account, unordered_map<int, int>& cash_deposited) {
+int ATM::deposit(Account* account, int check) {
+    account->addFund(check);
+    return check;
+}
 
+int ATM::deposit(Account* account, unordered_map<int, int>& cash_deposited) {
     int total_deposit = 0;
     for (const auto& cash : cash_deposited) {
         int denomination = cash.first; 
@@ -112,7 +116,7 @@ int ATM::deposit(Account* account, unordered_map<int, int>& cash_deposited) {
         this->cash->addCash(denomination, count);
         total_deposit += denomination * count;
     }
-    
+    account->addFund(total_deposit);
     return total_deposit;
 }
 

@@ -56,7 +56,6 @@ void state_deposit::stateAction() {
 	
 		else if (fee_deposited[1000] * 1000 == deposit_fee) {
 			int fund_amount = atm.deposit(&account, cash_deposited);
-			account.addFund(fund_amount);
 			atm.deposit(&account, fee_deposited);
 			oss << "Deposit successful. New balance: " << account.getFund();
 			
@@ -109,15 +108,15 @@ void state_deposit::stateAction() {
 			cin >> fee_deposited[1000];
 	
 			if (fee_deposited[1000] * 1000 == deposit_fee) {
-				account.addFund(check);
+				int fund_amount = atm.deposit(&account, check);
 				atm.deposit(&account, fee_deposited);
 				oss << "Deposit successful. New balance: " << account.getFund();
 
 				string rec_account;
 				string rec_atm;
 
-				rec_account = lang.chooseSentence(17) + account.getCardNumber() + " / " + lang.chooseSentence(18) + " / " + to_string(check) + " " + lang.chooseSentence(21) + " / " + lang.chooseSentence(22) + "- , - " + lang.chooseSentence(21) + " / " + lang.chooseSentence(23) + account.getAccountNumber() + ", " + to_string(account.getFund()) + " " + lang.chooseSentence(21);
-				rec_atm = lang.Eng(17) + account.getCardNumber() + " / " + lang.Eng(18) + " / " + to_string(check) + " " + lang.Eng(21) + " / " + lang.Eng(22) + "- , - " + lang.Eng(21) + " / " + lang.Eng(23) + account.getAccountNumber() + ", " + to_string(account.getFund()) + " " + lang.Eng(21);
+				rec_account = lang.chooseSentence(17) + account.getCardNumber() + " / " + lang.chooseSentence(18) + " / " + to_string(fund_amount) + " " + lang.chooseSentence(21) + " / " + lang.chooseSentence(22) + "- , - " + lang.chooseSentence(21) + " / " + lang.chooseSentence(23) + account.getAccountNumber() + ", " + to_string(account.getFund()) + " " + lang.chooseSentence(21);
+				rec_atm = lang.Eng(17) + account.getCardNumber() + " / " + lang.Eng(18) + " / " + to_string(fund_amount) + " " + lang.Eng(21) + " / " + lang.Eng(22) + "- , - " + lang.Eng(21) + " / " + lang.Eng(23) + account.getAccountNumber() + ", " + to_string(account.getFund()) + " " + lang.Eng(21);
 
 				atm.recordRecentHistory(rec_account);
 				atm.recordAtmHistory(rec_atm);

@@ -137,6 +137,7 @@
     <ClCompile Include="Language.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="selectATM.cpp" />
+    <ClCompile Include="snapshot.cpp" />
     <ClCompile Include="stateAction.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +145,7 @@
     <ClInclude Include="CARD.h" />
     <ClInclude Include="INITIALIZING.h" />
     <ClInclude Include="SELECTATM.h" />
+    <ClInclude Include="SNAPSHOT.h" />
     <ClInclude Include="STATE.h" />
     <ClInclude Include="ATM.h" />
     <ClInclude Include="BANK.h" />

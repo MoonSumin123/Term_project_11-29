@@ -6,8 +6,8 @@ vector<string> Language::kor;
 string selected_language;
 vector<string> selected_vector;
 
-Language::Language() {//일부 \n추가 필요
-    // 영어 문구 추가
+Language::Language() {
+
     eng.push_back("Please insert your card (Enter card number): "); // 0 
     eng.push_back("Enter password: "); // 1
     eng.push_back("Authorization successful."); // 2
@@ -63,24 +63,27 @@ Language::Language() {//일부 \n추가 필요
     eng.push_back("Enter number of KRW 50,000 bills: "); //52
     eng.push_back("Enter number of KRW 10,000 bills: "); //53
     eng.push_back("Enter number of KRW 5,000 bills: "); //54
-
-    //eng.push_back(); //56
-    //eng.push_back(); //57
-    //eng.push_back(); //58
-    //eng.push_back(); //59
-
-
-
-
     eng.push_back("Enter destination bank name: "); //55
+    eng.push_back("Destination bank not found."); //56
+    eng.push_back("Enter destination account number: "); //57
+    eng.push_back("Destination account not found."); //58
+    eng.push_back("Choose transfer type:\n1. Cash Transfer\n2. Account Transfer\n Select Type: "); //59
+    eng.push_back("Cash transfer successful."); //60
+    eng.push_back("Please enter the amount to transfer."); //61
+    eng.push_back("Transfer Amount: "); //62
+    eng.push_back("Not enough account fund ."); //63
+    eng.push_back("Invalid transfer type selected.\n"); //64
+    eng.push_back("Too many failed attempts. Session terminated.\n"); //65
+    eng.push_back("The card is not valid.\n"); //66
+    eng.push_back("Dispensed cash (including fee):\n"); //67
+    eng.push_back(" bills\n"); //68
+    eng.push_back("Total Withdrawal Amount: "); //69
+    eng.push_back("Withdrawal Fee: KRW "); //70
+    eng.push_back("Account transfer successful."); //71
+    eng.push_back("Enter amount to deposit into account "); //72
+    eng.push_back(" bills"); //73
 
 
-           */
-    //-----
-
-
-
-    // 한국어 문구 추가
     kor.push_back("카드를 삽입하세요 (카드 번호를 입력하세요): "); // 0
     kor.push_back("비밀번호를 입력하세요: "); // 1
     kor.push_back("인증 성공."); // 2
@@ -119,7 +122,7 @@ Language::Language() {//일부 \n추가 필요
     kor.push_back("영수증 출력"); // 35
     kor.push_back("세션 종료"); // 36
     kor.push_back("유효하지 않은 선택입니다. 다시 시도하세요.\n"); // 37
-    kor.push_back("요청된 금액을 포함한 수수료를 제공할 현금이 부족합니다.\n"); // 38
+    kor.push_back("수수료를 포함한 요청된 금액을 제공할 현금이 부족합니다.\n"); // 38
     kor.push_back("입금 방식을 선택하세요.\n"); // 39
     kor.push_back("수표 금액을 입력하세요 (또는 0을 입력해 완료): "); // 40
     kor.push_back("수표 금액은 최소 100,000원 이상이어야 합니다.\n"); // 41
@@ -136,6 +139,25 @@ Language::Language() {//일부 \n추가 필요
     kor.push_back("50,000원권 지폐 수를 입력하세요: "); // 52
     kor.push_back("10,000원권 지폐 수를 입력하세요: "); // 53
     kor.push_back("5,000원권 지폐 수를 입력하세요: "); // 54
+    kor.push_back("목적 은행 이름을 입력하세요: "); // 55
+    kor.push_back("목적 은행을 찾을 수 없습니다."); // 56
+    kor.push_back("목적 계좌 번호를 입력하세요: "); // 57
+    kor.push_back("목적 계좌를 찾을 수 없습니다."); // 58
+    kor.push_back("이체 유형을 선택하세요:\n1. 현금 이체\n2. 계좌 이체\n 선택 유형: "); // 59
+    kor.push_back("현금 이체 성공."); // 60
+    kor.push_back("이체할 금액을 입력하세요."); // 61
+    kor.push_back("이체 금액: "); // 62
+    kor.push_back("계좌 잔액이 부족합니다."); // 63
+    kor.push_back("유효하지 않은 이체 유형이 선택되었습니다.\n"); // 64
+    kor.push_back("입력 시도 횟수를 초과했습니다. 세션이 종료됩니다.\n"); // 65
+    kor.push_back("카드가 유효하지 않습니다.\n"); // 66
+    kor.push_back("지급된 현금 (수수료 포함):\n"); // 67
+    kor.push_back(" 장\n"); // 68
+    kor.push_back("총 출금 금액: "); // 69
+    kor.push_back("출금 수수료: 원 "); // 70
+    kor.push_back("계좌 이체 성공."); // 71
+    kor.push_back("계좌에 입금할 금액을 입력하세요 "); // 72
+    kor.push_back(" 장"); // 73
 
 }
 

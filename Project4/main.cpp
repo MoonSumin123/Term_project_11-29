@@ -48,11 +48,11 @@ int main() {
             do {
                 State* x = nullptr;
                 cout << lang->chooseSentence(34);
-                cout << "1. " << lang->chooseSentence(18) << "\n";
-                cout << "2. " << lang->chooseSentence(19) << "\n";
-                cout << "3. " << lang->chooseSentence(20) << "\n";
-                cout << "4. " << lang->chooseSentence(35) << "\n";
-                cout << "5. " << lang->chooseSentence(36) << "\n";
+                cout << "1. " << lang->chooseSentence(18) << "\n";  //Deposit
+                cout << "2. " << lang->chooseSentence(19) << "\n";  //Withdraw
+                cout << "3. " << lang->chooseSentence(20) << "\n";  //Transfer
+                cout << "4. " << lang->chooseSentence(35) << "\n";  //Receipt Print
+                cout << "5. " << lang->chooseSentence(36) << "\n";  //Exit Session
                 cin >> choice;
 
                 if (choice == "1")
@@ -66,9 +66,9 @@ int main() {
                 else if (choice == "4")
                     x = new state_receipt(*account, *atm, primary, *lang);
                 else if (choice == "5")
-                    cout << lang->chooseSentence(36) << "\n";
+                    cout << lang->chooseSentence(36) << "\n";   //Exit Session
                 else
-                    cout << lang->chooseSentence(37);
+                    cout << lang->chooseSentence(37);   //"Invalid choice. Please try again.\n"
                 if (endSession) {
                     cout << lang->chooseSentence(38);//"Insufficient cash available to dispense the requested amount including fees.\n" ;
                     break;

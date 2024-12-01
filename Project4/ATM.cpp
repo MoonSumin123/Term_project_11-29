@@ -59,12 +59,12 @@ Account* ATM::validCard() {
             }
 
             if (attempt == 3) {
-                cout << "Too many failed attempts. Session terminated.\n";
+                cout << lang.chooseSentence(65);    //"Too many failed attempts. Session terminated.\n"
                 return nullptr; 
             }
         }
         else {
-            cout << "The card is not valid.\n";
+            cout << lang.chooseSentence(66);    //"The card is not valid.\n"
             return nullptr; 
         }
     }
@@ -148,12 +148,12 @@ string ATM::withdraw(int remaining_amount, int withdrawal_fee) {
     }
 
     ostringstream oss;
-    oss << "Dispensed cash (including fee):\n";
+    oss << lang.chooseSentence(67); //"Dispensed cash (including fee):\n"
     for (const auto& pair : cash_dispensed) {
-        oss << "KRW " << pair.first << ": " << pair.second << " bills\n";
+        oss << lang.chooseSentence(21) << " " << pair.first << ": " << pair.second << lang.chooseSentence(68) << endl;  //KRW, bills
     }
-    oss << "Total Withdrawal Amount: " << total_amount << "\n";
-    oss << "Withdrawal Fee: KRW " << withdrawal_fee << "\n";
+    oss << lang.chooseSentence(69) << total_amount << "\n"; //"Total Withdrawal Amount: "
+    oss << lang.chooseSentence(70) << withdrawal_fee << "\n";   //"Withdrawal Fee: KRW "
     return oss.str();
 }
 
@@ -196,7 +196,7 @@ unordered_map<bool, string> ATM::cashTransfer(Account* destination, int fee) {
     }
     total_cash_count += fee_deposited[1000];
     if (total_cash_count > 50) {
-        result[false] = "Cash limit exceeded. Maximum 50 bills allowed.";
+        result[false] = lang.chooseSentence(25);    //"Cash limit exceeded. Maximum 50 bills allowed."
     }
     else if (fee_deposited[1000] * 1000 == fee) {
         int fund_amount = deposit(destination, cash_deposited);
@@ -215,14 +215,14 @@ string ATM::accountTransfer(Account* source, Account* destination, int amount, i
     source->subFund(amount+fee); 
     destination->addFund(amount);
 
-    return "Account transfer successful.";
+    return lang.chooseSentence(71); //"Account transfer successful."
 }
 
 
 
 unordered_map<int, int> ATM::makeCashDeposited() {
     unordered_map<int, int> cash_deposited;
-    cout << "Enter amount to deposit into account " << endl;
+    cout << lang.chooseSentence(72) << endl;    //"Enter amount to deposit into account "
     cout << lang.chooseSentence(52);//"Enter number of KRW 50,000 bills: ";
     cin >> cash_deposited[50000];
     cout << lang.chooseSentence(53);//"Enter number of KRW 10,000 bills: ";
@@ -240,7 +240,7 @@ unordered_map<int, int> ATM::makeFeeDeposited(int fee) {
     fee_deposited[50000] = 0;
     fee_deposited[10000] = 0;
     fee_deposited[5000] = 0;
-    cout << "Enter the deposit fee: " << fee << endl;
+    cout << lang.chooseSentence(44) << fee << endl; //"Enter the deposit fee: "
     cout << lang.chooseSentence(45);//"Enter number of KRW 1,000 bills: ";
     cin >> fee_deposited[1000];
 

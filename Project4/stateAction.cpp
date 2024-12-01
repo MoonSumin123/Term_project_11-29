@@ -206,7 +206,7 @@ void state_transfer::stateAction() {
 	ostringstream oss;
 
 	string destination_account_number, destination_bank_name;
-	cout << "Enter destination bank name: ";
+	cout << lang.chooseSentence(55);	//"Enter destination bank name: "
 	cin >> destination_bank_name;
 
 	Bank* destination_bank = nullptr;
@@ -215,24 +215,24 @@ void state_transfer::stateAction() {
 			destination_bank = vec;
 	}
 	if (destination_bank == nullptr) {
-		cout << "Destination bank not found.\n";
+		cout << lang.chooseSentence(56) << endl;	//"Destination bank not found.
 		return;
 	}
 
-	cout << "Enter destination account number: ";
+	cout << lang.chooseSentence(57);	//"Enter destination account number: "
 	cin >> destination_account_number;
 	if (account.getAccountNumber() == destination_account_number) {
-		cout << "Source and Destination are the same.\n";
+		cout << lang.chooseSentence(28) << endl;	//"Source and Destination are the same.
 		return;
 	}
 	Account* destination = destination_bank->getAccount(destination_account_number);
 	if (destination == nullptr) {
-		cout << "Destination account not found.\n";
+		cout << lang.chooseSentence(58) << endl;	//"Destination account not found.
 		return;
 	}
 
 	int transfer_type, amount;
-	cout << "Choose transfer type:\n1. Cash Transfer\n2. Account Transfer\n Select Type: ";
+	cout << lang.chooseSentence(59);	//"Choose transfer type:\n1. Cash Transfer\n2. Account Transfer\n Select Type: "
 	cin >> transfer_type;
 
 	int transfer_fee;
@@ -243,7 +243,7 @@ void state_transfer::stateAction() {
 		myMap = atm.cashTransfer(destination, transfer_fee); 
 
 		if (myMap.find(true) != myMap.end()) {
-			oss << "Cash transfer successful.";
+			oss << lang.chooseSentence(60);	//"Cash transfer successful."
 			
 			string rec_account;
 			string rec_atm;
@@ -258,8 +258,8 @@ void state_transfer::stateAction() {
 		}
 	}
 	else if (transfer_type == 2) {
-		cout << "Please enter the amount to transfer." << endl;
-		cout << "Transfer Amount: ";
+		cout << lang.chooseSentence(61) << endl;	//"Please enter the amount to transfer."
+		cout << lang.chooseSentence(62);	//"Transfer Amount: "
 		cin >> amount;
 
 		if (primary and (atm.getBankName() == destination->getBankName()))
@@ -273,7 +273,7 @@ void state_transfer::stateAction() {
 			return;
 		}
 		if (amount+transfer_fee > account.getFund()) {
-			cout << "Not enough account fund ." << endl;
+			cout << lang.chooseSentence(63) << endl;	//"Not enough account fund ."
 			return;
 		}
 
@@ -288,7 +288,7 @@ void state_transfer::stateAction() {
 		atm.recordAtmHistory(rec_atm);
 	}
 	else {
-		cout << "Invalid transfer type selected.\n";
+		cout << lang.chooseSentence(64);	//"Invalid transfer type selected.\n"
 		return;
 	}
 	cout << oss.str() << endl;

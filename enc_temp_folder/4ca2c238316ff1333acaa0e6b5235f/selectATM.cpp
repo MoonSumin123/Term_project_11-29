@@ -13,10 +13,8 @@ ATM* selectATM() {
 
         if (action_choice > 0 && action_choice <= atms.size())
             return atms[action_choice - 1];
-        else {
+        else
             cout << "Invalid input. Try again." << endl;
-            break;
-        }
 
     } while (true);
 }

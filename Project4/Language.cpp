@@ -42,6 +42,49 @@ Language::Language() {//일부 \n추가 필요
     eng.push_back("Invalid amount."); // 31
     eng.push_back("The fee amount inserted is incorrect."); // 32
     eng.push_back("1. Cash deposit\n2. Check deposit"); //33
+    eng.push_back("Select action : \n"); //34
+    eng.push_back("Receipt print"); //35
+    eng.push_back("Exit Session"); //36
+   
+
+
+
+    //list
+
+    //------
+    /*
+  
+
+
+        "Invalid choice. Please try again.\n"
+        "Insufficient cash available to dispense the requested amount including fees."
+        "ATM [SN: "
+        "] Type: "
+        ", Language: "
+        ", remaining cash: {"
+        "}\n"
+        "Account [Bank: "
+        ", No: "
+        ", Owner: "
+        "] Balance: "
+        "Please select your deposit method."
+        "Enter the amount of the check (or 0 to finish): "
+        "Checks must exceed 100,000 KRW.\n"
+        "Enter the number of checks for this amount: "
+        "Cannot exceed 30 checks in total. You can add "
+        " more checks.\n"
+        "Enter the deposit fee: "
+        "Enter number of KRW 1,000 bills: "
+        "Please enter the amount to withdraw."
+        "Withdrawal Amount: "
+        "The maximum withdrawal amount is 500,000 KRW."
+        "Amount less than fee."
+        "Maximum withdrawal attempts reached. Session will be terminated.\n"
+        "There is not enough cash in the ATM."
+        */
+    //-----
+
+
 
     // 한국어 문구 추가
     kor.push_back("카드를 삽입하세요 (카드 번호를 입력하세요): "); // 0

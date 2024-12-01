@@ -42,7 +42,7 @@ Language::Language() {
     eng.push_back("Invalid amount."); // 31
     eng.push_back("The fee amount inserted is incorrect."); // 32
     eng.push_back("1. Cash deposit\n2. Check deposit"); //33
-    eng.push_back("Select action : \n"); //34
+    eng.push_back("Select action : "); //34
     eng.push_back("Receipt print"); //35
     eng.push_back("Exit Session"); //36
     eng.push_back("Invalid choice. Please try again.\n"); //37

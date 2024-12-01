@@ -48,12 +48,13 @@ int main() {
             int withdrawal_count = 0;
             do {
                 State* x = nullptr;
-                cout << lang->chooseSentence(34);   //"Select action : \n"
+                
                 cout << "1. " << lang->chooseSentence(18) << "\n";  //Deposit
                 cout << "2. " << lang->chooseSentence(19) << "\n";  //Withdraw
                 cout << "3. " << lang->chooseSentence(20) << "\n";  //Transfer
                 cout << "4. " << lang->chooseSentence(35) << "\n";  //Receipt Print
                 cout << "5. " << lang->chooseSentence(36) << "\n";  //Exit Session
+                cout << lang->chooseSentence(34);   //"Select action : "
                 cin >> choice;
 
                 if (choice == "1")

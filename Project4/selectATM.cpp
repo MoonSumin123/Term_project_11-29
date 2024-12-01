@@ -5,7 +5,7 @@ using namespace std;
 ATM* selectATM() {
     int action_choice;
     do {
-        cout << "Choose an ATM (0 to exit): ";
+        cout << "Choose an ATM (0 to exit)\n";
         for (size_t i = 0; i < atms.size(); ++i) {
             cout << i + 1 << ". ATM Serial Number: " << atms[i]->getSerialNumber() << "\n";
         }

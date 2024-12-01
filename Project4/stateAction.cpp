@@ -145,7 +145,7 @@ void state_withdraw::stateAction() {
 	ostringstream oss; 
 
 	if (withdrawal_count >= 3) {
-		cout << lang.chooseSentence(50);//"Maximum withdrawal attempts reached. Session will be terminated.\n";
+		cout << lang.chooseSentence(50);//"Maximum withdrawal attempts reached. If you want to withdraw more, please log back in after the session ends.\n"; 
 		return; 
 	}
 

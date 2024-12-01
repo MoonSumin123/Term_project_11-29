@@ -84,7 +84,7 @@ int main() {
             } while (choice != "5");
             cout << endl;
             atm->printAndClearRecentHistory();
-            cout << "-------------------------- "; //Exit Session line
+            cout << "-------------------------- " << endl; //Exit Session line
         }
 	
     } while (sel_or_exit == 1);

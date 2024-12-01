@@ -269,7 +269,7 @@ bool ATM::isValidCard(string card_number) {
 
 
 //Receipt
-void ATM::printAccountHistory(Account* account) {
+/*void ATM::printAccountHistory(Account* account) {
     if (account) {
         const auto& account_history = account->getAccountHistory();
         cout << "Transaction history for account " << account->getAccountNumber() << ":\n";
@@ -280,7 +280,7 @@ void ATM::printAccountHistory(Account* account) {
     else {
         cout << "Account not found.\n";
     }
-}
+}*/
 
 //ATM Infomation
 void ATM::printATMInfo() const {

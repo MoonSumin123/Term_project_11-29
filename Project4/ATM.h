@@ -55,11 +55,11 @@ public:
     int deposit(Account* account, unordered_map<int, int>& cash_deposited); 
     string withdraw(int amount, int fee);
     bool withdrawAvailable(int amount);
-    unordered_map<bool, string> cashTransfer(Account* destination, int fee);
-    string accountTransfer(Account* source, Account* destination, int amount, int fee);
+    unordered_map<bool, string> Transfer(Account* destination, int fee);
+    string Transfer(Account* source, Account* destination, int amount, int fee);
 
-    unordered_map<int, int> makeCashDeposited();        
-    unordered_map<int, int> makeFeeDeposited(int fee);
+    unordered_map<int, int> makeDeposited();        
+    unordered_map<int, int> makeDeposited(int fee);
 
     bool is_primary(Account* account) const;
     bool getTransactionAvailable(bool primary) const;

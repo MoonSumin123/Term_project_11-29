@@ -183,11 +183,11 @@ bool ATM::withdrawAvailable(int remaining_amount) {
         return false;
 }
 
-unordered_map<bool, string> ATM::cashTransfer(Account* destination, int fee) {
+unordered_map<bool, string> ATM::Transfer(Account* destination, int fee) {
 
     ostringstream oss;
-    unordered_map<int, int> cash_deposited = makeCashDeposited();
-    unordered_map<int, int> fee_deposited = makeFeeDeposited(fee);
+    unordered_map<int, int> cash_deposited = makeDeposited();
+    unordered_map<int, int> fee_deposited = makeDeposited(fee);
     unordered_map<bool, string> result;
 
     int total_cash_count = 0;
@@ -211,7 +211,7 @@ unordered_map<bool, string> ATM::cashTransfer(Account* destination, int fee) {
     return result;
 }
 
-string ATM::accountTransfer(Account* source, Account* destination, int amount, int fee) {
+string ATM::Transfer(Account* source, Account* destination, int amount, int fee) {
     source->subFund(amount+fee); 
     destination->addFund(amount);
 
@@ -220,7 +220,7 @@ string ATM::accountTransfer(Account* source, Account* destination, int amount, i
 
 
 
-unordered_map<int, int> ATM::makeCashDeposited() {
+unordered_map<int, int> ATM::makeDeposited() {
     unordered_map<int, int> cash_deposited;
     cout << lang.chooseSentence(72) << endl;    //"Enter amount to deposit into account "
     cout << lang.chooseSentence(52);//"Enter number of KRW 50,000 bills: ";
@@ -235,7 +235,7 @@ unordered_map<int, int> ATM::makeCashDeposited() {
     return cash_deposited;
 }
 
-unordered_map<int, int> ATM::makeFeeDeposited(int fee) {
+unordered_map<int, int> ATM::makeDeposited(int fee) {
     unordered_map<int, int> fee_deposited;
     fee_deposited[50000] = 0;
     fee_deposited[10000] = 0;

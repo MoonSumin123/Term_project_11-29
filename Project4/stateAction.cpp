@@ -252,7 +252,7 @@ void state_transfer::stateAction() {
 			
 			string rec_account;
 			string rec_atm;
-			rec_account = lang.chooseSentence(17) + account.getCardNumber() + " / " + lang.chooseSentence(20) + " / " + myMap[true] + " " + lang.chooseSentence(21) + " / " + lang.chooseSentence(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + " " + lang.chooseSentence(21)+  " / " + lang.chooseSentence(23) + destination_account_number + ", " + to_string(destination->getFund()) + " " + lang.chooseSentence(21);
+			rec_account = lang.chooseSentence(17) + account.getCardNumber() + " / " + lang.chooseSentence(20) + " / " + myMap[true] + " " + lang.chooseSentence(21) + " / " + lang.chooseSentence(22) + "-, - " + lang.chooseSentence(21)+  " / " + lang.chooseSentence(23) + destination_account_number + ", " + to_string(destination->getFund()) + " " + lang.chooseSentence(21);
 			rec_atm = lang.Eng(17) + account.getCardNumber() + " / " + lang.Eng(20) + " / " + myMap[true] + " " + lang.Eng(21) + " / " + lang.Eng(22) + " -, - " + lang.Eng(21) + " / " + lang.Eng(23) + destination_account_number + ", " + to_string(destination->getFund()) + " " + lang.Eng(21);
 
 			atm.recordRecentHistory(rec_account);

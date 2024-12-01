@@ -319,6 +319,6 @@ void ATM::recordAtmHistory(const string transaction) {
     atm_history.push_back(transaction);
 }
 
-vector<string> ATM::getAtmHistory() {
+vector<string>& ATM::getAtmHistory() {
     return atm_history;
 }

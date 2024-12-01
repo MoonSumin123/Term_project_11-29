@@ -69,7 +69,7 @@ void initializeSystem(Language& lang) {
 
             Bank* primary_bank = Bank::getOrCreateBank(bank_name);
 
-            ATM* newatm = new ATM(primary_bank->getName(), serial_number, type, language, initial_cash, lang);
+            ATM* newatm = new ATM(*primary_bank, serial_number, type, language, initial_cash, lang);
             atms.push_back(newatm);
             cout << "ATM created successfully and linked to bank: " << bank_name << endl;
         }

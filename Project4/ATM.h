@@ -24,7 +24,7 @@ using namespace std;
 
 class ATM {
 private:
-    string primary_bank;
+    Bank& primary_bank;
     string serial_number;
     string type; 
     string language;
@@ -35,10 +35,10 @@ private:
     Language& lang;
 
 public:
-    ATM(string bank, const string& serial_number, const string& type, const string& language, const unordered_map<int, int>& initial_cash, Language& lang);
+    ATM(Bank& bank, const string& serial_number, const string& type, const string& language, const unordered_map<int, int>& initial_cash, Language& lang);
     ~ATM();
 
-    string getBankName() { return primary_bank; };
+    string getBankName() { return primary_bank.getName(); };
     string getATMtype() { return type; };
     string getLanguage() const { return language; };
     string getSerialNumber() const { return serial_number; };

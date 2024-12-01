@@ -5,7 +5,7 @@ vector<ATM*> atms;
 int transaction_id = 1;
 
 // ATM class
-ATM::ATM(string bank, const string& serial_number, const string& type, const string& language, const unordered_map<int, int>& initial_cash, Language& lang)
+ATM::ATM(Bank& bank, const string& serial_number, const string& type, const string& language, const unordered_map<int, int>& initial_cash, Language& lang)
     : primary_bank(bank), serial_number(serial_number), type(type), language(language), cash(new Cash()), lang(lang) {
     for (const auto& pair : initial_cash) {
         cash->addCash(pair.first, pair.second);
@@ -74,7 +74,7 @@ Account* ATM::validCard() {
 bool ATM::isValidCard(string card_number) {
     Account* account = getAccountByCardNumber(card_number); 
     if (account) {
-        if (type == "Single Bank ATM" && account->getBankName() != primary_bank) {
+        if (type == "Single Bank ATM" && account->getBankName() != primary_bank.getName()) {
             return false;
         }
         return true;
@@ -252,7 +252,7 @@ unordered_map<int, int> ATM::makeDeposited(int fee) {
 
 
 bool ATM::is_primary(Account* account) const {
-    return (primary_bank == account->getBankName());
+    return (primary_bank.getName() == account->getBankName());
 }
 
 bool ATM::getTransactionAvailable (bool primary) const {

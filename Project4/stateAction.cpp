@@ -35,7 +35,8 @@ void state_snapshot::stateAction() {
 		oss << "ATM [SN: " << vec->getSerialNumber() << "] "
 			<< "Type: " << vec->getATMtype() << ", "
 			<< "Language: " << vec->getLanguage() << ", "
-			<< "remaining cash: {" << vec->getTotalAvailableCash() << "}\n";
+			<< "remaining cash: " << vec->getTotalAvailableCash()
+			<< " { " << vec->printAvailableCash() << " }\n";
 	}
 	for (Bank* vec : banks) {
 		for (auto& pair : vec->getAccounts()) {
@@ -280,9 +281,9 @@ void state_transfer::stateAction() {
 		cout << "Transfer Amount: ";
 		cin >> amount;
 
-		if (primary and (account.getBankName() == destination->getBankName()))
+		if (primary and (atm.getBankName() == destination->getBankName()))
 			transfer_fee = 2000;
-		else if (!primary and (account.getBankName() != destination->getBankName()))
+		else if (!primary and (atm.getBankName() != destination->getBankName()))
 			transfer_fee = 4000;
 		else
 			transfer_fee = 3000;

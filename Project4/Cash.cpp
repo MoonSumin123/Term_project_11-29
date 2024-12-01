@@ -33,8 +33,10 @@ void Cash::subCash(int denomination, int count) {
 
 string Cash::printAvailableCash() const {
     ostringstream oss;
+    string sep = "";
     for (const auto& cash : cash_available) {
-        oss << "KRW " << cash.first << ": " << cash.second << " bills\n";
+        oss << sep << "KRW " << cash.first << ": " << cash.second << " bills";
+        sep = ", ";
     }
     return oss.str();
 }

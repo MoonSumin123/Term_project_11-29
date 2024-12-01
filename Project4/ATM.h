@@ -56,7 +56,7 @@ public:
     int deposit(Account* account, unordered_map<int, int>& cash_deposited); 
     string withdraw(int amount, int fee);
     bool withdrawAvailable(int amount);
-    string cashTransfer(Account* destination, int fee);
+    unordered_map<bool, string> cashTransfer(Account* destination, int fee);
     string accountTransfer(Account* source, Account* destination, int amount, int fee);
 
     unordered_map<int, int> makeCashDeposited();        

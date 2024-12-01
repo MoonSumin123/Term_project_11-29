@@ -108,31 +108,36 @@ string ATM::withdraw(int remaining_amount, int withdrawal_fee) {
     return oss.str();
 }
 
-string ATM::cashTransfer(Account* destination, int fee) {
-    Language* lang = Language::getInstance();
-    lang->selectLanguage(*this);
+unordered_map<bool, string> ATM::cashTransfer(Account* destination, int fee) {
 
     ostringstream oss;
     unordered_map<int, int> cash_deposited = makeCashDeposited(); // 현금 입금 내역
     unordered_map<int, int> fee_deposited = makeFeeDeposited(fee);
+    unordered_map<bool, string> result;
+
     int total_cash_count = 0;//limit 50 
     for (const auto& cash : cash_deposited) {
         total_cash_count += cash.second;
     }
     total_cash_count += fee_deposited[1000];
     if (total_cash_count > 50) {
-        oss << "Cash limit exceeded. Maximum 50 bills allowed.";
+        result[false] = "Cash limit exceeded. Maximum 50 bills allowed.";
+        //oss << "Cash limit exceeded. Maximum 50 bills allowed.";
     }
     else if (fee_deposited[1000] * 1000 == fee) {
         int fund_amount = deposit(destination, cash_deposited);
         destination->addFund(fund_amount);
         deposit(destination, fee_deposited);
 
-        oss << "Cash transfer successful.";
+        result[true] = to_string(fund_amount);
+        //oss << "Cash transfer successful.";
     }
-    else
-        oss << "The fee amount inserted is incorrect.";
-    return oss.str();
+    else {
+        result[false] = "The fee amount inserted is incorrect.";
+        //oss << "The fee amount inserted is incorrect.";
+    }
+    return result;
+    //return oss.str();
 }
 
 string ATM::accountTransfer(Account* source, Account* destination, int amount, int fee) {

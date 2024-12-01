@@ -66,8 +66,8 @@ Language::Language() {//일부 \n추가 필요
     kor.push_back("출금"); // 19
     kor.push_back("이체"); // 20
     kor.push_back("원"); // 21
-    kor.push_back("입금 계좌: "); // 22
-    kor.push_back("출금 계좌: "); // 23
+    kor.push_back("출금 계좌: "); // 22
+    kor.push_back("입금 계좌: "); // 23
     kor.push_back("유효하지 않은 선택입니다. 메인 인터페이스로 돌아갑니다."); // 24
     kor.push_back("현금 한도 초과. 최대 50장까지 허용됩니다."); // 25
     kor.push_back("입금 성공. 새 잔액: "); // 26

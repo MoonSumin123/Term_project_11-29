@@ -1,6 +1,6 @@
 ﻿#include "INITIALIZING.h"
 
-void initializeSystem() {
+void initializeSystem(Language& lang) {
     int choice;
     do {
         cout << "1. Create Account\n2. Create ATM\n3. Start Program\nChoose an option: ";
@@ -69,7 +69,7 @@ void initializeSystem() {
 
             Bank* primary_bank = Bank::getOrCreateBank(bank_name);
 
-            ATM* newatm = new ATM(primary_bank->getName(), serial_number, type, language, initial_cash);
+            ATM* newatm = new ATM(primary_bank->getName(), serial_number, type, language, initial_cash, lang);
             atms.push_back(newatm);
             cout << "ATM created successfully and linked to bank: " << bank_name << endl;
         }

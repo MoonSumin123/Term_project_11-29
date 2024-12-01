@@ -24,7 +24,8 @@
 using namespace std;
 
 int main() {
-	initializeSystem();
+    Language* lang = Language::getInstance();
+	initializeSystem(*lang);
 
     int sel_or_exit;
 	do {
@@ -33,7 +34,7 @@ int main() {
 
         if (sel_or_exit == 1) {
             ATM* atm = selectATM();
-	        Language* lang = Language::getInstance();
+	        //Language* lang = Language::getInstance();
             lang->selectLanguage(*atm);
             lang->selectVector();
             bool endSession=false;
@@ -47,7 +48,7 @@ int main() {
             int withdrawal_count = 0;
             do {
                 State* x = nullptr;
-                cout << lang->chooseSentence(34);
+                cout << lang->chooseSentence(34);   //"Select action : \n"
                 cout << "1. " << lang->chooseSentence(18) << "\n";  //Deposit
                 cout << "2. " << lang->chooseSentence(19) << "\n";  //Withdraw
                 cout << "3. " << lang->chooseSentence(20) << "\n";  //Transfer

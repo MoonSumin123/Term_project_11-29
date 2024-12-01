@@ -3,7 +3,8 @@
 
 #include "ATM.h"
 #include "ACCOUNT.h"
+#include "LANGUAGE.h"
 
-void initializeSystem();
+void initializeSystem(Language& lang);
 
 #endif INITIALIZING_H

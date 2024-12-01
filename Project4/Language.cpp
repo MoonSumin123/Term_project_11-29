@@ -41,7 +41,7 @@ Language::Language() {
     eng.push_back("Invalid check."); // 30
     eng.push_back("Invalid amount."); // 31
     eng.push_back("The fee amount inserted is incorrect."); // 32
-    eng.push_back("1. Cash deposit\n2. Check deposit"); //33
+    eng.push_back("(1.Cash deposit\t2.Check deposit): "); //33
     eng.push_back("Select action : "); //34
     eng.push_back("Receipt print"); //35
     eng.push_back("Exit Session"); //36
@@ -117,7 +117,7 @@ Language::Language() {
     kor.push_back("유효하지 않은 수표입니다."); // 30
     kor.push_back("유효하지 않은 금액입니다."); // 31
     kor.push_back("입력된 수수료 금액이 올바르지 않습니다."); // 32
-    kor.push_back("1. 현금 입금\n2. 수표 입금"); //33
+    kor.push_back("(1.현금 입금\t2.수표 입금): "); //33
     kor.push_back("작업을 선택하세요 : "); // 34
     kor.push_back("영수증 출력"); // 35
     kor.push_back("세션 종료"); // 36
@@ -176,7 +176,7 @@ void Language::selectLanguage(ATM& atm) {
         bool finish = false;
         do {
             int languagetype;
-            cout << "Select the language: 1.english 2.한국어" << endl;
+            cout << "Select the language (1.english\t2.한국어): ";
             cin >> languagetype;
 
             if (languagetype == 1) {

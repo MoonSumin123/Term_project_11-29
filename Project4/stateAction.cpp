@@ -38,7 +38,7 @@ void state_deposit::stateAction() {
 
 	int choice;
 	cout << lang.chooseSentence(39);//"Please select your deposit method.\n";
-	cout << lang.chooseSentence(33);	//"1. Cash deposit\n2. Check deposit"
+	cout << lang.chooseSentence(33);	//"(1.Cash deposit\t2.Check deposit): "
 	cin >> choice;
 	if (choice == 1) {
 		unordered_map<int, int> cash_deposited = atm.makeDeposited();

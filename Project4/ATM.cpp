@@ -13,7 +13,6 @@ ATM::ATM(Bank& bank, const string& serial_number, const string& type, const stri
 }
 ATM::~ATM() {
     delete cash;
-    cout << "[Destructor] ATM: " << serial_number << endl;
 }
 
 

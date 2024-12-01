@@ -2,13 +2,12 @@
 
 std::vector<Bank*> banks;
 
-Bank::Bank(const string& bank_name) : name(bank_name) { cout << "[Constructor] Bank: " << name << endl; }
+Bank::Bank(const string& bank_name) : name(bank_name) {}
 
 Bank::~Bank() {
     for (auto& pair : bank_accounts) {
         delete pair.second;
     }
-    cout << "[Destructor] Bank: " << name << endl;
 }
 
 

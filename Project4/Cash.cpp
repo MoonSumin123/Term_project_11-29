@@ -4,9 +4,7 @@ using namespace std;
 
 Cash::Cash() {}
 
-Cash::~Cash() {
-    cout << "[Destructor] Cash" << endl;
-}
+Cash::~Cash() {}
 
 
 

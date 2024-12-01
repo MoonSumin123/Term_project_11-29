@@ -89,6 +89,8 @@ int main() {
 	
     } while (sel_or_exit == 1);
 
+    cout << "Exit the program." << endl;
+
     for (ATM* vec : atms)
         delete vec;
     for (Bank* vec : banks)

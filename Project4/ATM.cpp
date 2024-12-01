@@ -116,7 +116,7 @@ int ATM::deposit(Account* account, unordered_map<int, int>& cash_deposited) {
         this->cash->addCash(denomination, count);
         total_deposit += denomination * count;
     }
-    account->addFund(total_deposit);
+    //account->addFund(total_deposit);
     return total_deposit;
 }
 

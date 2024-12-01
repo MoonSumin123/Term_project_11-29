@@ -56,6 +56,7 @@ void state_deposit::stateAction() {
 	
 		else if (fee_deposited[1000] * 1000 == deposit_fee) {
 			int fund_amount = atm.deposit(&account, cash_deposited);
+			account.addFund(fund_amount);
 			atm.deposit(&account, fee_deposited);
 			oss << lang.chooseSentence(26) << account.getFund();	//"Deposit successful. New balance: "
 			

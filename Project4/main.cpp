@@ -78,14 +78,20 @@ int main() {
                     cout << "Insufficient cash available to dispense the requested amount including fees." << endl;//현재는 endSession이 쓰이는 경우가 이 경우밖에 없음
                     break;
                 }
-                if (x!=nullptr) 
+                if (x != nullptr) {
                     x->stateAction();
-
+                    delete x;
+                    x = nullptr;
+                }
             } while (choice != "4"); // Exting sesstion
             // print summary
             atm->printAndClearRecentHistory();
-            withdrawal_count = 0;
         }
 	
     } while (sel_or_exit == 1);
+
+    for (ATM* vec : atms)
+        delete vec;
+    for (Bank* vec : banks)
+        delete vec;
 }

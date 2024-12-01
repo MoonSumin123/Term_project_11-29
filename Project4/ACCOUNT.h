@@ -25,7 +25,6 @@ private:
     string account_password; 
     int account_funds; 
     string card_number;
-    vector<string> account_history; 
 
 public:
     Account(string bank_name, string user_name, int initial_funds, string password, string card_number, const string& account_number);

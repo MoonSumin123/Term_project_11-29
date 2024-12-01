@@ -41,8 +41,8 @@ void state_deposit::stateAction() {
 	cout << lang.chooseSentence(33);	//"1. Cash deposit\n2. Check deposit"
 	cin >> choice;
 	if (choice == 1) {
-		unordered_map<int, int> cash_deposited = atm.makeCashDeposited();
-		unordered_map<int, int> fee_deposited = atm.makeFeeDeposited(deposit_fee); 
+		unordered_map<int, int> cash_deposited = atm.makeDeposited();
+		unordered_map<int, int> fee_deposited = atm.makeDeposited(deposit_fee); 
 		
 		int total_cash_count = 0;
 		for (const auto& cash : cash_deposited) {
@@ -241,7 +241,7 @@ void state_transfer::stateAction() {
 		transfer_fee = 1000;
 
 		unordered_map<bool, string> myMap;
-		myMap = atm.cashTransfer(destination, transfer_fee); 
+		myMap = atm.Transfer(destination, transfer_fee); 
 
 		if (myMap.find(true) != myMap.end()) {
 			oss << lang.chooseSentence(60);	//"Cash transfer successful."
@@ -278,7 +278,7 @@ void state_transfer::stateAction() {
 			return;
 		}
 
-		oss << atm.accountTransfer(&account, destination, amount, transfer_fee);
+		oss << atm.Transfer(&account, destination, amount, transfer_fee);
 
 		string rec_account;
 		string rec_atm;

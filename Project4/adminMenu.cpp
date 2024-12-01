@@ -13,7 +13,7 @@ void admin_menu() {
     if (oss.str().empty()) {
         return;
     }
-    cout << oss.str();
+    cout << oss.str() << endl;
     outputHistoryToFile(oss.str());
 }
 

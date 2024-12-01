@@ -50,7 +50,7 @@ void state_deposit::stateAction() {
 		}
 		total_cash_count += fee_deposited[1000];
 		if (total_cash_count > 50) {
-			cout << lang.chooseSentence(25);	//"Cash limit exceeded. Maximum 50 bills allowed."
+			cout << lang.chooseSentence(25) << endl;	//"Cash limit exceeded. Maximum 50 bills allowed."
 			return;
 		}
 	
@@ -70,7 +70,7 @@ void state_deposit::stateAction() {
 			atm.recordAtmHistory(rec_atm);
 		}
 		else {
-			cout << lang.chooseSentence(32);	//"The fee amount inserted is incorrect."
+			cout << lang.chooseSentence(32) << endl;	//"The fee amount inserted is incorrect."
 			return;
 		}
 			
@@ -123,19 +123,19 @@ void state_deposit::stateAction() {
 				atm.recordAtmHistory(rec_atm);
 			}
 			else {
-				cout << lang.chooseSentence(32);	//"The fee amount inserted is incorrect."
+				cout << lang.chooseSentence(32) << endl;	//"The fee amount inserted is incorrect."
 				return;
 			}
 		}
 		else {
-			cout << lang.chooseSentence(30) ;		//"Invalid check."
+			cout << lang.chooseSentence(30) << endl ;		//"Invalid check."
 			return;
 		}
 	
 	}
 	
 	else {
-		cout << lang.chooseSentence(24);	//"Invalid selection. Returning to the main interface."
+		cout << lang.chooseSentence(24) << endl;	//"Invalid selection. Returning to the main interface."
 		return;
 	}
 	cout<<oss.str();
@@ -186,8 +186,8 @@ void state_withdraw::stateAction() {
 		string rec_account;
 		string rec_atm;
 
-		rec_account = lang.chooseSentence(17) + account.getCardNumber() + "/" + lang.chooseSentence(19) + to_string(amount) + lang.chooseSentence(21) + "/" + lang.chooseSentence(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + "/" + lang.chooseSentence(23) + "- , -" + lang.chooseSentence(21);
-		rec_atm = lang.Eng(17) + account.getCardNumber() + "/" + lang.Eng(19) + to_string(amount) + lang.Eng(21) + "/" + lang.Eng(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + lang.Eng(21) + "/" + lang.Eng(23) + "- , -" + lang.Eng(21);
+		rec_account = lang.chooseSentence(17) + account.getCardNumber() + " / " + lang.chooseSentence(19) + " / " + to_string(amount) + " " + lang.chooseSentence(21) + " / " + lang.chooseSentence(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + " " + lang.chooseSentence(21) + " / " + lang.chooseSentence(23) + "- , - " + lang.chooseSentence(21);
+		rec_atm = lang.Eng(17) + account.getCardNumber() + " / " + lang.Eng(19) + " / " + to_string(amount) + " " + lang.Eng(21) + " / " + lang.Eng(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + " " + lang.Eng(21) + " / " + lang.Eng(23) + "- , - " + lang.Eng(21);
 
 		atm.recordRecentHistory(rec_account);
 		atm.recordAtmHistory(rec_atm);
@@ -248,8 +248,8 @@ void state_transfer::stateAction() {
 			
 			string rec_account;
 			string rec_atm;
-			rec_account = lang.chooseSentence(17) + account.getCardNumber() + "/" + lang.chooseSentence(20) + myMap[true] + lang.chooseSentence(21) + "/" + lang.chooseSentence(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + "/" + lang.chooseSentence(23) + destination_account_number + to_string(destination->getFund()) + lang.chooseSentence(21);
-			rec_atm = lang.Eng(17) + account.getCardNumber() + "/" + lang.Eng(20) + myMap[true] + lang.Eng(21) + "/" + lang.Eng(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + lang.Eng(21) + "/" + lang.Eng(23) + destination_account_number + to_string(destination->getFund()) + lang.Eng(21);
+			rec_account = lang.chooseSentence(17) + account.getCardNumber() + " / " + lang.chooseSentence(20) + " / " + myMap[true] + " " + lang.chooseSentence(21) + " / " + lang.chooseSentence(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + " " + lang.chooseSentence(21)+  " / " + lang.chooseSentence(23) + destination_account_number + ", " + to_string(destination->getFund()) + " " + lang.chooseSentence(21);
+			rec_atm = lang.Eng(17) + account.getCardNumber() + " / " + lang.Eng(20) + " / " + myMap[true] + " " + lang.Eng(21) + " / " + lang.Eng(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + " " + lang.Eng(21) + " / " + lang.Eng(23) + destination_account_number + ", " + to_string(destination->getFund()) + " " + lang.Eng(21);
 
 			atm.recordRecentHistory(rec_account);
 			atm.recordAtmHistory(rec_atm);
@@ -270,7 +270,7 @@ void state_transfer::stateAction() {
 		else
 			transfer_fee = 3000;
 		if (amount <= transfer_fee) {
-			cout << lang.chooseSentence(49);//"Amount less than fee."
+			cout << lang.chooseSentence(49) << endl;//"Amount less than fee."
 			return;
 		}
 		if (amount+transfer_fee > account.getFund()) {
@@ -282,7 +282,7 @@ void state_transfer::stateAction() {
 
 		string rec_account;
 		string rec_atm;
-		rec_account = lang.chooseSentence(17) + account.getCardNumber() + "/" + lang.chooseSentence(20) + to_string(amount) + lang.chooseSentence(21) + "/" + lang.chooseSentence(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + "/" + lang.chooseSentence(23) + destination_account_number + to_string(destination->getFund()) + lang.chooseSentence(21);
+		rec_account = lang.chooseSentence(17) + account.getCardNumber() + " / " + lang.chooseSentence(20) + " / " + to_string(amount) + " " + lang.chooseSentence(21) + " / " + lang.chooseSentence(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + " " + lang.chooseSentence(21) + " / " + lang.chooseSentence(23) + destination_account_number + ", " + to_string(destination->getFund()) + " " + lang.chooseSentence(21);
 		rec_atm = lang.Eng(17) + account.getCardNumber() + "/" + lang.Eng(20) + to_string(amount) + lang.Eng(21) + "/" + lang.Eng(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + lang.Eng(21) + "/" + lang.Eng(23) + destination_account_number + to_string(destination->getFund()) + lang.Eng(21);
 
 		atm.recordRecentHistory(rec_account);

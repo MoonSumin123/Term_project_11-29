@@ -150,7 +150,7 @@ string ATM::withdraw(int remaining_amount, int withdrawal_fee) {
     ostringstream oss;
     oss << lang.chooseSentence(67); //"Dispensed cash (including fee):\n"
     for (const auto& pair : cash_dispensed) {
-        oss << lang.chooseSentence(21) << " " << pair.first << ": " << pair.second << lang.chooseSentence(68) << endl;  //KRW, bills
+        oss << pair.first << " " << lang.chooseSentence(21)  << ": " << pair.second << lang.chooseSentence(68) << endl;  //KRW, bills
     }
     oss << lang.chooseSentence(69) << total_amount << "\n"; //"Total Withdrawal Amount: "
     oss << lang.chooseSentence(70) << withdrawal_fee << "\n";   //"Withdrawal Fee: KRW "

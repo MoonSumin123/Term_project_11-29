@@ -80,8 +80,8 @@ int main() {
                 }
                 if (x != nullptr) {
                     x->stateAction();
-                    delete x;
-                    x = nullptr;
+                delete x;
+                x = nullptr;
                 }
             } while (choice != "4"); // Exting sesstion
             // print summary

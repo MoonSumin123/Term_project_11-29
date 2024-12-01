@@ -52,10 +52,12 @@ bool ATM::withdrawAvailable(int remaining_amount) {
     // Withdraw cash using the largest denominations first
     for (int denomination : denominations) {
         int count = 0;
+        int cash_count = available_cash[denomination];
 
-        while (remaining_amount >= denomination && available_cash[denomination] > 0) {
+        while (remaining_amount >= denomination && cash_count > 0) {
             count++;
             remaining_amount -= denomination;
+            cash_count--;
         }
     }
 
@@ -69,7 +71,7 @@ string ATM::withdraw(int remaining_amount, int withdrawal_fee) {
     int total_amount = remaining_amount;
     
     unordered_map<int, int> cash_dispensed; // Cash to be dispensed
-    unordered_map<int, int> available_cash = cash->getAvailableCash();// ATM 가용 현금 불러오기
+    unordered_map<int, int>& available_cash = cash->getAvailableCash();// ATM 가용 현금 불러오기
 
     // 역순으로 지폐 불러오기
     vector<int> denominations;
@@ -86,6 +88,7 @@ string ATM::withdraw(int remaining_amount, int withdrawal_fee) {
             count++;
             remaining_amount -= denomination; //largest denomination
             cash->subCash(denomination, 1); // update ATM Cash
+
         }
 
         if (count > 0) {

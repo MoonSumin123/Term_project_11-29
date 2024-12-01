@@ -9,7 +9,7 @@ Cash::~Cash() {
 
 int Cash::getValue() const { return cash_value; };//총 금액 반환 cash_value를 변동이 있을때마다 매번 업데이트해야 함
 
-unordered_map<int, int> Cash::getAvailableCash() {
+unordered_map<int, int>& Cash::getAvailableCash() {
     return cash_available;
 }
 
@@ -27,9 +27,8 @@ void Cash::addCash(int denomination, int count) {
     cash_value += denomination * count; // 총 금액 업데이트
 }
 void Cash::subCash(int denomination, int count) {
-    if (cash_available[denomination] >= count) {
-        cash_available[denomination] -= count;
-    }
+    cash_available[denomination] -= count;
+    cash_value -= denomination * count; // 총 금액 업데이트
 }
 
 string Cash::printAvailableCash() const {

@@ -5,7 +5,7 @@
 void admin_menu() {
     Language* lang = Language::getInstance();
     ostringstream oss;
-    oss << (lang->chooseSentence(7)); // cout << "Transaction History admin Menu\n"; 
+    oss << (lang->chooseSentence(7)) << "\n"; // cout << "Transaction History admin Menu\n"; 
     oss << "-------------------------------------------\n";
     //oss << "ATM SN\tID\tCard Number\tType\tAmount\tDetails\n";//표 처럼 할지 or 한줄에 다 알려줄지
     oss << "-------------------------------------------\n";
@@ -13,7 +13,7 @@ void admin_menu() {
         vector<string> atm_history = atm->getAtmHistory(); // 각 ATM의 거래 내역 가져오기
         for (size_t index = 0; index < atm_history.size(); ++index) {
             //oss << atm.getSerialNumber() <<"\t" << index << "\t" << atm_history[index];
-            oss <<"ATM SN: " << atm->getSerialNumber() << "\t" << "ID: "<<index << "\t" << atm_history[index];
+            oss <<"ATM SN: " << atm->getSerialNumber() << "\t" << "ID: "<<index << "\t" << atm_history[index] << "\n";
         }
     }
     outputHistoryToFile(oss.str());

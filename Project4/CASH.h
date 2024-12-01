@@ -23,7 +23,7 @@ public:
     Cash();
     ~Cash();
 
-    unordered_map<int, int> getAvailableCash();
+    unordered_map<int, int>& getAvailableCash();
     int getValue() const;
     int getTotalAvailableCash() const;
 

@@ -44,7 +44,8 @@ void state_deposit::stateAction() {
 		}
 		total_cash_count += fee_deposited[1000];
 		if (total_cash_count > 50) {
-			oss << "Cash limit exceeded. Maximum 50 bills allowed.";
+			cout << "Cash limit exceeded. Maximum 50 bills allowed.";
+			return;
 		}
 	
 		else if (fee_deposited[1000] * 1000 == deposit_fee) {
@@ -62,8 +63,11 @@ void state_deposit::stateAction() {
 			atm.recordRecentHistory(rec_account);
 			atm.recordAtmHistory(rec_atm);
 		}
-		else
-			oss << "The fee amount inserted is incorrect.";
+		else {
+			cout << "The fee amount inserted is incorrect.";
+			return;
+		}
+			
 	}
 	else if (choice == 2) {
 		int count = 0;
@@ -113,18 +117,22 @@ void state_deposit::stateAction() {
 				atm.recordAtmHistory(rec_atm);
 			}
 			else {
-				oss << "The fee amount inserted is incorrect.";
+				cout << "The fee amount inserted is incorrect.";
+				return;
 			}
 		}
 		else {
-			oss <<"Invalid check." ;
+			cout <<"Invalid check." ;
+			return;
 		}
 	
 	}
 	
 	else {
-		oss << "Invalid selection. Returning to the main interface.";
+		cout << "Invalid selection. Returning to the main interface.";
+		return;
 	}
+	cout<<oss.str();
 }
 
 void state_withdraw::stateAction() {
@@ -181,8 +189,10 @@ void state_withdraw::stateAction() {
 		withdrawal_count++;
 		oss << result;
 	}
-	else 
-		oss << "There is not enough cash in the ATM.";
+	else {
+		cout << "There is not enough cash in the ATM.";
+		return;
+	}
 
 	cout << oss.str();
 }
@@ -228,8 +238,8 @@ void state_transfer::stateAction() {
 		myMap = atm.cashTransfer(destination, transfer_fee); 
 
 		if (myMap.find(true) != myMap.end()) {
-			cout << "Cash transfer successful.";
-
+			oss << "Cash transfer successful.";
+			
 			string rec_account;
 			string rec_atm;
 			rec_account = lang.chooseSentence(17) + account.getCardNumber() + "/" + lang.chooseSentence(20) + myMap[true] + lang.chooseSentence(21) + "/" + lang.chooseSentence(22) + account.getAccountNumber() + ", " + to_string(account.getFund()) + "/" + lang.chooseSentence(23) + destination_account_number + to_string(destination->getFund()) + lang.chooseSentence(21);
@@ -272,8 +282,9 @@ void state_transfer::stateAction() {
 		atm.recordRecentHistory(rec_account);
 		atm.recordAtmHistory(rec_atm);
 	}
-	else 
+	else {
 		cout << "Invalid transfer type selected.\n";
-
+		return;
+	}
 	cout << oss.str() << endl;
 }

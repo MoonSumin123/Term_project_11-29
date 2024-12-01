@@ -25,7 +25,6 @@ private:
     string account_password; // Account password
     int account_funds; // Account balance
     string card_number;
-    vector<string> account_history; // Transaction history ??
 
 public:
     Account(string bank_name, string user_name, int initial_funds, string password, string card_number, const string& account_number);
@@ -40,8 +39,6 @@ public:
     string getUserName() const { return account_user_name; }
     string getPassword() const { return account_password; } // Get the account password
     int getFund() const { return account_funds; } // Get the account balance
-    const vector<string>& getAccountHistory() const; // Get transaction history //??
-    void recordAccountHistory(const string& transaction); // Record a transaction
 };
 
 #endif ACCOUNT_H

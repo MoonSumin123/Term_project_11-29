@@ -32,8 +32,6 @@ public:
     void selectVector();
     string chooseSentence(int index);
     string Eng(int index);
-    void printIn(const string& str);
-    void printError(const string& str);
 };
 
 

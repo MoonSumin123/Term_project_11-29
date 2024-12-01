@@ -132,14 +132,3 @@ string Language::Eng(int index) {
     }
     return eng[index];
 }
-
-//Input 받을 시 사용하는 print //out도 별도로 필요할지?
-void Language::printIn(const string& str) {
-    cout << str << endl;
-}
-
-//error 출력 시 사용하는 print
-void Language::printError(const string& str) {
-    cerr << str << endl; //std::cout 변수는 버퍼를 가지고 있어서 버퍼에 데이터가 쌓이면 출력하지만, 
-    //std::cerr 변수는 버퍼가 없어서 즉시 화면에 출력한다는 차이점이 있음. 때문에 에러 발생 시 에러 메시지를 곧바로 받기 위해 사용.
-}

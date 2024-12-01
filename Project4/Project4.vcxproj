@@ -154,6 +154,7 @@
     <ClInclude Include="STATETRANSFER.h" />
     <ClInclude Include="LANGUAGE.h" />
     <ClInclude Include="STATEWITHDRAW.h" />
+    <ClInclude Include="STATERECEIPT.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

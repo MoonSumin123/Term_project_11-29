@@ -264,6 +264,12 @@ void ATM::recordRecentHistory(const string recent_transaction) {
     atm_recent_history.push_back(recent_transaction);
 }
 
+void ATM::printRecentHistory() {
+    for (const string& history : atm_recent_history) {
+        cout << history << endl;
+    }
+}
+
 void ATM::printAndClearRecentHistory() {
     for (const string& history : atm_recent_history) {
         cout << history << endl;

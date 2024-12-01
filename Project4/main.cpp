@@ -19,6 +19,7 @@
 #include "SELECTATM.h"
 #include "LANGUAGE.h"
 #include "ADMINMENU.h"
+#include "STATERECEIPT.h"
 
 using namespace std;
 
@@ -50,7 +51,8 @@ int main() {
                 cout << "1." << lang->chooseSentence(18) << "\n";
                 cout << "2. Withdraw\n";
                 cout << "3. Transfer\n";
-                cout << "4. Exit Session\n";
+                cout << "4. Receipt print\n";
+                cout << "5. Exit Session\n";
                 cin >> choice;
 
                 if (choice == "1")
@@ -62,6 +64,8 @@ int main() {
                 else if (choice == "/")
                     x = new state_snapshot(*account, *atm, primary, *lang);
                 else if (choice == "4")
+                    x = new state_receipt(*account, *atm, primary, *lang);
+                else if (choice == "5")
                     cout << "Exiting session.\n";
                 else
                     cout << "Invalid choice. Please try again.\n";
@@ -74,7 +78,7 @@ int main() {
                 delete x;
                 x = nullptr;
                 }
-            } while (choice != "4");
+            } while (choice != "5");
             atm->printAndClearRecentHistory();
         }
 	

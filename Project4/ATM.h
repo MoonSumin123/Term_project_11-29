@@ -63,6 +63,7 @@ public:
     bool getTransactionAvailable(bool primary) const;
 
     void recordRecentHistory(const string recent_transaction);
+    void printRecentHistory();
     void printAndClearRecentHistory();
     void recordAtmHistory(const string transaction);
     vector<string>& getAtmHistory();

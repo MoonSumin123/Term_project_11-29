@@ -73,11 +73,12 @@ int main() {
                     x = new state_receipt(*account, *atm, primary, *lang);
                 else if (choice == "5")
                     std::cout << lang->chooseSentence(36) << "\n";   //Exit Session
-                else
+                else {
                     std::cout << lang->chooseSentence(37);   //"Invalid choice. Please try again.\n"
+                    endSession = true;
+                }
 
                 if (endSession) {
-                    std::cout << lang->chooseSentence(38);//"Insufficient cash available to dispense the requested amount including fees.\n" ;
                     break;
                 }
                 if (x != nullptr) {
